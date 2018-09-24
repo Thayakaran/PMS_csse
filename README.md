@@ -1,9 +1,9 @@
 # Procurement Management System
 ### Technologies
 ```sh
-    Front-End   : Java 8, Android 5.0
-    Back-End    : NodeJS 8.12.0
-    Database    : MongoDB 4.0
+    Front-End   : jquery, NodeJS 8.12.0
+    Back-End    : Java 8, Spring Boot
+    Database    : MySQL-AWS(RDS)
 ```
 
 ### Coding Conventions
