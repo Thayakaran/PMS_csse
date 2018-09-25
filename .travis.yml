@@ -6,7 +6,6 @@ notifications:
   - 18sugan@gmail.com
   - p.puvipavan@gmail.com
   - jvithu2004@gmail.com
-  - rajendranyathushan3@gmail.com
   - thayakrn@gmail.com
   - n.sankeeth@gmail.com
   on_success: always
