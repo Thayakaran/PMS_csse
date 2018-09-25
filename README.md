@@ -1,9 +1,11 @@
 # Procurement Management System
 ### Technologies
 ```sh
-    Front-End   : jquery, NodeJS 8.12.0
-    Back-End    : Java 8, Spring Boot
-    Database    : MySQL-AWS(RDS)
+    Front-End   		: jquery, HTML5, Bootstrap
+    Back-End    		: Java 8, Spring Boot
+    Database    		: MySQL-AWS(RDS)
+	Version Controll	: github
+	CI/CD	: Travis CI, Heroku
 ```
 
 ### Coding Conventions
