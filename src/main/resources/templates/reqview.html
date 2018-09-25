@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" href="production/images/favicon.png" type="image/ico" />
+	<link rel="icon" href="/images/favicon.png" type="image/ico" />
 
 	<title>Manage Request</title>
 
@@ -16,11 +16,18 @@
 	<link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 	<!-- NProgress -->
 	<link href="vendors/nprogress/nprogress.css" rel="stylesheet">
-	<!-- Animate.css -->
-	<link href="vendors/animate.css/animate.min.css" rel="stylesheet">
+	<!-- iCheck -->
+	<link href="vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+	<!-- bootstrap-progressbar -->
+	<link href="vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+	<!-- JQVMap -->
+	<link href="vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+	<!-- bootstrap-daterangepicker -->
+	<link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
 	<!-- Custom Theme Style -->
-	<link href="build/css/custom.min.css" rel="stylesheet">
+	<link href="/css/custom.min.css" rel="stylesheet">
 
 <style>
 	table, td, th {
@@ -45,17 +52,13 @@
 	}
 </style>
 
-<script src="production/js/jquery.min.js"></script>
-<script src="production/js/sweetalert2.all.min.js"></script>
+	<script src="/js/projectJS/sweetalert2.all.min.js"></script>
+	<script src="/js/projectJS/jquery.min.js"></script>
 
 </head>
 <body>
 <form id="managerequest" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
-	<!--<img style="float:right" src="production/images/SliitLogo.jpg" alt="SLIIT" width="220" height="100">
-    <h2 >Faculty of Computing</h2>
-    <h3><b> Form I - 1 </b></h3>
-    <h4 style="text-align:center ; font-size:200%;padding-right:200px"> Internship Acceptance Form </h4>  -->
- 
+
 
 		<div class="x_panel">
 			<div class="form-group">
@@ -91,16 +94,18 @@
 			<div class="right_col" role="main">
 				<table>
 					<tr>
-						<th> Brand Name </th>
-						<th> Models Name </th>
-						<th> Colour </th>
-						<th> Price </th>
+						<th> Order ID </th>
+						<th> Requester's ID </th>
+						<th> Order Date </th>
+						<th> Required Date </th>
+						<th> Order Status </th>
 					</tr>
 
 					<tr>
 						<td> <?php echo $row['brand_name']; ?> </td>
 						<td> <?php echo $row['model_name']; ?> </td>
 						<td> <?php echo $row['colour']; ?> </td>
+						<td> <?php echo $row['price']; ?> </td>
 						<td> <?php echo $row['price']; ?> </td>
 					</tr>
 

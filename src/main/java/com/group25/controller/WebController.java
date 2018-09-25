@@ -8,9 +8,9 @@ public class WebController {
 
     @GetMapping(value="/")
     public String loginPage(){
-        return "login";
+        return "request";
     }
-    @GetMapping(value="/home.html")
+    @GetMapping(value="/sitemanagerhome.html")
     public String homePage(){
         return "home";
     }
