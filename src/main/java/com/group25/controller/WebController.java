@@ -28,4 +28,8 @@ public class WebController {
     public String goodReceiptPage(){return "goodReceipt";}
     @GetMapping(value = "/paymentSummery.html")
     public String paymentSummeryPage(){return "paymentSummery";}
+    @GetMapping(value = "/supplierProfile.html")
+    public String supplierProfilePage(){return "supplierProfile";}
+
+
 }
