@@ -18,4 +18,14 @@ public class WebController {
     public String registrationPage(){
         return "registration";
     }
+
+
+    @GetMapping(value = "/orderDetails.html")
+    public String orderDetailsPage(){return "orderDetails";}
+    @GetMapping(value = "/invoice.html")
+    public String invoicePage(){return "invoice";}
+    @GetMapping(value = "/goodReceipt.html")
+    public String goodReceiptPage(){return "goodReceipt";}
+    @GetMapping(value = "/paymentSummery.html")
+    public String paymentSummeryPage(){return "paymentSummery";}
 }
