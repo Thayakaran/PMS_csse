@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="production/images/favicon.png" type="image/ico" />
+
+	<title>Manage Request</title>
+
+	<!-- Bootstrap -->
+	<link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<!-- NProgress -->
+	<link href="vendors/nprogress/nprogress.css" rel="stylesheet">
+	<!-- Animate.css -->
+	<link href="vendors/animate.css/animate.min.css" rel="stylesheet">
+
+	<!-- Custom Theme Style -->
+	<link href="build/css/custom.min.css" rel="stylesheet">
+
+<style>
+	table, td, th {
+		border: 1px solid #000000;
+		text-align: left;
+	}
+	th {
+		background-color: #4d88ff;
+		color: white;
+	}
+	td{
+		background-color: #ddd;
+		color: Black;
+	}
+	table {
+		border-collapse: collapse;
+		width: 100%;
+	}
+
+	th, td {
+		padding: 15px;
+	}
+</style>
+
+<script src="production/js/jquery.min.js"></script>
+<script src="production/js/sweetalert2.all.min.js"></script>
+
+</head>
+<body>
+<form id="managerequest" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+	<!--<img style="float:right" src="production/images/SliitLogo.jpg" alt="SLIIT" width="220" height="100">
+    <h2 >Faculty of Computing</h2>
+    <h3><b> Form I - 1 </b></h3>
+    <h4 style="text-align:center ; font-size:200%;padding-right:200px"> Internship Acceptance Form </h4>  -->
+ 
+
+		<div class="x_panel">
+			<div class="form-group">
+				<label class="control-label col-md-4 col-sm-6 col-xs-12" for="Requestid">Request ID
+				</label>
+				<div class="col-md-2 col-sm-5 col-xs-12">
+					<input type="text" id="Requestid" required="required" class="form-control col-md-7 col-xs-12">
+
+				</div>
+				<label class="control-label col-md-2 col-sm-3 col-xs-12" for="requeststatus">Request Status
+				</label>
+				<div class="col-md-2 col-sm-6 col-xs-12">
+					<select type="text" id="requeststatus" required="required" class="form-control col-md-7 col-xs-12">
+						<option value="None">--Select--</option>
+						<option value="Pending">Pending</option>
+						<option value="Approved">Approved</option>
+						<option value="Cancelled">Cancelled</option>
+						<option value="Placed">Placed</option>
+						<option value="Rejected">Rejected</option>
+						<option value="Delivered">Delivered</option>
+					</select>
+				</div>
+				<button class="btn btn-primary" type="submit" id="go">GO</button>
+			</div>
+
+
+
+	<hr/>
+	<br><br>
+
+
+
+			<div class="right_col" role="main">
+				<table>
+					<tr>
+						<th> Brand Name </th>
+						<th> Models Name </th>
+						<th> Colour </th>
+						<th> Price </th>
+					</tr>
+
+					<tr>
+						<td> <?php echo $row['brand_name']; ?> </td>
+						<td> <?php echo $row['model_name']; ?> </td>
+						<td> <?php echo $row['colour']; ?> </td>
+						<td> <?php echo $row['price']; ?> </td>
+					</tr>
+
+
+				</table>
+			</div>
+			<!-- /top tiles -->
+
+			<div class="row tile_count" id="forms">
+
+			</div>
+
+		</div>
+
+
+
+</form>
+
+
+
+
+<script src="build/js/form1.js"></script>
+
+</body>
+
+</html>
