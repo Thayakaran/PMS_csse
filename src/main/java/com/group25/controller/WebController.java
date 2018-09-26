@@ -17,9 +17,9 @@ public class WebController {
 
         //have to return according to the user login
     }
-    @GetMapping(value="/registration.html")
+    @GetMapping(value="/userManagement.html")
     public String registrationPage(){
-        return "registration";
+        return "userManagement";
     }
 
 
