@@ -41,7 +41,7 @@ $( document ).ready(function() {
                 }
                 else{
                     swal({title:"Success", text:"Your Account Has Been Created. Please Login", type:"success"});
-                    resetData();
+                    resetAddData();
                 }
                 // swal({title:"Success", text:"Your Account Has Been Created. Please Login", type:"success"});
                 // resetData();
@@ -56,7 +56,7 @@ $( document ).ready(function() {
 
     }
 
-    function resetData(){
+    function resetAddData(){
         $("#fName").val(""),
         $("#lName").val(""),
         $("#mPhone").val(""),
@@ -147,7 +147,7 @@ $( document ).ready(function() {
                 }
                 else{
                     swal({title:"Success", text:"Your Account Has Been Created. Please Login", type:"success"});
-                    resetData();
+                    resetUpdateData();
                 }
                 // swal({title:"Success", text:"Your Account Has Been Created. Please Login", type:"success"});
                 // resetData();
@@ -162,7 +162,7 @@ $( document ).ready(function() {
 
     }
 
-    function resetData(){
+    function resetUpdateData(){
         $("#UfName").val(""),
         $("#UlName").val(""),
         $("#UmPhone").val(""),
@@ -177,7 +177,7 @@ $( document ).ready(function() {
     ///////////////////////////////////////////////////////////////////////////
 
     // DELETE USER BY ID
-    $("#searchBtn").click(function(event){
+    $("#deleteUser").click(function(event){
         event.preventDefault();
         var id = $("#searchTxt").val();
 
@@ -191,7 +191,7 @@ $( document ).ready(function() {
             url : "users/"+id,
             success: function(result){
                 if(result){
-
+                    resetDeleteData();
                     console.log("Success: ", result);
                 }else{
                     console.log("Fail: ", result);
@@ -201,6 +201,18 @@ $( document ).ready(function() {
                 console.log("ERROR: ", e);
             }
         });
+    }
+
+    function resetDeleteData(){
+            $("#UfName").val(""),
+            $("#UlName").val(""),
+            $("#UmPhone").val(""),
+            $("#UoPhone").val(""),
+            $("#UhAddress").val(""),
+            $("#UwAddress").val(""),
+            $("#Urole").val(""),
+            $("#Uemail").val(""),
+            $("#Upassword").val("")
     }
 
 });
