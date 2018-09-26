@@ -8,9 +8,9 @@ $(document).ready(function(){
         location.href = "/";
       });
     //register users
-    $('#registerUser').click(function () {
-        $("#body").load('/registration.html', function() {
-            $.getScript('/js/viewJS/registration.js');
+    $('#userManagement').click(function () {
+        $("#body").load('/userManagement.html', function() {
+            $.getScript('/js/viewJS/userManagement.js');
         });
     });
 });
