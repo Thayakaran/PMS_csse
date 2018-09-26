@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" href="/images/favicon.png" type="image/ico" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- Meta, title, CSS, favicons, etc. -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<title>Manage Request</title>
 
@@ -18,18 +17,17 @@
 	<link href="vendors/nprogress/nprogress.css" rel="stylesheet">
 	<!-- iCheck -->
 	<link href="vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-
-	<!-- bootstrap-progressbar -->
-	<link href="vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-	<!-- JQVMap -->
-	<link href="vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
-	<!-- bootstrap-daterangepicker -->
-	<link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+	<!-- Datatables -->
+	<link href="vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+	<link href="vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+	<link href="vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+	<link href="vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+	<link href="vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 
 	<!-- Custom Theme Style -->
 	<link href="/css/custom.min.css" rel="stylesheet">
 
-<style>
+<!--<style>
 	table, td, th {
 		border: 1px solid #000000;
 		text-align: left;
@@ -50,84 +48,150 @@
 	th, td {
 		padding: 15px;
 	}
-</style>
+</style>-->
 
 	<script src="/js/projectJS/sweetalert2.all.min.js"></script>
 	<script src="/js/projectJS/jquery.min.js"></script>
 
 </head>
-<body>
-<form id="managerequest" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+<body class="nav-md">
+<div class="container body">
+	<div class="main_container">
+		<!-- page content -->
+
+		<div class="">
+
+			<div class="clearfix"></div>
+
+			<div class="row">
+
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<div class="x_panel">
+						<div class="x_title">
+							<h2>Request orders</h2>
+							<div class="clearfix"></div>
+						</div>
+
+						<div class="x_content">
 
 
-		<div class="x_panel">
-			<div class="form-group">
-				<label class="control-label col-md-4 col-sm-6 col-xs-12" for="Requestid">Request ID
-				</label>
-				<div class="col-md-2 col-sm-5 col-xs-12">
-					<input type="text" id="Requestid" required="required" class="form-control col-md-7 col-xs-12">
+							<table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+								<thead>
+								<tr>
+									<th>Order ID</th>
+									<th>Order By</th>
+									<th>Item</th>
+									<th>Quantity</th>
+									<th>Order Date</th>
+									<th>Required Date</th>
+									<th>Description</th>
+									<th>Contact Number</th>
+									<th>Site Name</th>
+									<th>Status</th>
+									<th>Supplier</th>
+									<th>Agree Price</th>
+									<th>Note</th>
+									<th></th>
 
+
+								</tr>
+								</thead>
+								<tbody>
+
+
+								<tr>
+									<td>RITM</td>
+									<td>Fitzpatrick</td>
+									<td>swhgdedg</td>
+									<td>20</td>
+									<td>2010/05/17</td>
+									<td>2010/05/27</td>
+									<td>ngfwdewfehgwhwhfgwwegrg</td>
+									<td>0587874787894897</td>
+									<td>mamamamamaam</td>
+									<td>
+										<select class="form-control">
+											<option>Requested</option>
+											<option>Approved</option>
+											<option>Declined</option>
+											<option>Placed</option>
+											<option>Rejected</option>
+											<option>Delivered</option>
+											<option>Rejected</option>
+										</select>
+
+									</td>
+									<td>
+										<select class="form-control">
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option>5</option>
+											<option>6</option>
+											<option>7</option>
+										</select>
+
+									</td>
+									<td>
+											<input type="text" id="agreeprice" required="required" class="form-control">
+
+									</td>
+									<td>
+										<input type="text" id="note" required="required" class="form-control">
+
+									</td>
+
+									<td>
+										<a href="#" class="btn btn-primary btn-xs">Submit </a>
+									</td>
+								</tr>
+
+								</tbody>
+							</table>
+
+
+						</div>
+					</div>
 				</div>
-				<label class="control-label col-md-2 col-sm-3 col-xs-12" for="requeststatus">Request Status
-				</label>
-				<div class="col-md-2 col-sm-6 col-xs-12">
-					<select type="text" id="requeststatus" required="required" class="form-control col-md-7 col-xs-12">
-						<option value="None">--Select--</option>
-						<option value="Pending">Pending</option>
-						<option value="Approved">Approved</option>
-						<option value="Cancelled">Cancelled</option>
-						<option value="Placed">Placed</option>
-						<option value="Rejected">Rejected</option>
-						<option value="Delivered">Delivered</option>
-					</select>
-				</div>
-				<button class="btn btn-primary" type="submit" id="go">GO</button>
 			</div>
-
-
-
-	<hr/>
-	<br><br>
-
-
-
-			<div class="right_col" role="main">
-				<table>
-					<tr>
-						<th> Order ID </th>
-						<th> Requester's ID </th>
-						<th> Order Date </th>
-						<th> Required Date </th>
-						<th> Order Status </th>
-					</tr>
-
-					<tr>
-						<td> <?php echo $row['brand_name']; ?> </td>
-						<td> <?php echo $row['model_name']; ?> </td>
-						<td> <?php echo $row['colour']; ?> </td>
-						<td> <?php echo $row['price']; ?> </td>
-						<td> <?php echo $row['price']; ?> </td>
-					</tr>
-
-
-				</table>
-			</div>
-			<!-- /top tiles -->
-
-			<div class="row tile_count" id="forms">
-
-			</div>
-
 		</div>
 
+		<!-- /page content -->
 
 
-</form>
+	</div>
+</div>
 
+<!-- jQuery -->
+<script src="vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="vendors/nprogress/nprogress.js"></script>
+<!-- iCheck -->
+<script src="vendors/iCheck/icheck.min.js"></script>
+<!-- Datatables -->
+<script src="vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+<script src="vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+<script src="vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+<script src="vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+<script src="vendors/jszip/dist/jszip.min.js"></script>
+<script src="vendors/pdfmake/build/pdfmake.min.js"></script>
+<script src="vendors/pdfmake/build/vfs_fonts.js"></script>
 
-
-
-<script src="build/js/form1.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="/js/projectJS/custom.min.js"></script>
 
 </body>
 
