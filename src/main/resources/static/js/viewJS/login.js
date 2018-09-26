@@ -1,4 +1,4 @@
-$(document).ready(function () { 
+$(document).ready(function () {
 
     $("#login").click(function (event) {
         event.preventDefault();
@@ -25,7 +25,7 @@ $(document).ready(function () {
                         localStorage.setItem('email', result["email"]);
                         localStorage.setItem('role', result["role"]);
 
-                        location.href = "home.html";
+                        location.href = "home";
 
                     } else {
 
