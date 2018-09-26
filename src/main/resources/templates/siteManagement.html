@@ -122,9 +122,6 @@
                         </div>
                     </div>
 
-
-
-
                     <div class="ln_solid"></div>
 
                     <div class="form-group">
@@ -133,7 +130,7 @@
                         </div>
 
                         <div style=" display: flex; align-items: center; justify-content: center;" class="col-md-6 col-sm-6 col-xs-12 form-group">
-                            <button type="submit" class="btn btn-success">Register</button>
+                            <button type="submit" class="btn btn-success">Add Site</button>
                         </div>
                     </div>
 
@@ -145,99 +142,90 @@
         <div class="x_panel">
             <div class="x_title">
                 <div class="title_left">
-                    <h2>Update Users</h2>
-                </div>
-
-                <div class="title_right">
-                    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                        <div class="input-group">
-                            <input type="text" id="searchTxt" class="form-control" placeholder="Search for user...">
-                            <span class="input-group-btn"><button class="btn btn-default" id="searchBtn" type="button">Go!</button></span>
-                        </div>
-                    </div>
+                    <h2>Add New Site</h2>
                 </div>
 
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
                 <br />
-                <form data-parsley-validate class="form-horizontal form-label-left input_mask" id="userUpdateForm">
+                <form data-parsley-validate class="form-horizontal form-label-left input_mask" id="updateSiteForm">
 
                     <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="UsiteId">Site ID</label>
                         <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                            <input type="text" required="required" class="form-control has-feedback-left" id="UfName" placeholder="First Name" data-parsley-type="alphanum">
-                            <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                            <input type="text" id="UsiteId" required="required" class="form-control has-feedback-right" placeholder="Enter unique ID" data-parsley-type="alphanum">
+                            <span class="fa fa-key form-control-feedback right" aria-hidden="true"></span>
                         </div>
+                    </div>
 
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="UsiteLocation">Site Location</label>
                         <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                            <input type="text" required="required" class="form-control" id="UlName" placeholder="Last Name" data-parsley-type="alphanum">
+                            <input type="text" id="UsiteLocation" required="required" class="form-control has-feedback-right" placeholder="Enter site location">
+                            <span class="fa fa-location-arrow form-control-feedback right" aria-hidden="true"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="UsiteClient">Site Client</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                            <input type="text" id="UsiteClient" required="required" class="form-control has-feedback-right" placeholder="Enter client name" data-parsley-type="alphanum">
                             <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                            <input type="text" required="required" class="form-control has-feedback-left" id="UmPhone" placeholder="Mobile Phone" data-parsley-type="digits" data-parsley-minlength="10" data-parsley-maxlength="10" data-parsley-minlength-message="10 digits for phone number" data-parsley-maxlength-message="10 digits for phone number">
-                            <span class="fa fa-mobile form-control-feedback left" aria-hidden="true"></span>
-                        </div>
-
-                        <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                            <input type="text" required="required" class="form-control" id="UoPhone" placeholder="Office Phone" data-parsley-type="digits" data-parsley-minlength="10" data-parsley-maxlength="10" data-parsley-minlength-message="10 digits for phone number" data-parsley-maxlength-message="10 digits for phone number">
-                            <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                            <input type="text" required="required" class="form-control has-feedback-left" id="UhAddress" placeholder="Home Address">
-                            <span class="fa fa-home form-control-feedback left" aria-hidden="true"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                            <input type="text" required="required" class="form-control has-feedback-left" id="UwAddress" placeholder="Office Address">
-                            <span class="fa fa-briefcase form-control-feedback left" aria-hidden="true"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                            <select class="form-control has-feedback-left" id="Urole" required="required">
-                                <option value="">Select User Role</option>
-                                <option value="Contractor">Contractor</option>
-                                <option value="Site Manager">Site Manager</option>
-                                <option value="Supplier">Supplier</option>
-                                <option value="Account Staff">Account Staff</option>
-                                <option value="Manager">Manager</option>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="UsiteManager">Site Manager</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                            <select class="form-control" id="UsiteManager" required="required">
+                                <option value="">Select Site Manager</option>
+                                <option >a</option>
+                                <option >b</option>
+                                <option >c</option>
+                                <option >d</option>
+                                <option >d</option>
                             </select>
-                            <span class="fa fa-user-plus form-control-feedback left" aria-hidden="true"></span>
-                        </div>
-
-                        <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                            <input type="email" required="required" class="form-control has-feedback-left" id="Uemail" placeholder="Email">
-                            <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <div class="col-md-3 col-sm-6 col-xs-12 form-group has-feedback">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Ucontractor">Contractor</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                            <select class="select2_multiple form-control" multiple="multiple" id="Ucontractor" required="required">
+                                <option value="">Select Contractor</option>
+                                <option >a</option>
+                                <option >b</option>
+                                <option >c</option>
+                                <option >d</option>
+                                <option >d</option>
+                            </select>
                         </div>
+                    </div>
 
-                        <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                            <input type="text" class="form-control has-feedback-left" id="Upassword" readonly="readonly" placeholder="Default Password">
-                            <span class="fa fa-lock form-control-feedback left" aria-hidden="true"></span>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Usupplier">Suppliers</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                            <select class="select2_multiple form-control" multiple="multiple" id="Usupplier" required="required">
+                                <option value="">Select Suppliers</option>
+                                <option >a</option>
+                                <option >b</option>
+                                <option >c</option>
+                                <option >d</option>
+                                <option >d</option>
+                            </select>
                         </div>
                     </div>
 
                     <div class="ln_solid"></div>
+
                     <div class="form-group">
                         <div style=" display: flex; align-items: center; justify-content: center;" class="col-md-6 col-sm-6 col-xs-12 form-group">
-                            <button class="btn btn-danger" type="button" id="deleteUser">Delete</button>
+                            <button class="btn btn-danger" type="button">Delete Site</button>
                         </div>
 
                         <div style=" display: flex; align-items: center; justify-content: center;" class="col-md-6 col-sm-6 col-xs-12 form-group">
-                            <button type="submit" class="btn btn-success">Update</button>
+                            <button type="submit" class="btn btn-success">Update Site</button>
                         </div>
                     </div>
 
