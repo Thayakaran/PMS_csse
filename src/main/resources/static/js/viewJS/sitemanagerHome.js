@@ -17,9 +17,8 @@ $(document).ready(function(){
 
     //request
     $('#Request').click(function () {
-        $("#body").load('/request.html');
-        // , function() {
-        //         // $.getScript('/js/viewJS/viewRequest.js');
-        //     }
+        $("#body").load('/request.html'), function() {
+                 $.getScript('/js/viewJS/request.js');
+           }
     });
 });

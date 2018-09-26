@@ -11,11 +11,15 @@ public class SiteManager {
     private int site;
     private int contactnum;
     private String requiredate;
+    private String note;
+    private int supplier;
+    private String status;
+
 
     public SiteManager() {
     }
 
-    public SiteManager(int orderby, int manager, int item, int qty, String date, String description, int site, int contactnum, String requiredate) {
+    public SiteManager(int orderby, int manager, int item, int qty, String date, String description, int site, int contactnum, String requiredate, String note, int supplier, String status) {
         this.orderby = orderby;
         this.manager = manager;
         this.item = item;
@@ -25,6 +29,9 @@ public class SiteManager {
         this.site = site;
         this.contactnum = contactnum;
         this.requiredate = requiredate;
+        this.note = note;
+        this.supplier = supplier;
+        this.status = status;
     }
 
     //1 get/set orderby value
@@ -106,5 +113,32 @@ public class SiteManager {
 
     public void setRequiredate(String requiredate) {
         this.requiredate = requiredate;
+    }
+
+    //10 get/set Note value
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    //11 get/set Status value
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    //12 get/set supplier value
+    public int getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(int supplier) {
+        this.supplier = supplier;
     }
 }
