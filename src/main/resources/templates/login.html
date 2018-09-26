@@ -7,9 +7,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="/images/favicon.png" type="image/ico" />
-    
-    <title>IMS | Login</title>
+
+    <title>Login | </title>
 
     <!-- Bootstrap -->
     <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -22,8 +21,14 @@
 
     <!-- Custom Theme Style -->
     <link href="/css/custom.min.css" rel="stylesheet">
+
+
+    <!-- jquery and sweetalert -->
     <script src="/js/projectJS/sweetalert2.all.min.js"></script>
     <script src="/js/projectJS/jquery.min.js"></script>
+
+    <!-- Login Script -->
+    <script src="/js/viewJS/login.js"></script>
 </head>
 
 <body class="login">
@@ -35,13 +40,7 @@
         <div class="animate form login_form">
             <section class="login_content">
                 <form>
-                    <h1>Login Form</h1>
-                    <div class="flat">
-                        <span style="float: left; margin-left: 20px; margin-bottom: 20px;"><input id="opst" type="radio" name="user" value="student" class="flat"> Student</span>
-                        <span style="margin-bottom: 20px;"><input id="opco" type="radio" name="user" value="company" class="flat"> Company</span>
-                        <span style="margin-bottom: 20px; margin-left: 20px;"><input id="opex" type="radio" name="user" value="examiner" class="flat"> Examiner</span>
-                        <span style="float: right; margin-right: 20px; margin-bottom: 20px;"><input id="opitm" type="radio" name="user" value="itm" class="flat">ITM</span>
-                    </div>
+                    <h1>Login </h1>
                     <br>
                     <div>
                         <input type="text" class="form-control" placeholder="Username" id="email" required="" />
@@ -50,9 +49,9 @@
                         <input type="password" class="form-control" placeholder="Password" id= "password" required="" />
                     </div>
                     <div>
-                        <a class="btn btn-default submit" id="login" href="sitemanagerhome.html">Log in</a>    <!-- temporary href-->
+                        <a class="btn btn-default submit" id="login" href="home.html">Log in</a>    <!-- temporary href-->
+
                         <a class="reset_pass" href="#">Lost your password?</a>
-                        <a class="reset_pass" id="registration" href="registration.html">New to IMS System??</a>
                     </div>
 
                     <div class="clearfix"></div>
@@ -62,7 +61,5 @@
         </div>
     </div>
 </div>
-<!--<script src="/js/viewJS/login.js"></script>-->
 </body>
 </html>
-
