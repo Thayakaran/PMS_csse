@@ -18,4 +18,8 @@ public class WebController {
     public String registrationPage(){
         return "registration";
     }
+    @GetMapping(value="/form1.html")
+    public String form1Page(){
+        return "form1";
+    }
 }

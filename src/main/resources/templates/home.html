@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	  <link rel="icon" href="/images/favicon.png" type="image/ico" />
 
-    <title>Internship Management System </title>
+    <title>Procurement Management System </title>
 
     <!-- Bootstrap -->
     <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -36,7 +36,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="home.html" class="site_title"><i class="fa fa-users"></i> <span>SLIIT IMS</span></a>
+              <a href="home.html" class="site_title"><i class="fa fa-user"></i><span>PMS</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -59,42 +59,14 @@
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="home.html">Dashboard</a></li>
-                    </ul>
-                  </li>
-                  <li><a id="formdropdown"><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a class="form_I_1" id="form_I_1a">Form I-1</a></li>
-                      <li><a class="form_I_3" id="form_I_3a">Form I-3</a></li>
-                      <li><a class="form_I_5" id="form_I_5a">Form I-5</a></li>
-                      <li><a class="form_I_6" id="form_I_6a">Form I-6</a></li>
-                      <li><a class="form_I_7" id="form_I_7a">Form I-7</a></li>
-                    </ul>
-                  </li>
+                  <li><a href="home.html"><i class="fa fa-home"></i> Home </a></li>
+                  <li><a id="registerUser"><i class="fa fa-edit"></i> Register Users </a></li>
+                  <!--<li><a href="home.html" id="registerUser"><i class="fa fa-edit"></i> Register Users </a></li>-->
                 </ul>
               </div>
               
             </div>
             <!-- /sidebar menu -->
-
-            <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Lock">
-                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" id="logout1">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
-            </div>
-            <!-- /menu footer buttons -->
           </div>
         </div>
 
@@ -128,7 +100,7 @@
                 <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">6</span>
+                    <span class="badge bg-green">4</span>
                   </a>
                   <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                     <li>
@@ -139,7 +111,7 @@
                           <span class="time">3 mins ago</span>
                         </span>
                         <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                          Smith sent you new Requests
                         </span>
                       </a>
                     </li>
@@ -148,10 +120,10 @@
                         <span class="image"><img src="/images/img.jpg" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
+                          <span class="time">30 mins ago</span>
                         </span>
                         <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                          Order sucessfully processed
                         </span>
                       </a>
                     </li>
@@ -160,10 +132,10 @@
                         <span class="image"><img src="/images/img.jpg" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
+                          <span class="time">1 hour ago</span>
                         </span>
                         <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                          Thaya approved 3 orders
                         </span>
                       </a>
                     </li>
@@ -172,10 +144,10 @@
                         <span class="image"><img src="/images/img.jpg" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
+                          <span class="time">3 hour ago</span>
                         </span>
                         <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                          Sankee sucessfully transfered the amounts for XX supplier
                         </span>
                       </a>
                     </li>
@@ -197,34 +169,8 @@
 
         <!-- page content -->
         <div class="right_col" role="main">
-          <!-- top tiles -->
-           <div class="row tile_count">
-            <div class="col-md-1 col-sm-4 col-xs-6 ">
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 ">
-              <span class="count_top"><i class="fa fa-edit"></i><a class="form_I_1" id="form_I_1b"> Form I-1</a></span>
-              <div class="image"><a class="form_I_1" id="form_I_1c"><img src="/images/spm.png" alt="Profile Image" /></a></div>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 ">
-              <span class="count_top"><i class="fa fa-edit"></i><a class="form_I_3" id="form_I_3b"> Form I-3 </a></span>
-              <div class="image"><a class="form_I_3" id="form_I_3c"><img src="/images/spm.png" alt="Profile Image" /></a></div>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 ">
-              <span class="count_top"><i class="fa fa-edit"></i> <a class="form_I_5" id="form_I_5b">Form I-5 </a></span>
-              <div class="image"><a class="form_I_5" id="form_I_5c"><img src="/images/spm.png" alt="Profile Image" /></a></div>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 ">
-              <span class="count_top"><i class="fa fa-edit"></i><a class="form_I_6" id="form_I_6b"> Form I-6 </a></span>
-              <div class="image"><a class="form_I_6" id="form_I_6c"><img src="/images/spm.png" alt="Profile Image" /></a></div>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 ">
-              <span class="count_top"><i class="fa fa-edit"></i><a class="form_I_7" id="form_I_7b"> Form I-7</a></span>
-              <div class="image"><a class="form_I_7" id="form_I_7c"><img src="/images/spm.png" alt="Profile Image" /></a></div>
-            </div>
-          </div> 
-          <!-- /top tiles -->
 
-          <div class="row tile_count" id="forms">
+          <div class="row tile_count" id="body">
             <img style="float:right" src="/images/SLIIT.png" alt="SLIIT" width="100%">
             
           </div>
@@ -236,7 +182,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Internship Management System By <a href="https://google.com">MATRIX</a>
+            Procurement Management System By <a href="https://google.com">MATRIX</a>
           </div>
           <div class="clearfix"></div>
         </footer>
