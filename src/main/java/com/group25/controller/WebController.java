@@ -12,17 +12,23 @@ public class WebController {
     }
     @GetMapping(value="/home.html")
     public String homePage(){
-        return "sitemanagerHome";
+        return "managementHome";
         //you can change your home and check
 
         //have to return according to the user login
     }
+
+    //// Manager Interfaces
     @GetMapping(value="/userManagement.html")
-    public String registrationPage(){
+    public String userManagementPage(){
         return "userManagement";
     }
+    @GetMapping(value="/siteManagement.html")
+    public String siteManagementPage(){
+        return "siteManagement";
+    }
 
-
+    //// Supplier Interface
     @GetMapping(value = "/orderDetails.html")
     public String orderDetailsPage(){return "orderDetails";}
     @GetMapping(value = "/invoice.html")
@@ -35,6 +41,8 @@ public class WebController {
     public String supplierProfilePage(){return "supplierProfile";}
     @GetMapping(value = "/payments")
     public String paymentDetails(){return "payments";}
+
+    //// Site Manager Interface
     @GetMapping(value = "/viewRequests.html")
     public String requestView(){return "viewRequests";}
     @GetMapping(value = "/request.html")
