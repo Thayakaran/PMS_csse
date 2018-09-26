@@ -8,19 +8,18 @@ public class WebController {
 
     @GetMapping(value="/")
     public String loginPage(){
-        return "request";
+        return "login";
     }
-    @GetMapping(value="/sitemanagerhome.html")
+    @GetMapping(value="/home.html")
     public String homePage(){
-        return "home";
+        return "managementHome";
+        //you can change your home and check
+
+        //have to return according to the user login
     }
     @GetMapping(value="/registration.html")
     public String registrationPage(){
         return "registration";
-    }
-    @GetMapping(value="/form1.html")
-    public String form1Page(){
-        return "form1";
     }
 
 
