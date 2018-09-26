@@ -1,6 +1,6 @@
 $(document).ready(function () {
     if (localStorage.getItem('token')) {
-        window.location.href = "frontend/home.html";
+        window.location.href = "frontend/managementHome.html";
         return;
     }
 
@@ -35,7 +35,7 @@ $(document).ready(function () {
                     localStorage.setItem('type', res.type);
                     // if(data.type == "student")
                     // {
-                        location.href = "frontend/home.html";
+                        location.href = "frontend/managementHome.html";
                     // }
 
                 }

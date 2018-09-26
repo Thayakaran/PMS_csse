@@ -8,14 +8,33 @@ public class WebController {
 
     @GetMapping(value="/")
     public String loginPage(){
-        return "request";
+        return "login";
     }
-    @GetMapping(value="/sitemanagerhome.html")
+    @GetMapping(value="/home.html")
     public String homePage(){
-        return "home";
+        return "managementHome";
+        //you can change your home and check
+
+        //have to return according to the user login
     }
-    @GetMapping(value="/registration.html")
+    @GetMapping(value="/userManagement.html")
     public String registrationPage(){
-        return "registration";
+        return "userManagement";
     }
+
+
+    @GetMapping(value = "/orderDetails.html")
+    public String orderDetailsPage(){return "orderDetails";}
+    @GetMapping(value = "/invoice.html")
+    public String invoicePage(){return "invoice";}
+    @GetMapping(value = "/goodReceipt.html")
+    public String goodReceiptPage(){return "goodReceipt";}
+    @GetMapping(value = "/paymentSummery.html")
+    public String paymentSummeryPage(){return "paymentSummery";}
+    @GetMapping(value = "/supplierProfile.html")
+    public String supplierProfilePage(){return "supplierProfile";}
+    @GetMapping(value = "/payments")
+    public String paymentDetails(){return "payments";}
+
+
 }
