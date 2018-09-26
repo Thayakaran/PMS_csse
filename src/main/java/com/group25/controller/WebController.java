@@ -35,6 +35,11 @@ public class WebController {
     public String supplierProfilePage(){return "supplierProfile";}
     @GetMapping(value = "/payments")
     public String paymentDetails(){return "payments";}
+    @GetMapping(value = "/requestview")
+    public String requestView(){return "reqview";}
+    @GetMapping(value = "/request")
+    public String makeRequest(){return "request";}
+
 
 
 }
