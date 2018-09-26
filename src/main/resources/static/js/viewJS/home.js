@@ -7,12 +7,18 @@ $(document).ready(function(){
         localStorage.clear();
         location.href = "/";
       });
-    //form 1
-    $('.form_I_1').click(function () {
-        $("#forms").load('form1.html', function() {
-            $.getScript('/js/viewJS/form1.js');
+    //register users
+    $('#registerUser').click(function () {
+        $("#body").load('/registration.html', function() {
+            $.getScript('/js/viewJS/register.js');
         });
-      });
+    });
+    // form 1
+    // $('#registerUser').click(function () {
+    //     $("#body").load('/form1.html', function() {
+    //         $.getScript('/js/viewJS/form1.js');
+    //     });
+    //   });
 
     // form 3 
     // $('.form_I_3').click(function () {
