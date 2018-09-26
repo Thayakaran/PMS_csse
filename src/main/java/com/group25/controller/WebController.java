@@ -33,6 +33,8 @@ public class WebController {
     public String paymentSummeryPage(){return "paymentSummery";}
     @GetMapping(value = "/supplierProfile.html")
     public String supplierProfilePage(){return "supplierProfile";}
+    @GetMapping(value = "/payments")
+    public String paymentDetails(){return "payments";}
 
 
 }
