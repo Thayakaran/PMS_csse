@@ -14,4 +14,12 @@ $(document).ready(function(){
     //         // $.getScript('/js/viewJS/viewRequest.js');
     //     }
     });
+
+    //request
+    $('#Request').click(function () {
+        $("#body").load('/request.html');
+        // , function() {
+        //         // $.getScript('/js/viewJS/viewRequest.js');
+        //     }
+    });
 });
