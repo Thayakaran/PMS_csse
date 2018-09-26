@@ -58,14 +58,14 @@ $( document ).ready(function() {
 
     function resetAddData(){
         $("#fName").val(""),
-        $("#lName").val(""),
-        $("#mPhone").val(""),
-        $("#oPhone").val(""),
-        $("#hAddress").val(""),
-        $("#wAddress").val(""),
-        $("#role").val(""),
-        $("#email").val(""),
-        $("#password").val("")
+            $("#lName").val(""),
+            $("#mPhone").val(""),
+            $("#oPhone").val(""),
+            $("#hAddress").val(""),
+            $("#wAddress").val(""),
+            $("#role").val(""),
+            $("#email").val(""),
+            $("#password").val("")
     }
 
     /////////////////////////////////////////////////////////////////////////////////
@@ -86,16 +86,16 @@ $( document ).ready(function() {
             success: function(result){
                 if(result){
                     $("#UfName").val(result.fName),
-                    $("#UlName").val(result.lName),
-                    $("#UmPhone").val(result.mPhone),
-                    $("#UoPhone").val(result.oPhone),
-                    $("#UhAddress").val(result.hAddress),
-                    $("#UwAddress").val(result.wAddress),
-                    $("#Urole").val(result.role),
-                    $("#Uemail").val(result.email),
-                    $("#Upassword").val(result.password)
+                        $("#UlName").val(result.lName),
+                        $("#UmPhone").val(result.mPhone),
+                        $("#UoPhone").val(result.oPhone),
+                        $("#UhAddress").val(result.hAddress),
+                        $("#UwAddress").val(result.wAddress),
+                        $("#Urole").val(result.role),
+                        $("#Uemail").val(result.email),
+                        $("#Upassword").val(result.password)
 
-                console.log("Success: ", result);
+                    console.log("Success: ", result);
                 }else{
                     $("#searchTxt").val("User not found");
                     console.log("Fail: ", result);
@@ -164,14 +164,14 @@ $( document ).ready(function() {
 
     function resetUpdateData(){
         $("#UfName").val(""),
-        $("#UlName").val(""),
-        $("#UmPhone").val(""),
-        $("#UoPhone").val(""),
-        $("#UhAddress").val(""),
-        $("#UwAddress").val(""),
-        $("#Urole").val(""),
-        $("#Uemail").val(""),
-        $("#Upassword").val("")
+            $("#UlName").val(""),
+            $("#UmPhone").val(""),
+            $("#UoPhone").val(""),
+            $("#UhAddress").val(""),
+            $("#UwAddress").val(""),
+            $("#Urole").val(""),
+            $("#Uemail").val(""),
+            $("#Upassword").val("")
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -204,7 +204,7 @@ $( document ).ready(function() {
     }
 
     function resetDeleteData(){
-            $("#UfName").val(""),
+        $("#UfName").val(""),
             $("#UlName").val(""),
             $("#UmPhone").val(""),
             $("#UoPhone").val(""),

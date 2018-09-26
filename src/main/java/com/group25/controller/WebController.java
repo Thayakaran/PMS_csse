@@ -17,12 +17,18 @@ public class WebController {
 
         //have to return according to the user login
     }
+
+    //// Manager Interfaces
     @GetMapping(value="/userManagement.html")
-    public String registrationPage(){
+    public String userManagementPage(){
         return "userManagement";
     }
+    @GetMapping(value="/siteManagement.html")
+    public String siteManagementPage(){
+        return "siteManagement";
+    }
 
-
+    //// Supplier Interface
     @GetMapping(value = "/orderDetails.html")
     public String orderDetailsPage(){return "orderDetails";}
     @GetMapping(value = "/invoice.html")
