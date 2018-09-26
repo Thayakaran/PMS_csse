@@ -35,16 +35,10 @@ public class WebController {
     public String supplierProfilePage(){return "supplierProfile";}
     @GetMapping(value = "/payments")
     public String paymentDetails(){return "payments";}
-    @GetMapping(value = "/processPayment")
-    public String processPayment(){return "processPayment";}
-
-    //site manager
     @GetMapping(value = "/viewRequests.html")
     public String requestView(){return "viewRequests";}
     @GetMapping(value = "/request.html")
     public String makeRequest(){return "request";}
-//    @GetMapping(value = "/sitemanagerhome")
-//    public String SiteManager(){return "sitemanagerhome";}
 
 
 
