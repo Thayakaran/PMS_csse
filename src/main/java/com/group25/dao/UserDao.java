@@ -6,6 +6,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.awt.peer.SystemTrayPeer;
+import java.io.Console;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
@@ -73,7 +75,7 @@ public class UserDao {
     }
 
     //adding new user
-    public void addUser(User user) {
+    public int addUser(User user) {
         final String sql = "INSERT INTO user (fName, lName, mPhone, oPhone, hAddress, wAddress, role, email, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String fName = user.getfName();
         String lName = user.getlName();
@@ -84,6 +86,8 @@ public class UserDao {
         String role = user.getRole();
         String email = user.getEmail();
         String password = user.getPassword();
-        jdbcTemplate.update(sql, new Object[] {fName, lName, mPhone, oPhone, hAddress, wAddress, role, email, password});
+        int res = jdbcTemplate.update(sql, new Object[] {fName, lName, mPhone, oPhone, hAddress, wAddress, role, email, password});
+        return res;
+//        System.out.println("resposnessssssssssssssssssssssssss issssssssss : "+res);
     }
 }
