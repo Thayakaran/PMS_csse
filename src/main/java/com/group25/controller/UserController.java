@@ -1,6 +1,7 @@
 package com.group25.controller;
 
 import com.group25.entity.User;
+import com.group25.mailService.MailService;
 import com.group25.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -15,6 +16,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    MailService mailservice;
 
     @RequestMapping(method = RequestMethod.GET)
     public Collection<User> getAllUsers(){
@@ -38,6 +42,9 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addUser(@RequestBody User user){
-        userService.addUser(user);
+//        userService.addUser(user);
+        if(userService.addUser(user) == 1){
+            mailservice.sendMailAboutUserRegistration(user);
+        }
     }
 }
