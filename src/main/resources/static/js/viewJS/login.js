@@ -1,45 +1,51 @@
 $(document).ready(function () {
-    if (localStorage.getItem('token')) {
-        window.location.href = "frontend/managementHome.html";
-        return;
-    }
 
     $("#login").click(function (event) {
         event.preventDefault();
-        var data = {};
 
-        data.type = $("input[type='radio'].flat:checked").val();
+        var credentials = {};
 
-        data.email = $("#email").val();
-        data.password = $("#password").val();
+        credentials.email = $("#email").val();
+        credentials.password = $("#password").val();
 
-        if (data.email.trim() == "" || data.password == "") {
+        if (credentials.email.trim() == "" || credentials.password == "") {
 
-                swal({title: "Error", text: " Email and Password are Required!" , type: "error"});
+                swal({title: "Error", text: " Email and Password are Required!", type: "error"});
 
             return;
         }
-        $.ajax({
-            url: '/login',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(data),
-            type: 'POST',
-            success: function (res) {
-                console.log(res)
-                if (res.error) {
-                    swal({title: "Error", text: res.error, type: "error"});
-                }
-                else {
-                    localStorage.setItem('token', res.token);
-                    localStorage.setItem('name', res.name);
-                    localStorage.setItem('type', res.type);
-                    // if(data.type == "student")
-                    // {
-                        location.href = "frontend/managementHome.html";
-                    // }
 
+        $.ajax({
+            type : "GET",
+            url : "/login/"+credentials.email,
+            success: function(result){
+                if(result){
+                    if (result["password"] == credentials["password"]) {
+
+                        localStorage.setItem('email', result["email"]);
+                        localStorage.setItem('role', result["role"]);
+
+                        location.href = "home";
+
+                    } else {
+
+                        swal({title: "Invalid Credentials", text: "Check your email and password!", type: "error"});
+
+                    }
+
+                } else{
+
+                    swal({title: "Invalid Credentials", text: "Check your email and password!", type: "error"});
                 }
+            },
+            error : function(e) {
+
+                swal({title: "Error", text: "Unable to login to the system, Try again later!!", type: "error"});
+
             }
         });
+
+
     });
-})
+
+});
