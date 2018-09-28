@@ -25,7 +25,7 @@ $(document).ready(function () {
                         localStorage.setItem('email', result["email"]);
                         localStorage.setItem('role', result["role"]);
 
-                        location.href = "home";
+                        location.href = "home.html";
 
                     } else {
 
