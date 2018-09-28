@@ -47,6 +47,10 @@ public class WebController {
     public String requestView(){return "viewRequests";}
     @GetMapping(value = "/request.html")
     public String makeRequest(){return "request";}
+    @GetMapping(value="/sitemanagerHome.html")
+    public String siteManagerPage(){
+        return "sitemanagerHome";
+    }
 
 
 
