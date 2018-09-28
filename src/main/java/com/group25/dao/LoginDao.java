@@ -2,7 +2,9 @@ package com.group25.dao;
 
 import com.group25.entity.Login;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
@@ -22,28 +24,33 @@ public class LoginDao {
         @Override
         public Login mapRow(ResultSet resultSet, int i) throws SQLException {
 
-            List loginList = new ArrayList();
+            Login login = new Login();
+            login.setPassword(resultSet.getString("password"));
+            login.setEmail(resultSet.getString("email"));
+            login.setRole(resultSet.getString("role"));
 
-            while (resultSet.next()) {
-                Login login = new Login();
-                login.setPassword(resultSet.getString("password"));
-                login.setEmail(resultSet.getString("email"));
-                login.setRole(resultSet.getString("role"));
-                loginList.add(login);
-            }
+            return login;
 
-            Login firstLogin = (Login) loginList.get(0);
-
-            return firstLogin;
         }
     }
 
-
     //get user credentials
     public Login getUserLoginCredentials(String email){
-        final String sql = "SELECT * FROM user WHERE email = ?";
-        Login login = jdbcTemplate.queryForObject(sql, new LoginDao.LoginRowMapper(), email);
-        return login;
+
+        try {
+
+            final String sql = "SELECT * FROM user WHERE email = ?";
+            Login login = jdbcTemplate.queryForObject(sql, new LoginDao.LoginRowMapper(), email);
+            return login;
+
+        } catch (Exception ex) {
+
+            return null;
+
+        }
+
+
+
     }
 
 }

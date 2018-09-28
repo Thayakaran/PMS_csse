@@ -29,13 +29,13 @@ $(document).ready(function () {
 
                     } else {
 
-                        swal({title: "Error", text: "Invalid Credentials?!", type: "error"});
+                        swal({title: "Invalid Credentials", text: "Check your email and password!", type: "error"});
 
                     }
 
                 } else{
 
-                    swal({title: "Error", text: "Invalid Credentials?!", type: "error"});
+                    swal({title: "Invalid Credentials", text: "Check your email and password!", type: "error"});
                 }
             },
             error : function(e) {
