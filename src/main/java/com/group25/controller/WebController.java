@@ -39,8 +39,6 @@ public class WebController {
     public String paymentSummeryPage(){return "paymentSummery";}
     @GetMapping(value = "/supplierProfile.html")
     public String supplierProfilePage(){return "supplierProfile";}
-    @GetMapping(value = "/payments")
-    public String paymentDetails(){return "payments";}
 
     //// Site Manager Interface
     @GetMapping(value = "/viewRequests.html")
@@ -52,6 +50,10 @@ public class WebController {
         return "sitemanagerHome";
     }
 
+
+    //// Account Staff Interface
+    @GetMapping(value = "/payments")
+    public String paymentDetails(){return "payments";}
 
 
 }
