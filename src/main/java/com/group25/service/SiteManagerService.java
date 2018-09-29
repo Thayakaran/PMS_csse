@@ -15,6 +15,9 @@ public class SiteManagerService {
     @Autowired
     private SiteManagerDao managerDao;
 
+    public Collection<SiteManager> getAllRequest(){
+        return this.managerDao.getAllRequest();}
+
     public void addRequest(SiteManager manager) {
         this.managerDao.addRequest(manager);
     }
