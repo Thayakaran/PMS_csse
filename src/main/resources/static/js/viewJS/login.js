@@ -25,7 +25,27 @@ $(document).ready(function () {
                         localStorage.setItem('email', result["email"]);
                         localStorage.setItem('role', result["role"]);
 
-                        location.href = "home";
+                        if (result["role"] == "Contractor") {
+
+                            location.href = "home.html";
+
+                        } else if (result["role"] == "Site Manager") {
+
+                            location.href = "sitemanagerHome.html";
+
+                        } else if (result["role"] == "Supplier") {
+
+                            location.href = "home.html";
+
+                        } else if (result["role"] == "Account Staff") {
+
+                            location.href = "accoundantHome.html";
+
+                        } else {
+
+                            location.href = "home.html";
+
+                        }
 
                     } else {
 
