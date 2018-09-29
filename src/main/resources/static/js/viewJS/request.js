@@ -4,6 +4,25 @@ $('#email').keyup(function () {
 
 $( document ).ready(function() {
 
+    $('#note').hide();
+    $('#noteLabel').hide();
+
+    $('#order_status').change(function() {
+        if (this.value == 'Cancelled') {
+            $('#note').show();
+            $('#noteLabel').show();
+        } else if(this.value == 'Rejected') {
+            $('#note').show();
+            $('#noteLabel').show();
+        } else {
+            $('#note').hide();
+            $('#noteLabel').hide();
+        }
+
+    });
+
+
+
     // ADD NEW USER
     $("#managerRequest").submit(function (event) {
         // Prevent the form from submitting via the browser.

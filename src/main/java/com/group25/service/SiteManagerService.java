@@ -16,9 +16,12 @@ public class SiteManagerService {
     private SiteManagerDao managerDao;
 
     public Collection<SiteManager> getAllRequest(){
-        return this.managerDao.getAllRequest();}
-
+        return this.managerDao.getAllRequest();
+    }
     public void addRequest(SiteManager manager) {
         this.managerDao.addRequest(manager);
+    }
+    public SiteManager getSupplierId(String mat){
+        return this.managerDao.getSupplierId(mat);
     }
 }

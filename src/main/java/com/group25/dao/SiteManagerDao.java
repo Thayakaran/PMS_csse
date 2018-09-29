@@ -23,7 +23,7 @@ public class SiteManagerDao {
             SiteManager manager = new SiteManager();
             manager.setOrderby(resultSet.getInt("orderedBy"));
             manager.setManager(resultSet.getInt("manager"));
-            manager.setItem(resultSet.getInt("item"));
+            manager.setItem(resultSet.getString("item"));
             manager.setQty(resultSet.getInt("quantity"));
             manager.setDate(resultSet.getString("date"));
             manager.setDescription(resultSet.getString("description"));
@@ -37,6 +37,15 @@ public class SiteManagerDao {
         }
     }
 
+    private static class MaterialRowMapper implements RowMapper<SiteManager>{
+        @Override
+        public SiteManager mapRow(ResultSet resultSet, int i) throws SQLException {
+            SiteManager supplier = new SiteManager();
+            supplier.setSupplier(resultSet.getInt("supplierID"));
+            return supplier;
+        }
+    }
+
     //get all users
     public List<SiteManager> getAllRequest(){
         final String sql = "SELECT * FROM orders";
@@ -44,6 +53,12 @@ public class SiteManagerDao {
         return manager;
     }
 
+    //get a specific user
+    public SiteManager getSupplierId(String mat){
+        final String sql = "SELECT supplierID FROM supplierMaterials WHERE supplierMaterialType = ?";
+        SiteManager supplier = jdbcTemplate.queryForObject(sql, new MaterialRowMapper(), mat);
+        return supplier;
+    }
 
 
     //adding new Request
@@ -51,7 +66,7 @@ public class SiteManagerDao {
         String sql = "INSERT INTO orders (orderedBy, manager, item, quantity, date, description, site, contactNo, requiredDate, status, note, supplier) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         int orderBy = manager.getOrderby();
         int managers = manager.getManager();
-        int item = manager.getItem();
+        String item = manager.getItem();
         int qty = manager.getQty();
         String date = manager.getDate();
         String description = manager.getDescription();
