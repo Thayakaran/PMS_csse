@@ -2,15 +2,15 @@ package com.group25.entity;
 
 public class SiteManager {
 
-    private int orderby;
+    private int orderBy;
     private int manager;
     private int item;
-    private int qty;
+    private int quantity;
     private String date;
     private String description;
     private int site;
-    private int contactnum;
-    private String requiredate;
+    private int contactNo;
+    private String requiredDate;
     private String note;
     private int supplier;
     private String status;
@@ -19,28 +19,28 @@ public class SiteManager {
     public SiteManager() {
     }
 
-    public SiteManager(int orderby, int manager, int item, int qty, String date, String description, int site, int contactnum, String requiredate, String note, int supplier, String status) {
-        this.orderby = orderby;
+    public SiteManager(int orderBy, int site, int manager, String date, String requiredDate, int item, int quantity, String description, int contactNo, int supplier, String status, String note) {
+        this.orderBy = orderBy;
         this.manager = manager;
         this.item = item;
-        this.qty = qty;
+        this.quantity = quantity;
         this.date = date;
         this.description = description;
         this.site = site;
-        this.contactnum = contactnum;
-        this.requiredate = requiredate;
+        this.contactNo = contactNo;
+        this.requiredDate = requiredDate;
         this.note = note;
         this.supplier = supplier;
-        this.status = status;
+       this.status = status;
     }
 
     //1 get/set orderby value
     public int getOrderby() {
-        return orderby;
+        return orderBy;
     }
 
-    public void setOrderby(int orderby) {
-        this.orderby = orderby;
+    public void setOrderby(int orderBy) {
+        this.orderBy = orderBy;
     }
 
     //2 get/set manager value
@@ -63,11 +63,11 @@ public class SiteManager {
 
     //4 get/set qty value
     public int getQty() {
-        return qty;
+        return quantity;
     }
 
     public void setQty(int qty) {
-        this.qty = qty;
+        this.quantity = qty;
     }
 
     //5 get/set site value
@@ -81,11 +81,11 @@ public class SiteManager {
 
     //6 get/set contact number value
     public int getContactnum() {
-        return contactnum;
+        return contactNo;
     }
 
     public void setContactnum(int contactnum) {
-        this.contactnum = contactnum;
+        this.contactNo = contactnum;
     }
 
     //7 get/set date value
@@ -108,11 +108,11 @@ public class SiteManager {
 
     //9 get/set requiredate value
     public String getRequiredate() {
-        return requiredate;
+        return requiredDate;
     }
 
     public void setRequiredate(String requiredate) {
-        this.requiredate = requiredate;
+        this.requiredDate = requiredate;
     }
 
     //10 get/set Note value

@@ -35,7 +35,7 @@ $( document ).ready(function() {
         $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
-            url: "sitemanager", //window.location +"sitemanager",
+            url: "/sitemanager", //window.location +"sitemanager",
             data: JSON.stringify(formData),
             dataType: 'json',
             success: function (res) {
