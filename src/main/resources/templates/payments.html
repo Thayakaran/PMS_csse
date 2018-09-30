@@ -26,6 +26,7 @@
 
 
     <script src="/js/projectJS/jquery.min.js"></script>
+    <script src="/js/viewJS/payments.js"></script>
 
     <!-- Custom Theme Style -->
     <link href="/css/custom.min.css" rel="stylesheet">
@@ -45,7 +46,7 @@
                 </div>
                 <div class="x_content">
                     <p class="text-muted font-13 m-b-30">
-                        Check the status of the payment status of the invoice from the table and make the payment.
+                        Check the payment status of the invoice from the table and make the payment.
                     </p>
 
                     <table id="datatable-responsive" class="table table-striped jambo_table table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
@@ -62,7 +63,7 @@
                             <th>E-mail</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="invoiceDetails">
                         <tr>
                             <td>Vivian</td>
                             <td>Harrell</td>
