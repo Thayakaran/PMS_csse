@@ -7,10 +7,17 @@ $(document).ready(function(){
         localStorage.clear();
         location.href = "/";
       });
-    //register users
-    $('#registerUser').click(function () {
-        $("#body").load('/registration.html', function() {
-            $.getScript('/js/viewJS/registration.js');
+    //Manage users
+    $('#userManagement').click(function () {
+        $("#body").load('/userManagement.html', function() {
+            $.getScript('/js/viewJS/userManagement.js');
+        });
+    });
+
+    //Manage sites
+    $('#siteManagement').click(function () {
+        $("#body").load('/siteManagement.html', function() {
+            $.getScript('/js/viewJS/siteManagement.js');
         });
     });
 });
