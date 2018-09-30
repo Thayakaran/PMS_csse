@@ -29,7 +29,7 @@ public class UserService {
         this.userDao.updateUser(user);
     }
 
-    public void addUser(User user) {
-        this.userDao.addUser(user);
+    public int addUser(User user) {
+        return this.userDao.addUser(user);
     }
 }

@@ -6,6 +6,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.awt.peer.SystemTrayPeer;
+import java.io.Console;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
@@ -23,22 +25,29 @@ public class UserDao {
         public User mapRow(ResultSet resultSet, int i) throws SQLException {
             User user = new User();
             user.setId(resultSet.getInt("id"));
-            user.setName(resultSet.getString("name"));
-            user.setAddress(resultSet.getString("address"));
+            user.setfName(resultSet.getString("fName"));
+            user.setlName(resultSet.getString("lName"));
+            user.setmPhone(resultSet.getString("mPhone"));
+            user.setoPhone(resultSet.getString("oPhone"));
+            user.sethAddress(resultSet.getString("hAddress"));
+            user.setwAddress(resultSet.getString("wAddress"));
+            user.setRole(resultSet.getString("role"));
+            user.setEmail(resultSet.getString("email"));
+            user.setPassword(resultSet.getString("password"));
             return user;
         }
     }
 
     //get all users
     public Collection<User> getAllUsers(){
-        final String sql = "SELECT id, name, address FROM user";
+        final String sql = "SELECT * FROM user";
         List<User> users = jdbcTemplate.query(sql, new UserRowMapper());
         return users;
     }
 
     //get a specific user
     public User getUserById(int id){
-        final String sql = "SELECT id, name, address FROM user WHERE id = ?";
+        final String sql = "SELECT * FROM user WHERE id = ?";
         User user = jdbcTemplate.queryForObject(sql, new UserRowMapper(), id);
         return user;
     }
@@ -51,18 +60,34 @@ public class UserDao {
 
     //updating existing user
     public void updateUser(User user){
-        final String sql = "UPDATE user SET name = ?, address = ? WHERE id = ?";
+        final String sql = "UPDATE user SET fname = ?, lName = ?, mPhone = ?, oPhone = ?, hAddress = ?, wAddress = ?, role = ?, email = ?, password = ? WHERE id = ?";
         int id = user.getId();
-        String name = user.getName();
-        String address = user.getAddress();
-        jdbcTemplate.update(sql, new Object[] {name, address, id});
+        String fName = user.getfName();
+        String lName = user.getlName();
+        String mPhone = user.getmPhone();
+        String oPhone = user.getoPhone();
+        String hAddress = user.gethAddress();
+        String wAddress = user.getwAddress();
+        String role = user.getRole();
+        String email = user.getEmail();
+        String password = user.getPassword();
+        jdbcTemplate.update(sql, new Object[] {fName, lName, mPhone, oPhone, hAddress, wAddress, role, email, password, id});
     }
 
     //adding new user
-    public void addUser(User user) {
-        final String sql = "INSERT INTO user (name, address) VALUES (?, ?)";
-        String name = user.getName();
-        String address = user.getAddress();
-        jdbcTemplate.update(sql, new Object[] {name, address});
+    public int addUser(User user) {
+        final String sql = "INSERT INTO user (fName, lName, mPhone, oPhone, hAddress, wAddress, role, email, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String fName = user.getfName();
+        String lName = user.getlName();
+        String mPhone = user.getmPhone();
+        String oPhone = user.getoPhone();
+        String hAddress = user.gethAddress();
+        String wAddress = user.getwAddress();
+        String role = user.getRole();
+        String email = user.getEmail();
+        String password = user.getPassword();
+        int res = jdbcTemplate.update(sql, new Object[] {fName, lName, mPhone, oPhone, hAddress, wAddress, role, email, password});
+        return res;
+//        System.out.println("resposnessssssssssssssssssssssssss issssssssss : "+res);
     }
 }

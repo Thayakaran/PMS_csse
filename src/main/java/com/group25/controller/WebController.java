@@ -17,12 +17,18 @@ public class WebController {
 
         //have to return according to the user login
     }
-    @GetMapping(value="/registration.html")
-    public String registrationPage(){
-        return "registration";
+
+    //// Manager Interfaces
+    @GetMapping(value="/userManagement.html")
+    public String userManagementPage(){
+        return "userManagement";
+    }
+    @GetMapping(value="/siteManagement.html")
+    public String siteManagementPage(){
+        return "siteManagement";
     }
 
-
+    //// Supplier Interface
     @GetMapping(value = "/orderDetails.html")
     public String orderDetailsPage(){return "orderDetails";}
     @GetMapping(value = "/invoice.html")
@@ -33,6 +39,21 @@ public class WebController {
     public String paymentSummeryPage(){return "paymentSummery";}
     @GetMapping(value = "/supplierProfile.html")
     public String supplierProfilePage(){return "supplierProfile";}
+
+    //// Site Manager Interface
+    @GetMapping(value = "/viewRequests.html")
+    public String requestView(){return "viewRequests";}
+    @GetMapping(value = "/request.html")
+    public String makeRequest(){return "request";}
+    @GetMapping(value="/sitemanagerHome.html")
+    public String siteManagerPage(){
+        return "sitemanagerHome";
+    }
+
+
+    //// Account Staff Interface
+    @GetMapping(value = "/payments")
+    public String paymentDetails(){return "payments";}
 
 
 }
