@@ -1,4 +1,13 @@
-//
+$(document).ready(function(){
+    //form 1
+    $('.userMng').click(function () {
+        localStorage.setItem('nav', "addUser");
+        document.location.href = "/home.html";
+        // $("#body").load('/userManagement.html', function() {
+        //     $.getScript('/js/viewJS/userManagement.js');
+        // });
+    });
+});
 // $('#email').keyup(function () {
 //     $('#password').val($(this).val()+"@pms");
 // });

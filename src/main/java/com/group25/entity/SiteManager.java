@@ -4,7 +4,7 @@ public class SiteManager {
 
     private int orderBy;
     private int manager;
-    private int item;
+    private String item;
     private int quantity;
     private String date;
     private String description;
@@ -19,7 +19,7 @@ public class SiteManager {
     public SiteManager() {
     }
 
-    public SiteManager(int orderBy, int site, int manager, String date, String requiredDate, int item, int quantity, String description, int contactNo, int supplier, String status, String note) {
+    public SiteManager(int orderBy, int site, int manager, String date, String requiredDate, String item, int quantity, String description, int contactNo, int supplier, String status, String note) {
         this.orderBy = orderBy;
         this.manager = manager;
         this.item = item;
@@ -53,11 +53,11 @@ public class SiteManager {
     }
 
     //3 get/set item value
-    public int getItem() {
+    public String getItem() {
         return item;
     }
 
-    public void setItem(int item) {
+    public void setItem(String item) {
         this.item = item;
     }
 

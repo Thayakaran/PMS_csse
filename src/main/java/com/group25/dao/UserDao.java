@@ -1,6 +1,8 @@
 package com.group25.dao;
 
+import com.group25.encryptionKey.SecureKey;
 import com.group25.entity.User;
+import org.jasypt.util.text.BasicTextEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -85,9 +87,17 @@ public class UserDao {
         String wAddress = user.getwAddress();
         String role = user.getRole();
         String email = user.getEmail();
-        String password = user.getPassword();
+        String password = passwordEncrypt(user.getPassword());
         int res = jdbcTemplate.update(sql, new Object[] {fName, lName, mPhone, oPhone, hAddress, wAddress, role, email, password});
         return res;
 //        System.out.println("resposnessssssssssssssssssssssssss issssssssss : "+res);
+    }
+
+    public String passwordEncrypt(String pass){
+        BasicTextEncryptor passwordEncryptor = new BasicTextEncryptor();
+        passwordEncryptor.setPassword(SecureKey.getKey());
+        String encryptedPassword = passwordEncryptor.encrypt(pass);
+
+        return encryptedPassword;
     }
 }
