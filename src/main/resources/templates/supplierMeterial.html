@@ -36,7 +36,7 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>Invoice</h3>
+                        <h3>Spplier Material</h3>
                     </div>
 
                     <div class="title_right">
@@ -59,70 +59,44 @@
 
                             <div class="x_content">
                                 <br />
-                                <form id="invoiceForm" data-parsley-validate class="form-horizontal form-label-left" onsubmit="return false;">
+                                <form id="supplierMeterialForm" data-parsley-validate class="form-horizontal form-label-left" onsubmit="return false;">
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="orderId">OrderID <span class="required">*</span>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="supplierMaterialType"> Supplier Material Type <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" id="orderId" name="orderId" required="required" data-parsley-type="alphanum" class="form-control col-md-7 col-xs-12">
+                                            <input type="text" id="supplierMaterialType" name="supplierMaterialType" required="required" data-parsley-type="alphanum" class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Description <span class="required">*</span>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="measurement">Measurement<span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" id="description" name="description" required="required" class="form-control col-md-7 col-xs-12">
+                                            <input type="text" id="measurement" name="measurement" required="required" class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="qty" class="control-label col-md-3 col-sm-3 col-xs-12">Qty</label>
+                                        <label for="unitPrice" class="control-label col-md-3 col-sm-3 col-xs-12">Unit Price</label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input id="qty" class="form-control col-md-7 col-xs-12" type="text" name="qty">
+                                            <input id="unitPrice" class="form-control col-md-7 col-xs-12" type="text" name="unitPrice">
                                         </div>
                                     </div>
-
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Delivered Date <span class="required">*</span>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="supplierID"> Supplier ID<span class="required">*</span>
                                         </label>
-                                        <div class='col-md-6 col-sm-6 col-xs-12'>
-
-
-                                            <div class='input-group date' id='deliverDate' name="deliverDate">
-                                                <input type='text' class="form-control col-md-7 col-xs-12" />
-                                                <span class="input-group-addon">
-                               <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="totalAmount" class="control-label col-md-3 col-sm-3 col-xs-12">Total Amount</label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input id="totalAmount" class="form-control col-md-7 col-xs-12" type="text" name="totalAmount">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="discount" class="control-label col-md-3 col-sm-3 col-xs-12">Discount</label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input id="discount" class="form-control col-md-7 col-xs-12" type="text" name="discount">
+                                            <input type="text" id="supplierID" name="supplierID" required="required" data-parsley-type="alphanum" class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="netAmount" class="control-label col-md-3 col-sm-3 col-xs-12">Net Amount</label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input id="netAmount" class="form-control col-md-7 col-xs-12" type="text" name="netAmount">
-                                        </div>
-                                    </div>
+
+
                                     <div class="ln_solid"></div>
                                     <div class="form-group">
                                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                             <button class="btn btn-primary" type="button">Cancel</button>
                                             <button class="btn btn-primary" type="reset">Reset</button>
-                                            <button type="submit" id="invoiceSubmitBtn" name="invoiceSubmitBtn" class="btn btn-success">Submit</button>
+                                            <button type="submit" id="supplierMaterial" name="supplierMaterial" class="btn btn-success">Submit</button>
                                         </div>
                                     </div>
 
@@ -169,40 +143,11 @@
 <script src="vendors/jszip/dist/jszip.min.js"></script>
 <script src="vendors/pdfmake/build/pdfmake.min.js"></script>
 <script src="vendors/pdfmake/build/vfs_fonts.js"></script>
-<script src="js/viewJS/invoice.js"></script>
+<script src="js/viewJS/supplierMaterial.js"></script>
 
 <!-- Custom Theme Scripts -->
 <script src="/js/projectJS/custom.min.js"></script>
 
-<script>
-    $('#myDatepicker').datetimepicker();
-
-    $('#myDatepicker2').datetimepicker({
-        format: 'DD.MM.YYYY'
-    });
-
-    $('#myDatepicker3').datetimepicker({
-        format: 'hh:mm A'
-    });
-
-    $('#myDatepicker4').datetimepicker({
-        ignoreReadonly: true,
-        allowInputToggle: true
-    });
-
-    $('#datetimepicker6').datetimepicker();
-
-    $('#datetimepicker7').datetimepicker({
-        useCurrent: false
-    });
-
-    $("#datetimepicker6").on("dp.change", function(e) {
-        $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
-    });
-
-    $("#datetimepicker7").on("dp.change", function(e) {
-        $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
-    });
 
 </body>
 </html>

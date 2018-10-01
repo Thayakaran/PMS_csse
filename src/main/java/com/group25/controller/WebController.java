@@ -12,11 +12,15 @@ public class WebController {
     }
     @GetMapping(value="/home.html")
     public String homePage(){
-        return "home";
+        return "supplierHome";
+       //return "managementHome";
+        //you can change your home and check
+
+        //have to return according to the user login
     }
-    @GetMapping(value="/registration.html")
+    @GetMapping(value="/userManagement.html")
     public String registrationPage(){
-        return "registration";
+        return "userManagement";
     }
 
 
@@ -30,6 +34,12 @@ public class WebController {
     public String paymentSummeryPage(){return "paymentSummery";}
     @GetMapping(value = "/supplierProfile.html")
     public String supplierProfilePage(){return "supplierProfile";}
+    @GetMapping(value = "/payments")
+    public String paymentDetails(){return "payments";}
+    @GetMapping(value = "/supplierMeterial.html")
+    public String supplierMeterialDetails(){return "supplierMeterial";}
+
+
 
 
 }

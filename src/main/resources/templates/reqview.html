@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="/images/favicon.png" type="image/ico" />
+
+	<title>Manage Request</title>
+
+	<!-- Bootstrap -->
+	<link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<!-- NProgress -->
+	<link href="vendors/nprogress/nprogress.css" rel="stylesheet">
+	<!-- iCheck -->
+	<link href="vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+	<!-- bootstrap-progressbar -->
+	<link href="vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+	<!-- JQVMap -->
+	<link href="vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+	<!-- bootstrap-daterangepicker -->
+	<link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+	<!-- Custom Theme Style -->
+	<link href="/css/custom.min.css" rel="stylesheet">
+
+<style>
+	table, td, th {
+		border: 1px solid #000000;
+		text-align: left;
+	}
+	th {
+		background-color: #4d88ff;
+		color: white;
+	}
+	td{
+		background-color: #ddd;
+		color: Black;
+	}
+	table {
+		border-collapse: collapse;
+		width: 100%;
+	}
+
+	th, td {
+		padding: 15px;
+	}
+</style>
+
+	<script src="/js/projectJS/sweetalert2.all.min.js"></script>
+	<script src="/js/projectJS/jquery.min.js"></script>
+
+</head>
+<body>
+<form id="managerequest" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+
+
+		<div class="x_panel">
+			<div class="form-group">
+				<label class="control-label col-md-4 col-sm-6 col-xs-12" for="Requestid">Request ID
+				</label>
+				<div class="col-md-2 col-sm-5 col-xs-12">
+					<input type="text" id="Requestid" required="required" class="form-control col-md-7 col-xs-12">
+
+				</div>
+				<label class="control-label col-md-2 col-sm-3 col-xs-12" for="requeststatus">Request Status
+				</label>
+				<div class="col-md-2 col-sm-6 col-xs-12">
+					<select type="text" id="requeststatus" required="required" class="form-control col-md-7 col-xs-12">
+						<option value="None">--Select--</option>
+						<option value="Pending">Pending</option>
+						<option value="Approved">Approved</option>
+						<option value="Cancelled">Cancelled</option>
+						<option value="Placed">Placed</option>
+						<option value="Rejected">Rejected</option>
+						<option value="Delivered">Delivered</option>
+					</select>
+				</div>
+				<button class="btn btn-primary" type="submit" id="go">GO</button>
+			</div>
+
+
+
+	<hr/>
+	<br><br>
+
+
+
+			<div class="right_col" role="main">
+				<table>
+					<tr>
+						<th> Order ID </th>
+						<th> Requester's ID </th>
+						<th> Order Date </th>
+						<th> Required Date </th>
+						<th> Order Status </th>
+					</tr>
+
+					<tr>
+						<td> <?php echo $row['brand_name']; ?> </td>
+						<td> <?php echo $row['model_name']; ?> </td>
+						<td> <?php echo $row['colour']; ?> </td>
+						<td> <?php echo $row['price']; ?> </td>
+						<td> <?php echo $row['price']; ?> </td>
+					</tr>
+
+
+				</table>
+			</div>
+			<!-- /top tiles -->
+
+			<div class="row tile_count" id="forms">
+
+			</div>
+
+		</div>
+
+
+
+</form>
+
+
+
+
+<script src="build/js/form1.js"></script>
+
+</body>
+
+</html>
