@@ -56,6 +56,8 @@ public class WebController {
     public String paymentDetails(){return "payments";}
     @GetMapping(value = "/pay")
     public String processPayment(){return "processPayment";}
+    @GetMapping(value = "/accoundantHome.html")
+    public String accoundantHome(){return "accoundantHome";}
 
 
 }

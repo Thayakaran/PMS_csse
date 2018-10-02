@@ -33,8 +33,10 @@
 
     <script src="/js/projectJS/jquery.min.js"></script>
 
-    <!-- Login Script -->
-    <script src="/js/viewJS/processPayment.js"></script>-
+    <!-- Process payment Script -->
+    <script src="/js/viewJS/processPayment.js"></script>
+    <!-- jquery and sweetalert -->
+    <script src="/js/projectJS/sweetalert2.all.min.js"></script>
 
 </head>
 
@@ -50,56 +52,56 @@
                     <h3>Payment Details <small>Enter your payment details</small></h3>
                     <div class="clearfix"></div>
                 </div>
-                <div class="x_content" style="width:50%" align="center">
-                    <b>Manually checked the payment : Set as </b>&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary">Paid</button>
+                <div class="x_content">
+                    <b>Manually checked the payment : Set as </b>&nbsp;&nbsp;&nbsp;<button type="button" id="paidButton" class="btn btn-primary">Paid</button>
                     <br />
                     <br />
-                    <form data-parsley-validate class="form-horizontal form-label-left" id="paymentForm">
-                        <div class="form-group">
+                    <form data-parsley-validate class="form-horizontal form-label-left" id="paymentForm" novalidate>
+                        <div class="item form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-3">Invoice ID
                             </label>
-                            <div class="col-md-9 col-sm-9 col-xs-9">
-                                <input type="text" class="form-control" id="invoiceID" readonly="readonly">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" required="required" class="form-control" id="invoiceID" readonly="readonly">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="item form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-3">Cardholder's Name <span class="required">*</span>
                             </label>
-                            <div class="col-md-9 col-sm-9 col-xs-9">
-                                <input type="text" class="form-control" id="cardholerName">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" required="required" class="form-control" id="cardholerName">
                                 <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="item form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-3">Credit Card No <span class="required">*</span>
                             </label>
-                            <div class="col-md-9 col-sm-9 col-xs-9">
-                                <input type="text" id="cardNo" class="form-control" data-inputmask="'mask' : '9999-9999-9999-9999'">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="cardNo" required="required" class="form-control" data-inputmask="'mask' : '9999-9999-9999-9999'">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="item form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-3">Expiary Date (mm/yy) <span class="required">*</span>
                             </label>
-                            <div class="col-md-9 col-sm-9 col-xs-9">
-                                <input type="text" id="expDate" class="form-control" data-inputmask="'mask': '99/99'">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="expDate" required="required" class="form-control" data-inputmask="'mask': '99/99' " pattern="(1[0-2]|0[1-9])\/(1[8-9]|2[0-9])">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="item form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-3">CVV <span class="required">*</span>
                             </label>
-                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                <input type="password" id="cvv" class="form-control" data-inputmask="'mask' : '999'">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="password" id="cvv" required="required" class="form-control" data-inputmask="'mask' : '999'">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="item form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-3">Amount</label>
-                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                <input type="text" id="amount" class="form-control" readonly="readonly">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="number" id="amount" required="required" class="form-control" readonly="readonly">
                             </div>
                         </div>
                         <div class="ln_solid"></div>
 
-                        <div class="form-group">
+                        <div class="item form-group">
                             <div class="col-md-9 col-md-offset-3">
                                 <button type="submit" class="btn btn-success">Submit</button>
                                 <button class="btn btn-primary" type="reset">Reset</button>
@@ -132,6 +134,9 @@
 <script src="/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
 <!-- jQuery Knob -->
 <script src="/vendors/jquery-knob/dist/jquery.knob.min.js"></script>
+
+<!-- validator -->
+<script src="/vendors/validator/validator.js"></script>
 
 <!-- Custom Theme Scripts -->
 <script src="/js/projectJS/custom.min.js"></script>
