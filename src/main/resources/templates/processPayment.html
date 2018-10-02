@@ -33,8 +33,10 @@
 
     <script src="/js/projectJS/jquery.min.js"></script>
 
-    <!-- Login Script -->
-    <script src="/js/viewJS/processPayment.js"></script>-
+    <!-- Process payment Script -->
+    <script src="/js/viewJS/processPayment.js"></script>
+    <!-- jquery and sweetalert -->
+    <script src="/js/projectJS/sweetalert2.all.min.js"></script>
 
 </head>
 
@@ -51,7 +53,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <b>Manually checked the payment : Set as </b>&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary">Paid</button>
+                    <b>Manually checked the payment : Set as </b>&nbsp;&nbsp;&nbsp;<button type="button" id="paidButton" class="btn btn-primary">Paid</button>
                     <br />
                     <br />
                     <form data-parsley-validate class="form-horizontal form-label-left" id="paymentForm" novalidate>
