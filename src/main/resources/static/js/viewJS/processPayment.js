@@ -62,4 +62,26 @@ $(document).ready(function () {
     });
 
 
+    $("#reset").click(function () {
+
+        event.preventDefault();
+
+        $("#cardholerName").val("");
+        $("#cardNo").val("");
+        $("#expDate").val("");
+        $("#cvv").val("");
+        $("#amount").val("");
+
+    });
+
+
+    $("#cancel").click(function () {
+
+        event.preventDefault();
+
+        parent.loadPaymentsPage();
+
+    });
+
+
 });
