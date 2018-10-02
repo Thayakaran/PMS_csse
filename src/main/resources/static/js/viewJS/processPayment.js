@@ -7,6 +7,24 @@ $(document).ready(function () {
 
     localStorage.clear();
 
+    $("#paidButton").click(function () {
+
+        $.ajax({
+            type : "PUT",
+            contentType : "application/json; charset=utf-8",
+            url : "/invoices/updatePaymentStatus/" + invoiceID,
+            success : function(res) {
+                if (res.error){
+                    swal({title:"Error", text: "Unable to set the payment status", type:"error"});
+                }
+                else{
+                    swal({title:"Success", text:"Payment status successfully updated", type:"success"});
+                }
+            }
+        });
+
+    });
+
     $("#paymentForm").submit(function(event) {
         if(this.checkValidity())
         {
