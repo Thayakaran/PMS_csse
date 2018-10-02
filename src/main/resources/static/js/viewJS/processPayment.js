@@ -19,6 +19,7 @@ $(document).ready(function () {
                 }
                 else{
                     swal({title:"Success", text:"Payment status successfully updated", type:"success"});
+                    parent.loadPaymentsPage();
                 }
             }
         });
@@ -51,6 +52,7 @@ $(document).ready(function () {
                     else {
                         swal({title: "Success", text: "Payment Sent", type: "success"});
                         ('#resetButton').click();
+                        parent.loadPaymentsPage();
                     }
                 }
             });
