@@ -1,7 +1,6 @@
 package com.group25.dao;
 
 import com.group25.entity.SiteManager;
-import com.group25.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collection;
 import java.util.List;
 
 @Repository
@@ -23,15 +21,15 @@ public class SiteManagerDao {
         @Override
         public SiteManager mapRow(ResultSet resultSet, int i) throws SQLException {
             SiteManager manager = new SiteManager();
-            manager.setOrderby(resultSet.getInt("orderby"));
+            manager.setOrderby(resultSet.getInt("orderedBy"));
             manager.setManager(resultSet.getInt("manager"));
-            manager.setItem(resultSet.getInt("item"));
-            manager.setQty(resultSet.getInt("qty"));
+            manager.setItem(resultSet.getString("item"));
+            manager.setQty(resultSet.getInt("quantity"));
             manager.setDate(resultSet.getString("date"));
             manager.setDescription(resultSet.getString("description"));
             manager.setSite(resultSet.getInt("site"));
-            manager.setContactnum(resultSet.getInt("contactnum"));
-            manager.setRequiredate(resultSet.getString("requiredate"));
+            manager.setContactnum(resultSet.getInt("contactNo"));
+            manager.setRequiredate(resultSet.getString("requiredDate"));
             manager.setNote(resultSet.getString("note"));
             manager.setSupplier(resultSet.getInt("supplier"));
             manager.setStatus(resultSet.getString("status"));
@@ -39,21 +37,46 @@ public class SiteManagerDao {
         }
     }
 
+    private static class MaterialRowMapper implements RowMapper<SiteManager>{
+        @Override
+        public SiteManager mapRow(ResultSet resultSet, int i) throws SQLException {
+            SiteManager supplier = new SiteManager();
+            supplier.setSupplier(resultSet.getInt("supplierID"));
+            return supplier;
+        }
+    }
+
+    //get all users
+    public List<SiteManager> getAllRequest(){
+        final String sql = "SELECT * FROM orders";
+        List<SiteManager> manager = jdbcTemplate.query(sql, new SiteManagerDao.SitemanagerRowMapper());
+        return manager;
+    }
+
+    //get a specific user
+    public SiteManager getSupplierId(String mat){
+        final String sql = "SELECT supplierID FROM supplierMaterials WHERE supplierMaterialType = ?";
+        SiteManager supplier = jdbcTemplate.queryForObject(sql, new MaterialRowMapper(), mat);
+        return supplier;
+    }
 
 
     //adding new Request
     public void addRequest(SiteManager manager) {
-        String sql = "INSERT INTO orders (orderedby, manager, item, quantity, date, description, site, contactNum, requireDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        int orderby = manager.getOrderby();
+        String sql = "INSERT INTO orders (orderedBy, manager, item, quantity, date, description, site, contactNo, requiredDate, status, note, supplier) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        int orderBy = manager.getOrderby();
         int managers = manager.getManager();
-        int item = manager.getItem();
+        String item = manager.getItem();
         int qty = manager.getQty();
         String date = manager.getDate();
         String description = manager.getDescription();
         int site = manager.getSite();
         int contactnum = manager.getContactnum();
         String requiredate = manager.getRequiredate();
-        jdbcTemplate.update(sql, new Object[] {orderby, managers, item, qty, date, description, site, contactnum, requiredate});
+        String status = manager.getStatus();
+        int supplier = manager.getSupplier();
+        String note = manager.getNote();
+        jdbcTemplate.update(sql, new Object[] {orderBy, managers, item, qty, date, description, site, contactnum, requiredate, status, note, supplier});
 
 
     }

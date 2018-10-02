@@ -4,6 +4,25 @@ $('#email').keyup(function () {
 
 $( document ).ready(function() {
 
+    $('#note').hide();
+    $('#noteLabel').hide();
+
+    $('#order_status').change(function() {
+        if (this.value == 'Cancelled') {
+            $('#note').show();
+            $('#noteLabel').show();
+        } else if(this.value == 'Rejected') {
+            $('#note').show();
+            $('#noteLabel').show();
+        } else {
+            $('#note').hide();
+            $('#noteLabel').hide();
+        }
+
+    });
+
+
+
     // ADD NEW USER
     $("#managerRequest").submit(function (event) {
         // Prevent the form from submitting via the browser.
@@ -35,7 +54,7 @@ $( document ).ready(function() {
         $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
-            url: "sitemanager", //window.location +"sitemanager",
+            url: "/sitemanager", //window.location +"sitemanager",
             data: JSON.stringify(formData),
             dataType: 'json',
             success: function (res) {
