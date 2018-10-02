@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     $('#payments-tab').click(function () {
 
-        $('#payment-page').load('/payments');
+        loadPaymentsPage();
 
     });
 
@@ -14,3 +14,13 @@ $(document).ready(function () {
     });
 
 });
+
+function loadProcessPaymentPage() {
+    $('#payment-page').load('/pay');
+    $("#payments-tab").removeClass("active");
+}
+
+function loadPaymentsPage() {
+    $('#payment-page').load('/payments');
+    $("#payments-tab").addClass("active");
+}
