@@ -56,6 +56,13 @@
                     <br />
                     <form data-parsley-validate class="form-horizontal form-label-left" id="paymentForm">
                         <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-3">Invoice ID
+                            </label>
+                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                <input type="text" class="form-control" id="invoiceID" readonly="readonly">
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-3">Cardholder's Name <span class="required">*</span>
                             </label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
@@ -68,7 +75,6 @@
                             </label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
                                 <input type="text" id="cardNo" class="form-control" data-inputmask="'mask' : '9999-9999-9999-9999'">
-                                <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                             </div>
                         </div>
                         <div class="form-group">
@@ -76,7 +82,6 @@
                             </label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
                                 <input type="text" id="expDate" class="form-control" data-inputmask="'mask': '99/99'">
-                                <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                             </div>
                         </div>
                         <div class="form-group">
@@ -89,7 +94,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-3">Amount</label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <input type="text" id="amount" class="form-control" value="2900"readonly="readonly">
+                                <input type="text" id="amount" class="form-control" readonly="readonly">
                             </div>
                         </div>
                         <div class="ln_solid"></div>
