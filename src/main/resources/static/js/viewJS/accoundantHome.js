@@ -8,4 +8,9 @@ $(document).ready(function () {
 
     $('#payments-tab').click();
 
+
+    $("#logout").click(function () {
+        location.href = "/";
+    });
+
 });
