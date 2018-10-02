@@ -84,7 +84,8 @@ $(document).ready(function() {
           localStorage.setItem('invoiceID', data["invoiceID"]);
           localStorage.setItem('amount', data["netAmount"]);
 
-          location.href = "pay";
+          // location.href = "pay";
+          parent.loadProcessPaymentPage();
 
       });
 
