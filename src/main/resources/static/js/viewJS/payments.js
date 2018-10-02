@@ -75,13 +75,16 @@ $(document).ready(function() {
       });
 
       $('#datatable-responsive_unpaid').on('click', '#btnDetails', function () {
-          var table = $('#datatable-responsive_unpaid').DataTable();
-          var data = table.row($(this).parents('tr')).data();
+          var table = $('#datatable-responsive_unpaid').DataTable();2
+
+          var data = table.row($(this).closest('td, li')).data();
+
+          localStorage.clear();
 
           localStorage.setItem('invoiceID', data["invoiceID"]);
-          localStorage.setItem('netAmount', data["netAmount"]);
+          localStorage.setItem('amount', data["netAmount"]);
 
-          location.href = "processPayment";
+          location.href = "pay";
 
       });
 
