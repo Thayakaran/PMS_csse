@@ -42,8 +42,14 @@ public class InvoiceDao {
         }
     }
 
-    public Collection<Invoice> getAllInvoices(){
-        final String sql = "SELECT * FROM invoice i, orders o where i.orderId = o.id";
+    public Collection<Invoice> getAllUnPaidInvoices(){
+        final String sql = "SELECT * FROM invoice i, orders o where i.orderId = o.id AND i.paymentStatus = 'Not Paid'";
+        List<Invoice> invoices = jdbcTemplate.query(sql, new InvoiceDao.InvoiceRowMapper());
+        return invoices;
+    }
+
+    public Collection<Invoice> getAllPaidInvoices(){
+        final String sql = "SELECT * FROM invoice i, orders o where i.orderId = o.id AND i.paymentStatus = 'Paid'";
         List<Invoice> invoices = jdbcTemplate.query(sql, new InvoiceDao.InvoiceRowMapper());
         return invoices;
     }
