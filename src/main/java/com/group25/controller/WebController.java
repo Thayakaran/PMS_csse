@@ -54,6 +54,8 @@ public class WebController {
     //// Account Staff Interface
     @GetMapping(value = "/payments")
     public String paymentDetails(){return "payments";}
+    @GetMapping(value = "/pay")
+    public String processPayment(){return "processPayment";}
 
 
 }

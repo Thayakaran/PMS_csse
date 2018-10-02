@@ -1,5 +1,12 @@
 $(document).ready(function () {
 
+    var invoiceID = localStorage.getItem("invoiceID");
+
+    $('#invoiceID').html(invoiceID);
+    $('#amount').html(localStorage.getItem("amount"));
+
+    localStorage.clear();
+
     $("#paymentForm").submit(function(event) {
         event.preventDefault();
 
