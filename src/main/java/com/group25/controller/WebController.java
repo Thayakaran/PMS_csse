@@ -49,6 +49,10 @@ public class WebController {
     public String siteManagerPage(){
         return "sitemanagerHome";
     }
+    @GetMapping(value="/manageRequest.html")
+    public String manageRequest(){
+        return "manageRequest";
+    }
 
 
     //// Account Staff Interface

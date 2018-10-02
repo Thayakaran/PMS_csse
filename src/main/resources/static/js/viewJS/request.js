@@ -4,6 +4,13 @@ $('#email').keyup(function () {
 
 $( document ).ready(function() {
 
+    //request
+    $('#Request').click(function () {
+        $("#body").load('/manageRequest.html'), function () {
+            $.getScript('/js/viewJS/manageRequest.js');
+        }
+    });
+
     $('#note').hide();
     $('#noteLabel').hide();
 

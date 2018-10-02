@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/images/favicon.png" type="image/ico" />
+
+    <title>Make Request</title>
+
+    <!-- Bootstrap -->
+    <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
+
+    <script src="/js/projectJS/jquery.min.js"></script>
+    <!-- iCheck -->
+    <link href="vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+    <!-- bootstrap-progressbar -->
+    <link href="vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+    <!-- bootstrap-daterangepicker -->
+    <link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+    <script src="/js/viewJS/request.js"></script>
+
+    <!-- Custom Theme Style -->
+    <link href="/css/custom.min.css" rel="stylesheet">
+    <style>
+
+    </style>
+
+    <script src="/js/projectJS/sweetalert2.all.min.js"></script>
+    <script src="/js/projectJS/jquery.min.js"></script>
+    <script>function supplierFunction() {
+        event.preventDefault();
+        var id = $("#item").val();
+
+        ajaxgetSupplierId(id);
+
+        // DO GET
+        function ajaxgetSupplierId(id){
+            $.ajax({
+                type : "GET",
+                url : "/sitemanager/supplier/"+id,
+                success: function(result){
+                    if(result) {
+                        console.log("Success: ", result);
+                        var sup = result.supplier;
+                        console.log(result.supplier);
+                        var select = document.getElementById("Supplier_Name");
+                        for (var i = 0; i < 1; i++) {
+                            var option = document.createElement('option');
+                            option.text = option.value = sup;
+                            select.add(option, 0);
+
+                        }
+                    }
+                },
+                error : function(e) {
+                    $("#Supplier_Name").val("User not found");
+                    console.log("ERROR: ", e);
+                }
+            });
+        }
+
+    }</script>
+</head>
+<body>
+<div class="x_panel" style="background-color:#2a3f54">
+    <div class="col-md-2 col-sm-6 col-xs-12">
+    </div>
+    <div class="col-md-8 col-sm-6 col-xs-12" style="text-align:center;font-size:500%; color: white">
+        Request Materials
+    </div>
+    <div class="col-md-2 col-sm-6 col-xs-12">
+        <img style="float:right" src="/images/request.png" alt="SLIIT" width="100" height="100">
+    </div>
+</div>
+
+<form id="managependingRequest" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+    <div class="x_panel">
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-6 col-xs-12" for="Request_id">Request ID
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" id="Request_id" required="required" class="form-control col-md-7 col-xs-12">
+
+            </div>
+            <span class="input-group-btn"><button class="btn btn-default" id="searchBtn" type="submit">Go!</button></span>
+        </div>
+    </div>
+</form>
+
+<form id="managerRequest" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+
+
+
+    <div class="x_panel">
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-6 col-xs-12" for="Requester_id">Requester's ID
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" id="Requester_id" required="required" class="form-control col-md-7 col-xs-12">
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="site_name">Site Name
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" id="site_name" required="required" class="form-control col-md-7 col-xs-12">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="manager_name">Site Manager Name
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" id="manager_name" required="required" class="form-control col-md-7 col-xs-12">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Order_date">Order Date
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="date" id="Order_date" required="required" class="form-control col-md-7 col-xs-12">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="require_date">Required Date
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="date" id="require_date" required="required" class="form-control col-md-7 col-xs-12">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-6 col-xs-12" for="item">Item
+            </label>
+            <div class="col-md-2 col-sm-5 col-xs-12">
+                <input type="text" onkeypress="supplierFunction()" id="item" required="required" class="form-control col-md-7 col-xs-12">
+            </div>
+            <label class="control-label col-md-2 col-sm-3 col-xs-12" for="qty">Quantity
+            </label>
+            <div class="col-md-2 col-sm-6 col-xs-12">
+                <input type="text" id="qty" required="required" class="form-control col-md-2 col-xs-12">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Short Description
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" id="description" required="required" class="form-control col-md-7 col-xs-12">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="contact">Contact number
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" id="contact" required="required" class="form-control col-md-7 col-xs-12">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-6 col-xs-12" for="Supplier_Name">Supplier`s Name
+            </label>
+            <div class="col-md-2 col-sm-5 col-xs-12">
+                <select path = "country" id="Supplier_Name" required="required" class="form-control col-md-7 col-xs-12">
+                    <option value = "NONE" label = "Select"/>
+                    <options items = "${countryList}" />
+                </select>
+            </div>
+            <label class="control-label col-md-2 col-sm-3 col-xs-12" id="price">Rs.XXXXXX per one item
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-6 col-xs-12" for="order_status">Order Status
+            </label>
+            <div class="col-md-2 col-sm-5 col-xs-12">
+                <select type="text" id="order_status" required="required" class="form-control col-md-7 col-xs-12">
+                    <option value="None">--Select--</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Approved">Approved</option>
+                    <option value="Cancelled">Cancelled</option>
+                    <option value="Placed">Placed</option>
+                    <option value="Rejected">Rejected</option>
+                    <option value="Delivered">Delivered</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id ="noteLabel" class="control-label col-md-3 col-sm-3 col-xs-12" for="note">note
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" id="note" class="form-control col-md-7 col-xs-12">
+            </div>
+        </div>
+
+
+        <br><br><br>
+
+        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+            <button type="submit"  class="btn btn-success">Save</button>
+            <button class="btn btn-primary" type="button">Back</button>
+        </div>
+    </div>
+
+</form>
+
+
+<!-- Parsley validator -->
+<script src="vendors/parsleyjs/dist/parsley.min.js"></script>
+</body>
+
+</html>

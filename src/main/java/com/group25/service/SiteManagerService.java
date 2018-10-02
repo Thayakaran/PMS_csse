@@ -22,4 +22,7 @@ public class SiteManagerService {
     public SiteManager getSupplierId(String mat){
         return this.managerDao.getSupplierId(mat);
     }
+    public SiteManager getRequestId(int id){
+        return this.managerDao.getRequestId(id);
+    }
 }
