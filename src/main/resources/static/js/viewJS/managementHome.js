@@ -13,6 +13,12 @@ $(document).ready(function(){
             $.getScript('/js/viewJS/userManagement.js');
         });
     });
+    if(localStorage.getItem('nav') == "addUser"){
+        $("#body").load('/userManagement.html', function() {
+            $.getScript('/js/viewJS/userManagement.js');
+        });
+        localStorage.removeItem('nav');
+    }
 
     //Manage sites
     $('#siteManagement').click(function () {
