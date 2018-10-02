@@ -33,7 +33,7 @@ $(document).ready(function() {
       error: function(e) {
         swal({
           title: "Error",
-          text: "Unable to login to the system, Try again later!!",
+          text: "Unable to get data, Try again later!!",
           type: "error"
         });
       }
