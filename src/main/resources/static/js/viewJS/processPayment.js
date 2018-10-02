@@ -62,7 +62,7 @@ $(document).ready(function () {
     });
 
 
-    $("#reset").click(function () {
+    $("#reset").click(function (event) {
 
         event.preventDefault();
 
@@ -70,12 +70,11 @@ $(document).ready(function () {
         $("#cardNo").val("");
         $("#expDate").val("");
         $("#cvv").val("");
-        $("#amount").val("");
 
     });
 
 
-    $("#cancel").click(function () {
+    $("#cancel").click(function (event) {
 
         event.preventDefault();
 
