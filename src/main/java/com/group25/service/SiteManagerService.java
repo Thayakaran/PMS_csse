@@ -1,9 +1,7 @@
 package com.group25.service;
 
 import com.group25.dao.SiteManagerDao;
-import com.group25.dao.UserDao;
 import com.group25.entity.SiteManager;
-import com.group25.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +21,8 @@ public class SiteManagerService {
     }
     public SiteManager getSupplierId(String mat){
         return this.managerDao.getSupplierId(mat);
+    }
+    public SiteManager getRequestId(int id){
+        return this.managerDao.getRequestId(id);
     }
 }
