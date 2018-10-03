@@ -90,12 +90,11 @@ public class SiteManagerDao {
     }
 
     //updating existing user
-    public void updateRequest(SiteManager manager){
+    public void updateRequest(int id, SiteManager manager){
         final String sql = "UPDATE orders SET status = ?, note = ?, supplier = ? WHERE id = ?";
-        int id = manager.getId();
         String status = manager.getStatus();
         int supplier = manager.getSupplier();
         String note = manager.getNote();
-        jdbcTemplate.update(sql, new Object[] {status, supplier, note, id});
+        jdbcTemplate.update(sql, new Object[] {status, note, supplier, id});
     }
 }
