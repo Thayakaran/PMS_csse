@@ -41,22 +41,18 @@ $(document).ready(function () {
 
             $.ajax({
                 type: "POST",
-                contentType: "application/json; charset=utf-8",
+                contentType: "application/json",
                 url: "/pay",
                 data: JSON.stringify(paymentDetails),
-                dataType: 'json',
-                success: function (res) {
-                    if (res.error) {
-                        swal({title: "Error", text: res.error, type: "error"});
-                    }
-                    else {
-                        swal({title: "Success", text: "Payment Sent", type: "success"});
-                        ('#resetButton').click();
-                        parent.loadPaymentsPage();
-                    }
+                success: function (data, textStatus, xhr) {
+                    swal({title: "Success", text: data.responseText, type: "success"});
+                    parent.loadPaymentsPage();
+
+                },
+                error : function(data, textStatus, xhr) {
+                    swal({title: "Error", text: data.responseText, type: "error"});
                 }
             });
-
         }
 
     });
