@@ -35,4 +35,9 @@ public class SiteManagerController {
         sitemanagerservice.addRequest(manager);
     }
 
+    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void updateRequest(@RequestBody SiteManager manager){
+        sitemanagerservice.updateRequest(manager);
+    }
+
 }
