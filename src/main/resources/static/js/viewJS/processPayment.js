@@ -13,7 +13,7 @@ $(document).ready(function () {
 
     });
 
-    $("#paymentSubmit").click(function(event) {
+    $("#payButton").click(function(event) {
 
         event.preventDefault();
 
@@ -27,19 +27,14 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            contentType: "application/json; charset=utf-8",
+            contentType: "application/json",
             url: "/pay",
             data: JSON.stringify(paymentDetails),
-            dataType: 'json',
             success: function (data, textStatus, xhr) {
-
                 updatePaymentStatus();
-
             },
-            error: function(data, textStatus, xhr) {
-
+            error : function(data, textStatus, xhr) {
                 swal({title: "Error", text: data.responseText, type: "error"});
-
             }
         });
 
