@@ -20,12 +20,15 @@ public class SiteManagerController {
         return sitemanagerservice.getAllRequest();
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public SiteManager getRequestId(@PathVariable("id") int id){
+        return sitemanagerservice.getRequestId(id);
+    }
 
     @RequestMapping(value = "/supplier/{mat}", method = RequestMethod.GET)
     public SiteManager getSupplierId(@PathVariable("mat") String mat){
         return sitemanagerservice.getSupplierId(mat);
     }
-
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addRequest(@RequestBody SiteManager manager){

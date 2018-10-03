@@ -9,10 +9,9 @@ $(document).ready(function(){
     });
     //view request
     $('#viewRequest').click(function () {
-        $("#body").load('/viewRequests.html');
-    // , function() {
-    //         // $.getScript('/js/viewJS/viewRequest.js');
-    //     }
+        $("#body").load('/viewRequests.html'), function() {
+            $.getScript('/js/viewJS/viewRequest.js');
+        }
     });
 
     //request
@@ -20,5 +19,12 @@ $(document).ready(function(){
         $("#body").load('/request.html'), function() {
                  $.getScript('/js/viewJS/request.js');
            }
+    });
+
+    //request
+    $('#manageRequest').click(function () {
+        $("#body").load('/manageRequest.html'), function () {
+            $.getScript('/js/viewJS/manageRequest.js');
+        }
     });
 });

@@ -1,5 +1,7 @@
 package com.group25.entity;
 
+import java.sql.Array;
+
 public class SiteManager {
 
     private int orderBy;
@@ -14,6 +16,7 @@ public class SiteManager {
     private String note;
     private int supplier;
     private String status;
+    private Array supid;
 
 
     public SiteManager() {
@@ -140,5 +143,13 @@ public class SiteManager {
 
     public void setSupplier(int supplier) {
         this.supplier = supplier;
+    }
+
+    public Array getSupID() {
+        return supid;
+    }
+
+    public void setSupID(Array supid) {
+        this.supid = supid;
     }
 }

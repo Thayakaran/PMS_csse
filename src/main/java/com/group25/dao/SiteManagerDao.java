@@ -54,8 +54,15 @@ public class SiteManagerDao {
     }
 
     //get a specific user
+    public SiteManager getRequestId(int id){
+        final String sql = "SELECT * FROM orders WHERE id = ?";
+        SiteManager supplier = jdbcTemplate.queryForObject(sql, new SitemanagerRowMapper(), id);
+        return supplier;
+    }
+
+    //get a specific user
     public SiteManager getSupplierId(String mat){
-        final String sql = "SELECT supplierID FROM supplierMaterials WHERE supplierMaterialType = ?";
+        final String sql = "SELECT * FROM supplierMaterials WHERE supplierMaterialType = ?";
         SiteManager supplier = jdbcTemplate.queryForObject(sql, new MaterialRowMapper(), mat);
         return supplier;
     }
