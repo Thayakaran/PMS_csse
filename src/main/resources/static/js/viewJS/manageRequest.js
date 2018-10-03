@@ -8,11 +8,28 @@ $(document).ready(function() {
         ajaxGetRequestId(id);
     });
 
+    $('#note').hide();
+    $('#noteLabel').hide();
+
+    $('#order_status').change(function() {
+        if (this.value == 'Cancelled') {
+            $('#note').show();
+            $('#noteLabel').show();
+        } else if(this.value == 'Rejected') {
+            $('#note').show();
+            $('#noteLabel').show();
+        } else {
+            $('#note').hide();
+            $('#noteLabel').hide();
+        }
+
+    });
+
     // DO GET
     function ajaxGetRequestId(id){
         $.ajax({
             type : "GET",
-            url : "/sitemanager/8", //+id,
+            url : "/sitemanager/" + id,
             success: function(result){
                 if(result){
                     $("#Requester_id").val(result.orderby),
@@ -28,12 +45,12 @@ $(document).ready(function() {
 
                     console.log("Success: ", result);
                 }else{
-                    $("#Request_id").val("User not found");
+                    $("#Request_id").val("Request not found");
                     console.log("Fail: ", result);
                 }
             },
             error : function(e) {
-                $("#Request_id").val("User not found");
+                $("#Request_id").val("Request not found");
                 console.log("ERROR: ", e);
             }
         });

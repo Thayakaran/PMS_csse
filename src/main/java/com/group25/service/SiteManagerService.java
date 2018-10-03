@@ -25,4 +25,7 @@ public class SiteManagerService {
     public SiteManager getRequestId(int id){
         return this.managerDao.getRequestId(id);
     }
+    public void updateRequest(SiteManager manager){
+        this.managerDao.updateRequest(manager);
+    }
 }

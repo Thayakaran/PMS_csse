@@ -3,7 +3,7 @@ package com.group25.entity;
 import java.sql.Array;
 
 public class SiteManager {
-
+    private int id;
     private int orderBy;
     private int manager;
     private String item;
@@ -22,7 +22,8 @@ public class SiteManager {
     public SiteManager() {
     }
 
-    public SiteManager(int orderBy, int site, int manager, String date, String requiredDate, String item, int quantity, String description, int contactNo, int supplier, String status, String note) {
+    public SiteManager(int id, int orderBy, int site, int manager, String date, String requiredDate, String item, int quantity, String description, int contactNo, int supplier, String status, String note) {
+        this.id = id;
         this.orderBy = orderBy;
         this.manager = manager;
         this.item = item;
@@ -151,5 +152,13 @@ public class SiteManager {
 
     public void setSupID(Array supid) {
         this.supid = supid;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
