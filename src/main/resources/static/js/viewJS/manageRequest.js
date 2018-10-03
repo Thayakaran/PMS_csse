@@ -1,13 +1,5 @@
 $(document).ready(function() {
 
-    $("#managependingRequest").submit(function(event){
-        event.preventDefault();
-        var id = $("#Request_id").val();
-        console.log(id);
-
-        ajaxGetRequestId(id);
-    });
-
     $('#note').hide();
     $('#noteLabel').hide();
 
@@ -24,6 +16,16 @@ $(document).ready(function() {
         }
 
     });
+    var id;
+
+    $("#managependingRequest").submit(function(event){
+        event.preventDefault();
+         id = $("#Request_id").val();
+        console.log(id);
+
+        ajaxGetRequestId(id);
+    });
+
 
     // DO GET
     function ajaxGetRequestId(id){
@@ -53,6 +55,48 @@ $(document).ready(function() {
                 $("#Request_id").val("Request not found");
                 console.log("ERROR: ", e);
             }
+        });
+    }
+
+
+    // UPDATE EXISTING Request
+    $("#managerRequest").submit(function(event) {
+        // Prevent the form from submitting via the browser.
+        event.preventDefault();
+        ajaxPostUpdateRequest(id);
+    });
+
+    function ajaxPostUpdateRequest(id) {
+
+        // PREPARE FORM DATA
+        var formData = {
+            supplier: $("#Supplier_Name").val(),
+            status: $("#order_status").val(),
+            note: $("#note").val()
+
+        }
+
+        // DO PUT
+        $.ajax({
+            type: "PUT",
+            contentType: "application/json; charset=utf-8",
+            url: "/sitemanager/" + id, //window.location +"users",
+            data: JSON.stringify(formData),
+            dataType: 'json',
+            success: function (res) {
+                if (res.error) {
+                    swal({title: "Error", text: res.error, type: "error"});
+                }
+                else {
+                    swal({title: "Success", text: "Your Account Has Been Created. Please Login", type: "success"});
+                    resetUpdateData();
+                }
+                // swal({title:"Success", text:"Your Account Has Been Created. Please Login", type:"success"});
+                // resetData();
+            }
+            // error : function(e) {
+            //     swal({title:"Error", text:"Error"+e, type:"error"});
+            // }
         });
     }
 
