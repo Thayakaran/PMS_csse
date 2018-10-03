@@ -9,51 +9,39 @@ $(document).ready(function () {
 
     $("#paidButton").click(function () {
 
-        $.ajax({
-            type : "PUT",
-            contentType : "application/json; charset=utf-8",
-            url : "/invoices/updatePaymentStatus/" + invoiceID,
-            success : function(res) {
-                if (res.error){
-                    swal({title:"Error", text: "Unable to set the payment status", type:"error"});
-                }
-                else{
-                    swal({title:"Success", text:"Payment status successfully updated", type:"success"});
-                    parent.loadPaymentsPage();
-                }
-            }
-        });
+        updatePaymentStatus();
 
     });
 
-    $("#paymentForm").submit(function(event) {
-        if(this.checkValidity())
-        {
-            event.preventDefault();
+    $("#paymentSubmit").click(function(event) {
 
-            var paymentDetails = {
-                cardholerName : $("#cardholerName").val(),
-                cardNo :  $("#cardNo").val(),
-                expDate : $("#expDate").val(),
-                cvv :  $("#cvv").val(),
-                amount : $("#amount").val()
-            }
+        event.preventDefault();
 
-            $.ajax({
-                type: "POST",
-                contentType: "application/json",
-                url: "/pay",
-                data: JSON.stringify(paymentDetails),
-                success: function (data, textStatus, xhr) {
-                    swal({title: "Success", text: data.responseText, type: "success"});
-                    parent.loadPaymentsPage();
-
-                },
-                error : function(data, textStatus, xhr) {
-                    swal({title: "Error", text: data.responseText, type: "error"});
-                }
-            });
+        var paymentDetails = {
+            cardholerName : $("#cardholerName").val(),
+            cardNo :  $("#cardNo").val(),
+            expDate : $("#expDate").val(),
+            cvv :  $("#cvv").val(),
+            amount : $("#amount").val()
         }
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "/pay",
+            data: JSON.stringify(paymentDetails),
+            dataType: 'json',
+            success: function (data, textStatus, xhr) {
+
+                updatePaymentStatus();
+
+            },
+            error: function(data, textStatus, xhr) {
+
+                swal({title: "Error", text: data.responseText, type: "error"});
+
+            }
+        });
 
     });
 
@@ -77,6 +65,26 @@ $(document).ready(function () {
         parent.loadPaymentsPage();
 
     });
+
+    function updatePaymentStatus() {
+
+        $.ajax({
+            type : "PUT",
+            contentType : "application/json; charset=utf-8",
+            url : "/invoices/updatePaymentStatus/" + invoiceID,
+            success : function(res) {
+                if (res.error){
+                    swal({title:"Error", text: "Unable to set the payment status", type:"error"});
+                }
+                else{
+                    swal({title:"Success", text:"Payment status successfully updated", type:"success"});
+                    parent.loadPaymentsPage();
+                }
+            }
+
+        });
+
+    }
 
 
 });
