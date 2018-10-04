@@ -28,7 +28,7 @@ public class InvoiceController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteUserById(@PathVariable("id") int id){
+    public void deleteInvoiceById(@PathVariable("id") int id){
         invoiceService.deleteInvoiceById(id);
     }
 

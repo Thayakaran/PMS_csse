@@ -21,7 +21,7 @@ public class InvoiceDao {
         public Invoice mapRow(ResultSet resultSet , int i) throws SQLException{
             Invoice invoice = new Invoice();
             invoice.setId(resultSet.getInt("id"));
-            invoice.setoredrId(resultSet.getString("orderId"));
+            invoice.setoredrId(resultSet.getString("orderID"));
             invoice.settotalAmount(resultSet.getFloat("totalAmount"));
             invoice.setdiscount(resultSet.getFloat("discount"));
             invoice.setnetAmount(resultSet.getFloat("netAmount"));
@@ -52,9 +52,9 @@ public class InvoiceDao {
 
     //updating existing invoice
     public void updateInvoice(Invoice invoice){
-        final String sql = "UPDATE invoice SET orderId = ?, totalAmount = ?, discount = ?, netAmount = ? WHERE id = ?";
+        final String sql = "UPDATE invoice SET orderID = ?, totalAmount = ?, discount = ?, netAmount = ? WHERE id = ?";
         int id = invoice.getId();
-        String oredrId = invoice.getorderId();
+        String oredrId = invoice.getorderID();
         float totalAmount = invoice.gettotalAmount();
         float discount = invoice.getdiscount();
         float netAmount = invoice.getnetAmount();
@@ -67,14 +67,14 @@ public class InvoiceDao {
 
     //updating existing invoice
     public void addInvoice(Invoice invoice){
-        final String sql = "INSERT INTO invoice(orderId, totalAmount, discount, netAmount) VALUES (?,?,?,?)";
+        final String sql = "INSERT INTO invoice(orderID, totalAmount, discount, netAmount) VALUES (?,?,?,?)";
 //        int id = invoice.getId();
-       String orderId = invoice.getorderId();
+       String orderID = invoice.getorderID();
         float totalAmount = invoice.gettotalAmount();
         float discount = invoice.getdiscount();
         float netAmount = invoice.getnetAmount();
 
-        jdbcTemplate.update(sql, new Object[] {orderId, totalAmount, discount, netAmount});
+        jdbcTemplate.update(sql, new Object[] {orderID, totalAmount, discount, netAmount});
 
 
 
