@@ -30,6 +30,7 @@ public class InvoiceDao {
             invoice.setDiscount(resultSet.getString("discount"));
             invoice.setNetAmount(resultSet.getString("netAmount"));
             invoice.setPaymentStatus(resultSet.getString("paymentStatus"));
+            invoice.setPaidDate(resultSet.getString("paidDate"));
             invoice.setOrderedBy(resultSet.getString("orderedBy"));
             invoice.setItem(resultSet.getString("item"));
             invoice.setQuantity(resultSet.getString("quantity"));

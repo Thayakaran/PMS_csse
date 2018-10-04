@@ -77,7 +77,6 @@ $(document).ready(function () {
             contentType : "application/json",
             url : "/invoices/updatePaymentStatus/" + invoiceID,
             data : JSON.stringify(strDate),
-            dataType : 'json',
             success : function(res) {
                 if (res.error){
                     swal({title:"Error", text: "Unable to set the payment status", type:"error"});
@@ -86,6 +85,9 @@ $(document).ready(function () {
                     swal({title:"Success", text:"Payment status successfully updated", type:"success"});
                     parent.loadPaymentsPage();
                 }
+            },
+            error : function (error) {
+                console.log("error" + error);
             }
 
         });
