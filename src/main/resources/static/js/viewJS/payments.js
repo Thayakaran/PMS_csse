@@ -80,7 +80,8 @@ $(document).ready(function() {
 
           var data = table.row($(this).closest('td, li')).data();
 
-          localStorage.clear();
+          localStorage.removeItem("invoiceID");
+          localStorage.removeItem("amount");
 
           localStorage.setItem('invoiceID', data["invoiceID"]);
           localStorage.setItem('amount', data["netAmount"]);
