@@ -61,6 +61,7 @@ $(document).ready(function () {
 
                         } else if (result["role"] == "Site Manager") {
 
+                            localStorage.setItem('email', credentials.email);
                             location.href = "sitemanagerHome.html";
 
                         } else if (result["role"] == "Supplier") {
