@@ -43,7 +43,22 @@ $(document).ready(function() {
                         $("#qty").val(result.qty),
                         $("#description").val(result.description),
                         $("#contact").val(result.contactnum),
-                        $("#order_status").val(result.status)
+                        $("#order_status").val(result.status),
+                        $("#note").val(result.note)
+
+                    $('#order_status').change(function() {
+                        if (this.value == 'Cancelled') {
+                            $('#note').show();
+                            $('#noteLabel').show();
+                        } else if(this.value == 'Rejected') {
+                            $('#note').show();
+                            $('#noteLabel').show();
+                        } else {
+                            $('#note').hide();
+                            $('#noteLabel').hide();
+                        }
+
+                    });
 
                     console.log("Success: ", result);
                 }else{
