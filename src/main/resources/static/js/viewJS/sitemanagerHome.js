@@ -1,5 +1,15 @@
 $(document).ready(function(){
-    var username = localStorage.getItem('name');
+
+    var userRole = localStorage.getItem('role');
+
+    if (userRole == null || userRole != "Site Manager") {
+
+        location.href = "/";
+
+        return;
+
+    }
+    var useremail = localStorage.getItem('email');
     document.getElementById("userwelcome").innerHTML = username;
     document.getElementById("username").innerHTML = username;
 

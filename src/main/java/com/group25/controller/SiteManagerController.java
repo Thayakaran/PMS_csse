@@ -19,15 +19,19 @@ public class SiteManagerController {
     public Collection<SiteManager> getAllRequest(){
         return sitemanagerservice.getAllRequest();
     }
+    @RequestMapping(value = "/supplier", method = RequestMethod.GET)
+    public Collection<SiteManager> getSupplierId(){
+        return sitemanagerservice.getSupplierId();
+    }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public SiteManager getRequestId(@PathVariable("id") int id){
         return sitemanagerservice.getRequestId(id);
     }
 
-    @RequestMapping(value = "/supplier/{mat}", method = RequestMethod.GET)
-    public SiteManager getSupplierId(@PathVariable("mat") String mat){
-        return sitemanagerservice.getSupplierId(mat);
+    @RequestMapping(value = "/supplier/{id}/{mat}", method = RequestMethod.GET)
+    public SiteManager getPrice(@PathVariable("id") int id, @PathVariable("mat") String mat){
+        return sitemanagerservice.getPrice(id, mat);
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)

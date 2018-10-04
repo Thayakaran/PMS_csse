@@ -43,28 +43,37 @@ public class SiteManagerDao {
         public SiteManager mapRow(ResultSet resultSet, int i) throws SQLException {
             SiteManager supplier = new SiteManager();
             supplier.setSupplier(resultSet.getInt("supplierID"));
+            supplier.setMaterial(resultSet.getString("supplierMaterialType"));
+            supplier.setPrice(resultSet.getString("unitPrice"));
             return supplier;
         }
     }
 
-    //get all users
+    //get all Request
     public List<SiteManager> getAllRequest(){
         final String sql = "SELECT * FROM orders";
         List<SiteManager> manager = jdbcTemplate.query(sql, new SiteManagerDao.SitemanagerRowMapper());
         return manager;
     }
 
-    //get a specific user
+    //get a specific Request
     public SiteManager getRequestId(int id){
         final String sql = "SELECT * FROM orders WHERE id = ?";
-        SiteManager supplier = jdbcTemplate.queryForObject(sql, new SitemanagerRowMapper(), id);
-        return supplier;
+        SiteManager request = jdbcTemplate.queryForObject(sql, new SitemanagerRowMapper(), id);
+        return request;
     }
 
-    //get a specific user
-    public SiteManager getSupplierId(String mat){
-        final String sql = "SELECT * FROM supplierMaterials WHERE supplierMaterialType = ?";
-        SiteManager supplier = jdbcTemplate.queryForObject(sql, new MaterialRowMapper(), mat);
+    //get a specific Price
+    public SiteManager getPrice(int id, String material){
+        final String sql = "SELECT * FROM supplierMaterials WHERE id = ? AND supplierMaterialType = ?" ;
+        SiteManager Price = jdbcTemplate.queryForObject(sql, new SitemanagerRowMapper(), id, material );
+        return Price;
+    }
+
+    //get a specific Supplier id
+    public List<SiteManager> getSupplierId(){
+        final String sql = "SELECT * FROM supplierMaterials";
+        List<SiteManager> supplier = jdbcTemplate.query(sql, new SiteManagerDao.MaterialRowMapper());
         return supplier;
     }
 
@@ -89,7 +98,7 @@ public class SiteManagerDao {
 
     }
 
-    //updating existing user
+    //updating existing Request
     public void updateRequest(int id, SiteManager manager){
         final String sql = "UPDATE orders SET status = ?, note = ?, supplier = ? WHERE id = ?";
         String status = manager.getStatus();
