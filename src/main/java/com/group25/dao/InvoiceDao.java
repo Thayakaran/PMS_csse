@@ -24,16 +24,16 @@ public class InvoiceDao {
 
             Invoice invoice = new Invoice();
 
-            invoice.setInvoiceID(resultSet.getString("id"));
+            invoice.setInvoiceID(resultSet.getInt("id"));
             invoice.setOrderID(resultSet.getString("orderId"));
-            invoice.setTotalAmount(resultSet.getString("totalAmount"));
-            invoice.setDiscount(resultSet.getString("discount"));
-            invoice.setNetAmount(resultSet.getString("netAmount"));
+            invoice.setTotalAmount(resultSet.getFloat("totalAmount"));
+            invoice.setDiscount(resultSet.getFloat("discount"));
+            invoice.setNetAmount(resultSet.getFloat("netAmount"));
             invoice.setPaymentStatus(resultSet.getString("paymentStatus"));
             invoice.setPaidDate(resultSet.getString("paidDate"));
             invoice.setOrderedBy(resultSet.getString("orderedBy"));
             invoice.setItem(resultSet.getString("item"));
-            invoice.setQuantity(resultSet.getString("quantity"));
+            invoice.setQuantity(resultSet.getInt("quantity"));
             invoice.setDate(resultSet.getString("date"));
             invoice.setSupplier(resultSet.getString("supplier"));
             invoice.setContactNo(resultSet.getString("contactNo"));

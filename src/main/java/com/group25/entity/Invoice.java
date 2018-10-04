@@ -1,27 +1,27 @@
 package com.group25.entity;
 
 public class Invoice {
-    private String invoiceID;
+    private int invoiceID;
     private String orderID;
-    private String totalAmount;
-    private String discount;
-    private String netAmount;
+    private float totalAmount;
+    private float discount;
+    private float netAmount;
     private String paymentStatus;
     private String paidDate;
     private String orderedBy;
     private String item;
-    private String quantity;
+    private int quantity;
     private String date;
     private String supplier;
     private String contactNo;
 
     public Invoice(){}
 
-    public String getInvoiceID() {
+    public int getInvoiceID() {
         return invoiceID;
     }
 
-    public void setInvoiceID(String invoiceID) {
+    public void setInvoiceID(int invoiceID) {
         this.invoiceID = invoiceID;
     }
 
@@ -33,27 +33,27 @@ public class Invoice {
         this.orderID = orderID;
     }
 
-    public String getTotalAmount() {
+    public float getTotalAmount() {
         return totalAmount;
     }
 
-    public void setTotalAmount(String totalAmount) {
+    public void setTotalAmount(float totalAmount) {
         this.totalAmount = totalAmount;
     }
 
-    public String getDiscount() {
+    public float getDiscount() {
         return discount;
     }
 
-    public void setDiscount(String discount) {
+    public void setDiscount(float discount) {
         this.discount = discount;
     }
 
-    public String getNetAmount() {
+    public float getNetAmount() {
         return netAmount;
     }
 
-    public void setNetAmount(String netAmount) {
+    public void setNetAmount(float netAmount) {
         this.netAmount = netAmount;
     }
 
@@ -81,11 +81,11 @@ public class Invoice {
         this.item = item;
     }
 
-    public String getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
