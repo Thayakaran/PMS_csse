@@ -16,6 +16,7 @@ $(document).ready(function () {
 
 });
 
+
 function loadProcessPaymentPage() {
     $('#payment-page').load('/pay');
     $("#payments-tab").removeClass("active");
