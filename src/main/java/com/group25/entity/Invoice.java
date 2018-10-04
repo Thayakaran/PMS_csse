@@ -7,6 +7,7 @@ public class Invoice {
     private String discount;
     private String netAmount;
     private String paymentStatus;
+    private String paidDate;
     private String orderedBy;
     private String item;
     private String quantity;
@@ -112,4 +113,11 @@ public class Invoice {
         this.contactNo = contactNo;
     }
 
+    public String getPaidDate() {
+        return paidDate;
+    }
+
+    public void setPaidDate(String paidDate) {
+        this.paidDate = paidDate;
+    }
 }
