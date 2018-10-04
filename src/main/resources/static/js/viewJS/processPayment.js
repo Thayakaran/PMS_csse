@@ -1,5 +1,15 @@
 $(document).ready(function () {
 
+    var pageURL = $(location).attr("href");
+
+    if(pageURL == "http://localhost:3000/pay") {
+
+        location.href = "accoundantHome.html";
+
+        return;
+
+    }
+
     var invoiceID = localStorage.getItem("invoiceID");
 
     var userRole = localStorage.getItem('role');
