@@ -50,6 +50,7 @@ $(document).ready(function() {
                   "columns" : [
                       { "data" : "invoiceID" },
                       { "data" : "paymentStatus" },
+                      { "data" : "paidDate" },
                       { "data" : "orderID" },
                       { "data" : "date" },
                       { "data" : "item" },
@@ -84,7 +85,6 @@ $(document).ready(function() {
           localStorage.setItem('invoiceID', data["invoiceID"]);
           localStorage.setItem('amount', data["netAmount"]);
 
-          // location.href = "pay";
           parent.loadProcessPaymentPage();
 
       });
