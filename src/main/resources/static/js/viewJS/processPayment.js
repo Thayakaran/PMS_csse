@@ -2,6 +2,24 @@ $(document).ready(function () {
 
     var invoiceID = localStorage.getItem("invoiceID");
 
+    var userRole = localStorage.getItem('role');
+
+    if (userRole == null || userRole != "Account Staff") {
+
+        location.href = "/";
+
+        return;
+
+    }
+
+    if (invoiceID == null && userRole == "Account Staff") {
+
+        location.href = "accoundantHome.html";
+
+        return;
+
+    }
+
     $('#invoiceID').val(invoiceID);
     $('#amount').val(localStorage.getItem("amount"));
 
