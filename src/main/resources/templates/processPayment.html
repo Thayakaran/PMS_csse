@@ -76,7 +76,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-3">Credit Card No <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="cardNo" required="required" class="form-control" data-inputmask="'mask' : '9999-9999-9999-9999'">
+                                <input type="text" id="cardNo" required="required" class="form-control" data-inputmask="'mask' : '9999-9999-9999-9999'" pattern="[1-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]">
                             </div>
                         </div>
                         <div class="item form-group">
@@ -90,7 +90,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-3">CVV <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="password" id="cvv" required="required" class="form-control" data-inputmask="'mask' : '999'">
+                                <input type="password" id="cvv" required="required" class="form-control" data-inputmask="'mask' : '999'" pattern="[1-9][0-9][0-9]">
                             </div>
                         </div>
                         <div class="item form-group">
