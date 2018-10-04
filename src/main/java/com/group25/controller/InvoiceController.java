@@ -1,8 +1,12 @@
 package com.group25.controller;
 
+
 import com.group25.entity.Invoice;
 import com.group25.service.InvoiceService;
+
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -21,10 +25,14 @@ public class InvoiceController {
 
     }
 
-    @RequestMapping(value = "/updatePaymentStatus/{id}", method = RequestMethod.PUT)
-    public void updatePaymentStatus(@PathVariable("id") String id) {
+    @RequestMapping(value = "/updatePaymentStatus/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void updatePaymentStatus(@PathVariable("id") String id, @RequestBody String jsonStr) {
 
-        invoiceService.updatePaymentStatus(id);
+        JSONObject jsonObj = new JSONObject(jsonStr);
+
+        String date = jsonObj.getString("date");
+
+        invoiceService.updatePaymentStatus(id, date);
 
     }
 
