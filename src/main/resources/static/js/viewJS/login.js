@@ -70,6 +70,7 @@ $(document).ready(function () {
 
                         } else if (result["role"] == "Account Staff") {
 
+                            localStorage.setItem('userName', result["fName"]);
                             location.href = "accoundantHome.html";
 
                         } else {
