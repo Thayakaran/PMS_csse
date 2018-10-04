@@ -21,6 +21,7 @@ public class SiteManagerDao {
         @Override
         public SiteManager mapRow(ResultSet resultSet, int i) throws SQLException {
             SiteManager manager = new SiteManager();
+            manager.setId(resultSet.getInt("id"));
             manager.setOrderby(resultSet.getInt("orderedBy"));
             manager.setManager(resultSet.getInt("manager"));
             manager.setItem(resultSet.getString("item"));
@@ -86,5 +87,14 @@ public class SiteManagerDao {
         jdbcTemplate.update(sql, new Object[] {orderBy, managers, item, qty, date, description, site, contactnum, requiredate, status, note, supplier});
 
 
+    }
+
+    //updating existing user
+    public void updateRequest(int id, SiteManager manager){
+        final String sql = "UPDATE orders SET status = ?, note = ?, supplier = ? WHERE id = ?";
+        String status = manager.getStatus();
+        int supplier = manager.getSupplier();
+        String note = manager.getNote();
+        jdbcTemplate.update(sql, new Object[] {status, note, supplier, id});
     }
 }

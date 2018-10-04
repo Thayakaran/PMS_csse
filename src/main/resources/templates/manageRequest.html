@@ -28,7 +28,7 @@
     <!-- bootstrap-daterangepicker -->
     <link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
-    <script src="/js/viewJS/request.js"></script>
+    <script src="/js/viewJS/manageRequest.js"></script>
 
     <!-- Custom Theme Style -->
     <link href="/css/custom.min.css" rel="stylesheet">
@@ -179,7 +179,8 @@
             <div class="col-md-2 col-sm-5 col-xs-12">
                 <select path = "country" id="Supplier_Name" required="required" class="form-control col-md-7 col-xs-12">
                     <option value = "NONE" label = "Select"/>
-                    <options items = "${countryList}" />
+                    <option value="231">231</option>
+                    <option value="286">286</option>
                 </select>
             </div>
             <label class="control-label col-md-2 col-sm-3 col-xs-12" id="price">Rs.XXXXXX per one item
@@ -214,7 +215,7 @@
         <br><br><br>
 
         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-            <button type="submit"  class="btn btn-success">Save</button>
+            <button type="submit"  class="btn btn-success">Submit</button>
             <button class="btn btn-primary" type="button">Back</button>
         </div>
     </div>

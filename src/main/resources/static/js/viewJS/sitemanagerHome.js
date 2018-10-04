@@ -9,7 +9,7 @@ $(document).ready(function(){
     });
     //view request
     $('#viewRequest').click(function () {
-        $("#body").load('/viewRequests.html'), function() {
+        $("#body").load('/sitemanagerHome.html'), function() {
             $.getScript('/js/viewJS/viewRequest.js');
         }
     });

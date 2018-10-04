@@ -13,30 +13,36 @@ $(document).ready(function () {
 
     });
 
-    $("#payButton").click(function(event) {
+    $("#paymentForm").submit(function(event) {
 
-        event.preventDefault();
+        var form = $("#paymentForm");
 
-        var paymentDetails = {
-            cardholerName : $("#cardholerName").val(),
-            cardNo :  $("#cardNo").val(),
-            expDate : $("#expDate").val(),
-            cvv :  $("#cvv").val(),
-            amount : $("#amount").val()
-        }
+        if (form.valid()) {
 
-        $.ajax({
-            type: "POST",
-            contentType: "application/json",
-            url: "/pay",
-            data: JSON.stringify(paymentDetails),
-            success: function (data, textStatus, xhr) {
-                updatePaymentStatus();
-            },
-            error : function(data, textStatus, xhr) {
-                swal({title: "Error", text: data.responseText, type: "error"});
+            event.preventDefault();
+
+            var paymentDetails = {
+                cardholerName: $("#cardholerName").val(),
+                cardNo: $("#cardNo").val(),
+                expDate: $("#expDate").val(),
+                cvv: $("#cvv").val(),
+                amount: $("#amount").val()
             }
-        });
+
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "/pay",
+                data: JSON.stringify(paymentDetails),
+                success: function (data, textStatus, xhr) {
+                    updatePaymentStatus();
+                },
+                error: function (data, textStatus, xhr) {
+                    swal({title: "Error", text: data.responseText, type: "error"});
+                }
+            });
+
+        }
 
     });
 

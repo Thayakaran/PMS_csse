@@ -35,4 +35,9 @@ public class SiteManagerController {
         sitemanagerservice.addRequest(manager);
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void updateRequest(@PathVariable("id") int id, @RequestBody SiteManager manager){
+        sitemanagerservice.updateRequest(id ,manager);
+    }
+
 }
