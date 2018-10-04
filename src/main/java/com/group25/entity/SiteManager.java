@@ -10,7 +10,7 @@ public class SiteManager {
     private int quantity;
     private String date;
     private String description;
-    private int site;
+    private String site;
     private int contactNo;
     private String requiredDate;
     private String note;
@@ -18,12 +18,14 @@ public class SiteManager {
     private String status;
     private String material;
     private String price;
+    private int userId;
+    private String userName;
 
 
     public SiteManager() {
     }
 
-    public SiteManager(int id, int orderBy, int site, int manager, String date, String requiredDate, String item, int quantity, String description, int contactNo, int supplier, String status, String note) {
+    public SiteManager(int id, int orderBy, String site, int manager, String date, String requiredDate, String item, int quantity, String description, int contactNo, int supplier, String status, String note) {
         this.id = id;
         this.orderBy = orderBy;
         this.manager = manager;
@@ -76,11 +78,11 @@ public class SiteManager {
     }
 
     //5 get/set site value
-    public int getSite() {
+    public String getSite() {
         return site;
     }
 
-    public void setSite(int site) {
+    public void setSite(String site) {
         this.site = site;
     }
 
@@ -172,5 +174,23 @@ public class SiteManager {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    //userId
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    //userName
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

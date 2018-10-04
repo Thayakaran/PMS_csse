@@ -29,9 +29,9 @@ public class SiteManagerController {
         return sitemanagerservice.getRequestId(id);
     }
 
-    @RequestMapping(value = "/supplier/{id}/{mat}", method = RequestMethod.GET)
-    public SiteManager getPrice(@PathVariable("id") int id, @PathVariable("mat") String mat){
-        return sitemanagerservice.getPrice(id, mat);
+    @RequestMapping(value = "user/{id}", method = RequestMethod.GET)
+    public SiteManager getUser(@PathVariable("id") String id){
+        return sitemanagerservice.getUser(id);
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)

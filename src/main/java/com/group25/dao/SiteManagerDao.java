@@ -28,7 +28,7 @@ public class SiteManagerDao {
             manager.setQty(resultSet.getInt("quantity"));
             manager.setDate(resultSet.getString("date"));
             manager.setDescription(resultSet.getString("description"));
-            manager.setSite(resultSet.getInt("site"));
+            manager.setSite(resultSet.getString("site"));
             manager.setContactnum(resultSet.getInt("contactNo"));
             manager.setRequiredate(resultSet.getString("requiredDate"));
             manager.setNote(resultSet.getString("note"));
@@ -49,6 +49,18 @@ public class SiteManagerDao {
         }
     }
 
+    private static class userRowMapper implements RowMapper<SiteManager>{
+        @Override
+        public SiteManager mapRow(ResultSet resultSet, int i) throws SQLException {
+            SiteManager user = new SiteManager();
+            user.setUserId(resultSet.getInt("id"));
+            user.setUserName(resultSet.getString("fName"));
+            user.setContactnum(resultSet.getInt("oPhone"));
+            user.setSite(resultSet.getString("wAddress"));
+            return user;
+        }
+    }
+
     //get all Request
     public List<SiteManager> getAllRequest(){
         final String sql = "SELECT * FROM orders";
@@ -63,11 +75,11 @@ public class SiteManagerDao {
         return request;
     }
 
-    //get a specific Price
-    public SiteManager getPrice(int id, String material){
-        final String sql = "SELECT * FROM supplierMaterials WHERE id = ? AND supplierMaterialType = ?" ;
-        SiteManager Price = jdbcTemplate.queryForObject(sql, new SitemanagerRowMapper(), id, material );
-        return Price;
+    //get a specific User
+    public SiteManager getUser(String id){
+        final String sql = "SELECT * FROM user WHERE email = ?";
+        SiteManager user = jdbcTemplate.queryForObject(sql, new userRowMapper(), id);
+        return user;
     }
 
     //get a specific Supplier id
@@ -87,7 +99,7 @@ public class SiteManagerDao {
         int qty = manager.getQty();
         String date = manager.getDate();
         String description = manager.getDescription();
-        int site = manager.getSite();
+        String site = manager.getSite();
         int contactnum = manager.getContactnum();
         String requiredate = manager.getRequiredate();
         String status = manager.getStatus();
