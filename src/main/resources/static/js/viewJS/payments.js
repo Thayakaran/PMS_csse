@@ -1,4 +1,23 @@
 $(document).ready(function() {
+
+    var pageURL = $(location).attr("href");
+
+    if(pageURL == "http://localhost:3000/payments") {
+
+        location.href = "accoundantHome.html";
+
+    }
+
+    var userRole = localStorage.getItem('role');
+
+    if (userRole == null || userRole != "Account Staff") {
+
+        location.href = "/";
+
+        return;
+
+    }
+
   getAllData();
 
   function getAllData() {
