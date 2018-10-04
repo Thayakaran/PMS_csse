@@ -6,6 +6,8 @@ $(document).ready(function() {
 
         location.href = "accoundantHome.html";
 
+        return;
+
     }
 
     var userRole = localStorage.getItem('role');
