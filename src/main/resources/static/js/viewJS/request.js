@@ -13,6 +13,32 @@ $( document ).ready(function() {
         return;
 
     }
+    var useremail = localStorage.getItem('email');
+    ajaxGetRequester(useremail);
+
+    function ajaxGetRequester(useremail) {
+    $.ajax({
+            type : "GET",
+            url : "/sitemanager/user/" + useremail,
+            success: function(result){
+                if(result) {
+                    $("#Requester_id").val(result.userId),
+                        $("#site_name").val(result.site),
+                        $("#manager_name").val(result.userId),
+                        $("#contact").val(result.contactnum),
+                    console.log("Success: ", result);
+
+                }
+            },
+            error : function(e) {
+                $("#Supplier_Name").val("User not found");
+                console.log("ERROR: ", e);
+            }
+        });
+
+    }
+
+
 
     $('#back').click(function () {
         location.href = "sitemanagerHome.html";

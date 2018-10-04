@@ -10,8 +10,26 @@ $(document).ready(function(){
 
     }
     var useremail = localStorage.getItem('email');
-    document.getElementById("userwelcome").innerHTML = username;
-    document.getElementById("username").innerHTML = username;
+    ajaxGetRequester(useremail);
+
+    function ajaxGetRequester(useremail) {
+        $.ajax({
+            type : "GET",
+            url : "/sitemanager/user/" + useremail,
+            success: function(result){
+                if(result) {
+                        $("#userwelcome, #username").html(result["userName"]),
+                        console.log("Success: ", result);
+
+                }
+            },
+            error : function(e) {
+                $("#Supplier_Name").val("User not found");
+                console.log("ERROR: ", e);
+            }
+        });
+
+    }
 
     $("#logout1, #logout2").click(function () {
         localStorage.clear();
