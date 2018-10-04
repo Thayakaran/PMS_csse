@@ -25,9 +25,9 @@ public class InvoiceService {
 
     }
 
-    public void updatePaymentStatus(String id) {
+    public void updatePaymentStatus(String id, String date) {
 
-        this.invoiceDao.updateInvoiceStatus(id);
+        this.invoiceDao.updateInvoiceStatus(id, date);
 
     }
 

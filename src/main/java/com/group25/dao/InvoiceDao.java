@@ -54,11 +54,11 @@ public class InvoiceDao {
         return invoices;
     }
 
-    public void updateInvoiceStatus(String id) {
+    public void updateInvoiceStatus(String id, String date) {
 
-        final String sql = "UPDATE invoice  SET paymentStatus = \"Paid\" WHERE id = ?";
+        final String sql = "UPDATE invoice  SET paymentStatus = \"Paid\", paidDate = ? WHERE id = ?";
 
-        jdbcTemplate.update(sql, id);
+        jdbcTemplate.update(sql, date, id);
 
     }
 

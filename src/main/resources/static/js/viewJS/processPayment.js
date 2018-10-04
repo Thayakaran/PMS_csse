@@ -69,10 +69,15 @@ $(document).ready(function () {
 
     function updatePaymentStatus() {
 
+        var date = new Date($.now());
+        var strDate = {date: date.getFullYear()+"-"+date.getMonth()+"-"+date.getDay()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()};
+
         $.ajax({
             type : "PUT",
-            contentType : "application/json; charset=utf-8",
+            contentType : "application/json",
             url : "/invoices/updatePaymentStatus/" + invoiceID,
+            data : JSON.stringify(strDate),
+            dataType : 'json',
             success : function(res) {
                 if (res.error){
                     swal({title:"Error", text: "Unable to set the payment status", type:"error"});
