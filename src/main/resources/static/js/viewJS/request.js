@@ -4,9 +4,24 @@ $('#email').keyup(function () {
 
 $( document ).ready(function() {
 
+    var pageURL = $(location).attr("href");
+
+    if(pageURL == "http://localhost:3000/request.html") {
+
+        location.href = "sitemanagerHome.html";
+
+        return;
+
+    }
+
+    $('#back').click(function () {
+        location.href = "sitemanagerHome.html";
+    });
+
 
     $('#note').hide();
     $('#noteLabel').hide();
+    $('#price').hide();
 
     $('#order_status').change(function() {
         if (this.value == 'Cancelled') {

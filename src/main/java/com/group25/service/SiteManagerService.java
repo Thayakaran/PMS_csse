@@ -16,11 +16,14 @@ public class SiteManagerService {
     public Collection<SiteManager> getAllRequest(){
         return this.managerDao.getAllRequest();
     }
+    public Collection<SiteManager> getSupplierId(){
+        return (Collection<SiteManager>) this.managerDao.getSupplierId();
+    }
     public void addRequest(SiteManager manager) {
         this.managerDao.addRequest(manager);
     }
-    public SiteManager getSupplierId(String mat){
-        return this.managerDao.getSupplierId(mat);
+    public SiteManager getPrice(int id, String mat){
+        return this.managerDao.getPrice(id, mat);
     }
     public SiteManager getRequestId(int id){
         return this.managerDao.getRequestId(id);

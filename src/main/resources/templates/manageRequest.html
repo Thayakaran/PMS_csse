@@ -38,29 +38,25 @@
 
     <script src="/js/projectJS/sweetalert2.all.min.js"></script>
     <script src="/js/projectJS/jquery.min.js"></script>
-    <script>function supplierFunction() {
-        event.preventDefault();
-        var id = $("#item").val();
+    <script>
+        function price() {
+            var item = $("#item").val();
+            var suppliers = $("#Supplier_Name").val();
 
-        ajaxgetSupplierId(id);
-
-        // DO GET
-        function ajaxgetSupplierId(id){
             $.ajax({
                 type : "GET",
-                url : "/sitemanager/supplier/"+id,
+                url : "/sitemanager/supplier",
                 success: function(result){
                     if(result) {
-                        console.log("Success: ", result);
-                        var sup = result.supplier;
-                        console.log(result.supplier);
-                        var select = document.getElementById("Supplier_Name");
-                        for (var i = 0; i < 1; i++) {
-                            var option = document.createElement('option');
-                            option.text = option.value = sup;
-                            select.add(option, 0);
+                        result.forEach(function (supplier) {
+                            if ((supplier["material"] == item )&& (supplier["supplier"] == suppliers) ) {
+                                $('#price').html("Rs. " + supplier["price"] + " Per Unit");
+                                $('#price').show();
+                                console.log("Success: ", supplier["price"]);
+                            }
+                        });
 
-                        }
+
                     }
                 },
                 error : function(e) {
@@ -68,16 +64,18 @@
                     console.log("ERROR: ", e);
                 }
             });
-        }
 
-    }</script>
+        }
+    </script>
+
+
 </head>
 <body>
 <div class="x_panel" style="background-color:#2a3f54">
     <div class="col-md-2 col-sm-6 col-xs-12">
     </div>
     <div class="col-md-8 col-sm-6 col-xs-12" style="text-align:center;font-size:500%; color: white">
-        Request Materials
+        Manage Request Materials
     </div>
     <div class="col-md-2 col-sm-6 col-xs-12">
         <img style="float:right" src="/images/request.png" alt="SLIIT" width="100" height="100">
@@ -90,7 +88,7 @@
             <label class="control-label col-md-3 col-sm-6 col-xs-12" for="Request_id">Request ID
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" id="Request_id" required="required" class="form-control col-md-7 col-xs-12">
+                <input type="text" id="Request_id" required="required" class="form-control col-md-7 col-xs-12" >
 
             </div>
             <span class="input-group-btn"><button class="btn btn-default" id="searchBtn" type="submit">Go!</button></span>
@@ -107,24 +105,24 @@
             <label class="control-label col-md-3 col-sm-6 col-xs-12" for="Requester_id">Requester's ID
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" id="Requester_id" required="required" class="form-control col-md-7 col-xs-12">
+                <input type="text" id="Requester_id" required="required" class="form-control col-md-7 col-xs-12" readonly="readonly">
 
             </div>
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="site_name">Site Name
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="site_name">Site ID
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" id="site_name" required="required" class="form-control col-md-7 col-xs-12">
+                <input type="text" id="site_name" required="required" class="form-control col-md-7 col-xs-12" readonly="readonly">
             </div>
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="manager_name">Site Manager Name
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="manager_name">Site Manager ID
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" id="manager_name" required="required" class="form-control col-md-7 col-xs-12">
+                <input type="text" id="manager_name" required="required" class="form-control col-md-7 col-xs-12" readonly="readonly">
             </div>
         </div>
 
@@ -132,7 +130,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Order_date">Order Date
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="date" id="Order_date" required="required" class="form-control col-md-7 col-xs-12">
+                <input type="date" id="Order_date" required="required" class="form-control col-md-7 col-xs-12" readonly="readonly">
             </div>
         </div>
 
@@ -140,7 +138,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="require_date">Required Date
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="date" id="require_date" required="required" class="form-control col-md-7 col-xs-12">
+                <input type="date" id="require_date" required="required" class="form-control col-md-7 col-xs-12" readonly="readonly">
             </div>
         </div>
 
@@ -148,7 +146,7 @@
             <label class="control-label col-md-3 col-sm-6 col-xs-12" for="item">Item
             </label>
             <div class="col-md-2 col-sm-5 col-xs-12">
-                <select type="text" id="item" onselect="supplierFunction()" required="required" class="form-control col-md-7 col-xs-12">
+                <select type="text" id="item" onselect="supplierFunction()" required="required" class="form-control col-md-7 col-xs-12" readonly="readonly">
                     <option value="None">--Select--</option>
                     <option value="Cement">Cement</option>
                     <option value="Sand">Sand</option>
@@ -175,7 +173,7 @@
             <label class="control-label col-md-2 col-sm-3 col-xs-12" for="qty">Quantity
             </label>
             <div class="col-md-2 col-sm-6 col-xs-12">
-                <input type="text" id="qty" required="required" class="form-control col-md-2 col-xs-12">
+                <input type="text" id="qty" required="required" class="form-control col-md-2 col-xs-12" readonly="readonly">
             </div>
         </div>
 
@@ -183,7 +181,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Short Description
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" id="description" required="required" class="form-control col-md-7 col-xs-12">
+                <input type="text" id="description" required="required" class="form-control col-md-7 col-xs-12" readonly="readonly">
             </div>
         </div>
 
@@ -191,18 +189,17 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="contact">Contact number
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" id="contact" required="required" class="form-control col-md-7 col-xs-12">
+                <input type="text" id="contact" required="required" class="form-control col-md-7 col-xs-12" readonly="readonly">
             </div>
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-3 col-sm-6 col-xs-12" for="Supplier_Name">Supplier`s Name
+            <label class="control-label col-md-3 col-sm-6 col-xs-12" for="Supplier_Name">Supplier`s ID
             </label>
             <div class="col-md-2 col-sm-5 col-xs-12">
-                <select path = "country" id="Supplier_Name" required="required" class="form-control col-md-7 col-xs-12">
+                <select path = "country" onchange="price()" id="Supplier_Name" required="required" class="form-control col-md-7 col-xs-12">
                     <option value = "NONE" label = "Select"/>
-                    <option value="231">231</option>
-                    <option value="286">286</option>
+                    <options items = "${countryList}" />
                 </select>
             </div>
             <label class="control-label col-md-2 col-sm-3 col-xs-12" id="price">Rs.XXXXXX per one item
@@ -238,7 +235,7 @@
 
         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
             <button type="submit"  class="btn btn-success">Submit</button>
-            <button class="btn btn-primary" type="button">Back</button>
+            <button  id = "back" class="btn btn-primary" type="button">Back</button>
         </div>
     </div>
 

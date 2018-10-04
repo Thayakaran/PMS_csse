@@ -49,17 +49,23 @@
         function ajaxgetSupplierId(id){
             $.ajax({
                 type : "GET",
-                url : "/sitemanager/supplier/"+id,
+                url : "/sitemanager/supplier",
                 success: function(result){
                     if(result) {
-                        console.log("Success: ", result);
-                        var sup = result.supplier;
+                        var supplierId = [];
+                        result.forEach(function (supplier) {
+                            if (supplier["material"] == id) {
+                                supplierId.push(supplier["supplier"])
+                            }
+                        });
+                        console.log("Success: ", supplierId);
+
                         console.log(result.supplier);
                         var select = document.getElementById("Supplier_Name");
-                        for (var i = 0; i < 1; i++) {
+                        for (var i = 0; i <supplierId.length ; i++) {
                             var option = document.createElement('option');
-                            option.text = option.value = sup;
-                            select.add(option, 0);
+                            option.text = option.value = supplierId[i];
+                            select.add(option, 1);
 
                         }
                     }
@@ -71,7 +77,36 @@
             });
         }
 
-    }</script>
+    }
+	function price() {
+	    var item = $("#item").val();
+	    var suppliers = $("#Supplier_Name").val();
+
+        $.ajax({
+            type : "GET",
+            url : "/sitemanager/supplier",
+            success: function(result){
+                if(result) {
+                    result.forEach(function (supplier) {
+                        if ((supplier["material"] == item )&& (supplier["supplier"] == suppliers) ) {
+                            $('#price').html("Rs. " + supplier["price"] + " Per Unit");
+                            $('#price').show();
+                            console.log("Success: ", supplier["price"]);
+                        }
+                    });
+
+
+                }
+            },
+            error : function(e) {
+                $("#Supplier_Name").val("User not found");
+                console.log("ERROR: ", e);
+            }
+        });
+
+    }
+
+	</script>
 </head>
 <body>
 <div class="x_panel" style="background-color:#2a3f54">
@@ -100,7 +135,7 @@
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-md-3 col-sm-3 col-xs-12" for="site_name">Site Name
+				<label class="control-label col-md-3 col-sm-3 col-xs-12" for="site_name">Site ID
 				</label>
 				<div class="col-md-6 col-sm-6 col-xs-12">
 					<input type="text" id="site_name" required="required" class="form-control col-md-7 col-xs-12">
@@ -108,7 +143,7 @@
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-md-3 col-sm-3 col-xs-12" for="manager_name">Site Manager Name
+				<label class="control-label col-md-3 col-sm-3 col-xs-12" for="manager_name">Site Manager ID
 				</label>
 				<div class="col-md-6 col-sm-6 col-xs-12">
 					<input type="text" id="manager_name" required="required" class="form-control col-md-7 col-xs-12">
@@ -183,10 +218,10 @@
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-md-3 col-sm-6 col-xs-12" for="Supplier_Name">Supplier`s Name
+				<label class="control-label col-md-3 col-sm-6 col-xs-12" for="Supplier_Name">Supplier`s ID
 				</label>
 				<div class="col-md-2 col-sm-5 col-xs-12">
-						<select path = "country" id="Supplier_Name" required="required" class="form-control col-md-7 col-xs-12">
+						<select path = "country" onchange="price()" id="Supplier_Name" required="required" class="form-control col-md-7 col-xs-12">
 							<option value = "NONE" label = "Select"/>
 							<options items = "${countryList}" />
 						</select>
@@ -224,7 +259,7 @@
 
 			<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 				<button type="submit"  class="btn btn-success">Save</button>
-				<button class="btn btn-primary" type="button">Back</button>
+				<button id = "back" class="btn btn-primary" type="button">Back</button>
 
 			</div>
 		</div>

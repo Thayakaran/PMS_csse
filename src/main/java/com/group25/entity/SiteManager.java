@@ -16,7 +16,8 @@ public class SiteManager {
     private String note;
     private int supplier;
     private String status;
-    private Array supid;
+    private String material;
+    private String price;
 
 
     public SiteManager() {
@@ -146,14 +147,25 @@ public class SiteManager {
         this.supplier = supplier;
     }
 
-    public Array getSupID() {
-        return supid;
+    //material
+    public String getMaterial() {
+        return material;
     }
 
-    public void setSupID(Array supid) {
-        this.supid = supid;
+    public void setMaterial(String material) {
+        this.material = material;
     }
 
+    //price
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    //id
     public int getId() {
         return id;
     }
