@@ -1,11 +1,40 @@
 $(document).ready(function () {
 
+    var pageURL = $(location).attr("href");
+
+    if(pageURL == "http://localhost:3000/pay") {
+
+        location.href = "accoundantHome.html";
+
+        return;
+
+    }
+
     var invoiceID = localStorage.getItem("invoiceID");
+
+    var userRole = localStorage.getItem('role');
+
+    if (userRole == null || userRole != "Account Staff") {
+
+        location.href = "/";
+
+        return;
+
+    }
+
+    if (invoiceID == null && userRole == "Account Staff") {
+
+        location.href = "accoundantHome.html";
+
+        return;
+
+    }
 
     $('#invoiceID').val(invoiceID);
     $('#amount').val(localStorage.getItem("amount"));
 
-    localStorage.clear();
+    localStorage.removeItem("invoiceID");
+    localStorage.removeItem("amount");
 
     $("#paidButton").click(function () {
 
@@ -69,10 +98,14 @@ $(document).ready(function () {
 
     function updatePaymentStatus() {
 
+        var date = new Date($.now());
+        var strDate = {date: date.getFullYear()+"-"+date.getMonth()+"-"+date.getDay()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()};
+
         $.ajax({
             type : "PUT",
-            contentType : "application/json; charset=utf-8",
+            contentType : "application/json",
             url : "/invoices/updatePaymentStatus/" + invoiceID,
+            data : JSON.stringify(strDate),
             success : function(res) {
                 if (res.error){
                     swal({title:"Error", text: "Unable to set the payment status", type:"error"});
@@ -81,6 +114,9 @@ $(document).ready(function () {
                     swal({title:"Success", text:"Payment status successfully updated", type:"success"});
                     parent.loadPaymentsPage();
                 }
+            },
+            error : function (error) {
+                console.log("error" + error);
             }
 
         });
