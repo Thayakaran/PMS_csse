@@ -1,115 +1,71 @@
 package com.group25.entity;
 
 public class Invoice {
-    private String invoiceID;
-    private String orderID;
-    private String totalAmount;
-    private String discount;
-    private String netAmount;
-    private String paymentStatus;
-    private String orderedBy;
-    private String item;
-    private String quantity;
-    private String date;
-    private String supplier;
-    private String contactNo;
 
-    public Invoice(){}
+    private int id;
+    private String orderId;
+//    private String description;
+//    private String qty;
+//    private String deliveredDate;
+    private float totalAmount;
+    private float discount;
+    private float netAmount;
 
-    public String getInvoiceID() {
-        return invoiceID;
-    }
 
-    public void setInvoiceID(String invoiceID) {
-        this.invoiceID = invoiceID;
-    }
 
-    public String getOrderID() {
-        return orderID;
-    }
+    public  Invoice(){}
 
-    public void setOrderID(String orderID) {
-        this.orderID = orderID;
-    }
-
-    public String getTotalAmount() {
-        return totalAmount;
-    }
-
-    public void setTotalAmount(String totalAmount) {
+    public Invoice(int id, String orderId, float totalAmount, float discount, float netAmount) {
+        this.id = id;
+        this.orderId = orderId;
+//        this.description = description;
+//        this.qty = qty;
+//        this.deliveredDate = deliveredDate;
         this.totalAmount = totalAmount;
-    }
-
-    public String getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(String discount) {
         this.discount = discount;
+        this.netAmount = netAmount;
+
     }
 
-    public String getNetAmount() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getorderId() {
+        return orderId;
+    }
+
+    public void setoredrId(String orderId) {
+        this.orderId = orderId;
+    }
+
+    public float getnetAmount() {
         return netAmount;
     }
 
-    public void setNetAmount(String netAmount) {
+    public void setnetAmount(float netAmount) {
         this.netAmount = netAmount;
     }
 
-    public String getPaymentStatus() {
-        return paymentStatus;
+    public float gettotalAmount() {
+        return totalAmount;
     }
 
-    public void setPaymentStatus(String paymentStatus) {
-        this.paymentStatus = paymentStatus;
+    public void settotalAmount(float totalAmount) {
+        this.totalAmount = totalAmount;
     }
 
-    public String getOrderedBy() {
-        return orderedBy;
+    public float getdiscount() {
+        return discount;
     }
 
-    public void setOrderedBy(String orderedBy) {
-        this.orderedBy = orderedBy;
+    public void setdiscount(float discount) {
+        this.discount = discount;
     }
 
-    public String getItem() {
-        return item;
-    }
-
-    public void setItem(String item) {
-        this.item = item;
-    }
-
-    public String getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getSupplier() {
-        return supplier;
-    }
-
-    public void setSupplier(String supplier) {
-        this.supplier = supplier;
-    }
-
-    public String getContactNo() {
-        return contactNo;
-    }
-
-    public void setContactNo(String contactNo) {
-        this.contactNo = contactNo;
-    }
 
 }
