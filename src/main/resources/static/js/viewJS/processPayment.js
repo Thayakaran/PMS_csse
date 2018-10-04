@@ -5,7 +5,8 @@ $(document).ready(function () {
     $('#invoiceID').val(invoiceID);
     $('#amount').val(localStorage.getItem("amount"));
 
-    localStorage.clear();
+    localStorage.removeItem("invoiceID");
+    localStorage.removeItem("amount");
 
     $("#paidButton").click(function () {
 
