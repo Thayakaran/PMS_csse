@@ -20,6 +20,10 @@ $(document).ready(function () {
 
             location.href = "accoundantHome.html";
 
+        } else if (userRole == "Manager") {
+
+            location.href = "managementHome";
+
         } else {
 
             location.href = "home.html";
@@ -61,6 +65,7 @@ $(document).ready(function () {
 
                         } else if (result["role"] == "Site Manager") {
 
+                            localStorage.setItem('email', credentials.email);
                             location.href = "sitemanagerHome.html";
 
                         } else if (result["role"] == "Supplier") {
@@ -69,7 +74,13 @@ $(document).ready(function () {
 
                         } else if (result["role"] == "Account Staff") {
 
+                            localStorage.setItem('userName', result["fName"]);
                             location.href = "accoundantHome.html";
+
+                        } else if (result["role"] == "Manager") {
+
+                            localStorage.setItem('userName', result["fName"]);
+                            location.href = "managementHome";
 
                         } else {
 

@@ -42,7 +42,9 @@ $(document).ready(function () {
 
     });
 
-    $("#paymentForm").submit(function(event) {
+    $("#payButton").click(function (e) {
+
+        e.preventDefault();
 
         var form = $("#paymentForm");
 
@@ -72,7 +74,6 @@ $(document).ready(function () {
             });
 
         }
-
     });
 
 

@@ -1,5 +1,11 @@
-$(document).ready(function(){
-    //form 1
+var userRole = localStorage.getItem('role');
+if (userRole == null || userRole != "Manager") {
+    location.href = "/";
+}
+
+$( document ).ready(function() {
+
+    //navigate to userManagement
     $('.userMng').click(function () {
         localStorage.setItem('nav', "addUser");
         document.location.href = "/home.html";
@@ -7,221 +13,249 @@ $(document).ready(function(){
         //     $.getScript('/js/viewJS/userManagement.js');
         // });
     });
+
+    /////////////////////////////////////////////////////////////////////////////////
+    //ajax calls to fill the options from database
+
+    $.ajax({
+        type : "GET",
+        url : "users/role/Site Manager",
+        success: function(result){
+            if(result){
+                for(var i = 0; i<result.length; i++){
+                    var option = $('<option></option>').attr("value", result[i].fName+" "+result[i].lName).text(result[i].fName+" "+result[i].lName);
+                    $("#siteManager,#UsiteManager").append(option);
+                }
+            }else{
+                console.log("Fail: ", result);
+            }},
+        error : function(e) {
+            console.log("ERROR: ", e);
+        }
+    });
+
+    $.ajax({
+        type : "GET",
+        url : "users/role/Contractor",
+        success: function(result){
+            if(result){
+                for(var i = 0; i<result.length; i++){
+                    var option = $('<option></option>').attr("value", result[i].fName+" "+result[i].lName).text(result[i].fName+" "+result[i].lName);
+                    $("#contractors,#Ucontractors").append(option);
+                }
+            }else{
+                console.log("Fail: ", result);
+            }},
+        error : function(e) {
+            console.log("ERROR: ", e);
+        }
+    });
+
+    $.ajax({
+        type : "GET",
+        url : "users/role/Supplier",
+        success: function(result){
+            if(result){
+                for(var i = 0; i<result.length; i++){
+                    var option = $('<option></option>').attr("value", result[i].fName+" "+result[i].lName).text(result[i].fName+" "+result[i].lName);
+                    $("#suppliers,#Usuppliers").append(option);
+                }
+            }else{
+                console.log("Fail: ", result);
+            }},
+        error : function(e) {
+            console.log("ERROR: ", e);
+        }
+    });
+
+    /////////////////////////////////////////////////////////////
+
+    // ADD NEW SITE
+    $("#addNewSiteForm").submit(function(event) {
+        // Prevent the form from submitting via the browser.
+        event.preventDefault();
+        ajaxPostNewSite();
+    });
+
+    function ajaxPostNewSite(){
+
+        // PREPARE FORM DATA
+        var formData = {
+            siteID : $("#siteId").val(),
+            location :  $("#siteLocation").val(),
+            client : $("#siteClient").val(),
+            manager :  $("#siteManager").val(),
+            contractors : $("#contractors").val().toString(),
+            suppliers :  $("#suppliers").val().toString()
+
+        }
+
+        // DO POST
+        $.ajax({
+            type : "POST",
+            contentType : "application/json; charset=utf-8",
+            url : "sites", //window.location +"users",
+            data : JSON.stringify(formData),
+            dataType : 'json',
+            success : function(result) {
+                if (result.success){
+                    swal({title:"Success", text:"New Site has been added", type:"success"});
+                    resetAddData();
+                }
+                else{
+                    swal({title:"Error", text:"Error occurred in adding data, Enter unique Site ID", type:"error"});
+                }
+            },
+            error : function(e) {
+                swal({title:"Error", text:"Error occurred in adding data, Enter unique Site ID", type:"error"});
+            }
+        });
+
+    }
+
+    function resetAddData(){
+        $("#siteId").val(""),
+        $("#siteLocation").val(""),
+        $("#siteClient").val(""),
+        $("#siteManager").val(""),
+        $("#contractors").val(""),
+        $("#suppliers").val("")
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////
+
+
+    // GET Site BY ID(search to update)
+    $("#searchBtn").click(function(event){
+        event.preventDefault();
+        var id = $("#searchTxt").val();
+
+        ajaxGetSiteById(id);
+    });
+
+    // DO GET
+    function ajaxGetSiteById(id){
+        $.ajax({
+            type : "GET",
+            url : "sites/"+id,
+            success: function(result){
+                if(result){
+
+                    $("#UsiteId").val(result.siteID),
+                    $("#UsiteLocation").val(result.location),
+                    $("#UsiteClient").val(result.client),
+                    $("#UsiteManager").val(result.manager),
+                    $("#Ucontractors").val(result.contractors.split(",")),
+                    $("#Usuppliers").val(result.suppliers.split(","))
+
+                }else{
+                    document.getElementById("searchTxt").style.color = "red";
+                    $("#searchTxt").val("Site not found");
+                    console.log("Fail: ", result);
+                }
+            },
+            error : function(e) {
+                document.getElementById("searchTxt").style.color = "red";
+                $("#searchTxt").val("Site not found");
+
+                console.log("ERROR: ", e);
+            }
+        });
+    }
+
+    /////////////////////////////////////////////////////////////
+
+    // UPDATE EXISTING SITE
+    $("#updateSiteForm").submit(function(event) {
+        // Prevent the form from submitting via the browser.
+        event.preventDefault();
+        ajaxPostUpdateSite();
+    });
+
+    function ajaxPostUpdateSite(){
+
+        // PREPARE FORM DATA
+        var formData = {
+            siteID : $("#UsiteId").val(),
+            location :  $("#UsiteLocation").val(),
+            client : $("#UsiteClient").val(),
+            manager :  $("#UsiteManager").val(),
+            contractors : $("#Ucontractors").val().toString(),
+            suppliers :  $("#Usuppliers").val().toString()
+
+        }
+
+        // DO PUT
+        $.ajax({
+            type : "PUT",
+            contentType : "application/json; charset=utf-8",
+            url : "sites",
+            data : JSON.stringify(formData),
+            dataType : 'json',
+            success : function(result) {
+                if (result.success){
+                    swal({title:"Success", text:"Site has been updated", type:"success"});
+                    resetUpdateData();
+                }
+                else{
+                    swal({title:"Error", text:"Error occurred in updating data", type:"error"});
+                }
+            },
+            error : function(e) {
+                swal({title:"Error", text:"Error occurred in updating data", type:"error"});
+            }
+        });
+
+    }
+
+    function resetUpdateData(){
+        $("#UsiteId").val(""),
+        $("#UsiteLocation").val(""),
+        $("#UsiteClient").val(""),
+        $("#UsiteManager").val(""),
+        $("#Ucontractors").val(""),
+        $("#Usuppliers").val("")
+    }
+
+    // ///////////////////////////////////////////////////////////////////////////
+
+    // DELETE SITE BY ID
+    $("#deleteSite").click(function(event){
+        event.preventDefault();
+        var id = $("#UsiteId").val();
+
+        ajaxDeleteSiteById(id);
+    });
+
+    // DO DELETE
+    function ajaxDeleteSiteById(id){
+        $.ajax({
+            type : "DELETE",
+            contentType : "application/json; charset=utf-8",
+            url : "sites/"+id,
+            dataType : 'json',
+            success: function(result){
+                if (result.success){
+                    swal({title:"Success", text:"Site Deleted Successfully", type:"success"});
+                    resetDeleteData();
+                }
+                else{
+                    swal({title:"Error", text:"Error occurred in Deleting Site", type:"error"});
+                }
+            },
+            error : function(e) {
+                swal({title:"Error", text:"Error occurred in Deleting Site", type:"error"});
+            }
+        });
+    }
+
+    function resetDeleteData(){
+        $("#UsiteId").val(""),
+        $("#UsiteLocation").val(""),
+        $("#UsiteClient").val(""),
+        $("#UsiteManager").val(""),
+        $("#Ucontractors").val(""),
+        $("#Usuppliers").val("")
+    }
+
 });
-// $('#email').keyup(function () {
-//     $('#password').val($(this).val()+"@pms");
-// });
-//
-// $( document ).ready(function() {
-//
-//     // ADD NEW USER
-//     $("#userRegisterForm").submit(function(event) {
-//         // Prevent the form from submitting via the browser.
-//         event.preventDefault();
-//         ajaxPostNewUser();
-//     });
-//
-//     function ajaxPostNewUser(){
-//
-//         // PREPARE FORM DATA
-//         var formData = {
-//             fName : $("#fName").val(),
-//             lName :  $("#lName").val(),
-//             mPhone : $("#mPhone").val(),
-//             oPhone :  $("#oPhone").val(),
-//             hAddress : $("#hAddress").val(),
-//             wAddress :  $("#wAddress").val(),
-//             role : $("#role").val(),
-//             email :  $("#email").val(),
-//             password :  $("#password").val()
-//
-//         }
-//
-//         // DO POST
-//         $.ajax({
-//             type : "POST",
-//             contentType : "application/json; charset=utf-8",
-//             url : "users", //window.location +"users",
-//             data : JSON.stringify(formData),
-//             dataType : 'json',
-//             success : function(res) {
-//                 if (res.error){
-//                     swal({title:"Error", text:res.error, type:"error"});
-//                 }
-//                 else{
-//                     swal({title:"Success", text:"Your Account Has Been Created. Please Login", type:"success"});
-//                     resetAddData();
-//                 }
-//                 // swal({title:"Success", text:"Your Account Has Been Created. Please Login", type:"success"});
-//                 // resetData();
-//             }
-//             // error : function(e) {
-//             //     swal({title:"Error", text:"Error"+e, type:"error"});
-//             // }
-//         });
-//
-//         // Reset FormData after Posting
-//         // resetData();
-//
-//     }
-//
-//     function resetAddData(){
-//         $("#fName").val(""),
-//             $("#lName").val(""),
-//             $("#mPhone").val(""),
-//             $("#oPhone").val(""),
-//             $("#hAddress").val(""),
-//             $("#wAddress").val(""),
-//             $("#role").val(""),
-//             $("#email").val(""),
-//             $("#password").val("")
-//     }
-//
-//     /////////////////////////////////////////////////////////////////////////////////
-//
-//     // GET USER BY ID(search)
-//     $("#searchBtn").click(function(event){
-//         event.preventDefault();
-//         var id = $("#searchTxt").val();
-//
-//         ajaxGetUserById(id);
-//     });
-//
-//     // DO GET
-//     function ajaxGetUserById(id){
-//         $.ajax({
-//             type : "GET",
-//             url : "users/"+id,
-//             success: function(result){
-//                 if(result){
-//                     $("#UfName").val(result.fName),
-//                         $("#UlName").val(result.lName),
-//                         $("#UmPhone").val(result.mPhone),
-//                         $("#UoPhone").val(result.oPhone),
-//                         $("#UhAddress").val(result.hAddress),
-//                         $("#UwAddress").val(result.wAddress),
-//                         $("#Urole").val(result.role),
-//                         $("#Uemail").val(result.email),
-//                         $("#Upassword").val(result.password)
-//
-//                     console.log("Success: ", result);
-//                 }else{
-//                     $("#searchTxt").val("User not found");
-//                     console.log("Fail: ", result);
-//                 }
-//             },
-//             error : function(e) {
-//                 $("#searchTxt").val("User not found");
-//                 console.log("ERROR: ", e);
-//             }
-//         });
-//     }
-//
-//     /////////////////////////////////////////////////////////////
-//
-//     // UPDATE EXISTING USER
-//     $("#userUpdateForm").submit(function(event) {
-//         // Prevent the form from submitting via the browser.
-//         event.preventDefault();
-//         ajaxPostUpdateUser();
-//     });
-//
-//     function ajaxPostUpdateUser(){
-//
-//         // PREPARE FORM DATA
-//         var formData = {
-//             id : $("#searchTxt").val(),
-//             fName : $("#UfName").val(),
-//             lName :  $("#UlName").val(),
-//             mPhone : $("#UmPhone").val(),
-//             oPhone :  $("#UoPhone").val(),
-//             hAddress : $("#UhAddress").val(),
-//             wAddress :  $("#UwAddress").val(),
-//             role : $("#Urole").val(),
-//             email :  $("#Uemail").val(),
-//             password :  $("#Upassword").val()
-//
-//         }
-//
-//         // DO PUT
-//         $.ajax({
-//             type : "PUT",
-//             contentType : "application/json; charset=utf-8",
-//             url : "users", //window.location +"users",
-//             data : JSON.stringify(formData),
-//             dataType : 'json',
-//             success : function(res) {
-//                 if (res.error){
-//                     swal({title:"Error", text:res.error, type:"error"});
-//                 }
-//                 else{
-//                     swal({title:"Success", text:"Your Account Has Been Created. Please Login", type:"success"});
-//                     resetUpdateData();
-//                 }
-//                 // swal({title:"Success", text:"Your Account Has Been Created. Please Login", type:"success"});
-//                 // resetData();
-//             }
-//             // error : function(e) {
-//             //     swal({title:"Error", text:"Error"+e, type:"error"});
-//             // }
-//         });
-//
-//         // Reset FormData after Posting
-//         // resetData();
-//
-//     }
-//
-//     function resetUpdateData(){
-//         $("#UfName").val(""),
-//             $("#UlName").val(""),
-//             $("#UmPhone").val(""),
-//             $("#UoPhone").val(""),
-//             $("#UhAddress").val(""),
-//             $("#UwAddress").val(""),
-//             $("#Urole").val(""),
-//             $("#Uemail").val(""),
-//             $("#Upassword").val("")
-//     }
-//
-//     ///////////////////////////////////////////////////////////////////////////
-//
-//     // DELETE USER BY ID
-//     $("#deleteUser").click(function(event){
-//         event.preventDefault();
-//         var id = $("#searchTxt").val();
-//
-//         ajaxDeleteUserById(id);
-//     });
-//
-//     // DO DELETE
-//     function ajaxDeleteUserById(id){
-//         $.ajax({
-//             type : "DELETE",
-//             url : "users/"+id,
-//             success: function(result){
-//                 if(result){
-//                     resetDeleteData();
-//                     console.log("Success: ", result);
-//                 }else{
-//                     console.log("Fail: ", result);
-//                 }
-//             },
-//             error : function(e) {
-//                 console.log("ERROR: ", e);
-//             }
-//         });
-//     }
-//
-//     function resetDeleteData(){
-//         $("#UfName").val(""),
-//             $("#UlName").val(""),
-//             $("#UmPhone").val(""),
-//             $("#UoPhone").val(""),
-//             $("#UhAddress").val(""),
-//             $("#UwAddress").val(""),
-//             $("#Urole").val(""),
-//             $("#Uemail").val(""),
-//             $("#Upassword").val("")
-//     }
-//
-// });
