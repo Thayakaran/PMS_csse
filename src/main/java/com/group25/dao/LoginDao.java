@@ -54,7 +54,7 @@ public class LoginDao {
 
     public void updateLoginCredentials(String email, String newPassword) {
 
-        final String sql = "UPDATE user SET password = ? WHERE id = ?";
+        final String sql = "UPDATE user SET password = ? WHERE email = ?";
 
         jdbcTemplate.update(sql, newPassword, email);
 
