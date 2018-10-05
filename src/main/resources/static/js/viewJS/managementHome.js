@@ -3,7 +3,7 @@ $(document).ready(function(){
     document.getElementById("userwelcome").innerHTML = username;
     document.getElementById("username").innerHTML = username;
 
-    $("#logout1, #logout2").click(function () {
+    $("#logout").click(function () {
         localStorage.clear();
         location.href = "/";
       });

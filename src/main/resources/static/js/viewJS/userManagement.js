@@ -32,27 +32,22 @@ $( document ).ready(function() {
         $.ajax({
             type : "POST",
             contentType : "application/json; charset=utf-8",
-            url : "users", //window.location +"users",
+            url : "users",
             data : JSON.stringify(formData),
             dataType : 'json',
-            success : function(res) {
-                if (res.error){
-                    swal({title:"Error", text:res.error, type:"error"});
-                }
-                else{
-                    swal({title:"Success", text:"Your Account Has Been Created. Please Login", type:"success"});
+            success : function(result) {
+                if (result.success){
+                    swal({title:"Success", text:"New User added Successfully", type:"success"});
                     resetAddData();
                 }
-                // swal({title:"Success", text:"Your Account Has Been Created. Please Login", type:"success"});
-                // resetData();
+                else{
+                    swal({title:"Error", text:"Error occurred in adding User, Enter valid Data", type:"error"});
+                }
+            },
+            error : function(e) {
+                swal({title:"Error", text:"Error occurred in adding User, Enter valid Data", type:"error"});
             }
-            // error : function(e) {
-            //     swal({title:"Error", text:"Error"+e, type:"error"});
-            // }
         });
-
-        // Reset FormData after Posting
-        // resetData();
 
     }
 
@@ -97,11 +92,13 @@ $( document ).ready(function() {
 
                 console.log("Success: ", result);
                 }else{
+                    document.getElementById("searchTxt").style.color = "red";
                     $("#searchTxt").val("User not found");
                     console.log("Fail: ", result);
                 }
             },
             error : function(e) {
+                document.getElementById("searchTxt").style.color = "red";
                 $("#searchTxt").val("User not found");
                 console.log("ERROR: ", e);
             }
@@ -141,24 +138,19 @@ $( document ).ready(function() {
             url : "users", //window.location +"users",
             data : JSON.stringify(formData),
             dataType : 'json',
-            success : function(res) {
-                if (res.error){
-                    swal({title:"Error", text:res.error, type:"error"});
-                }
-                else{
-                    swal({title:"Success", text:"Your Account Has Been Created. Please Login", type:"success"});
+            success : function(result) {
+                if (result.success){
+                    swal({title:"Success", text:"User has been updated", type:"success"});
                     resetUpdateData();
                 }
-                // swal({title:"Success", text:"Your Account Has Been Created. Please Login", type:"success"});
-                // resetData();
+                else{
+                    swal({title:"Error", text:"Error occurred in updating User data", type:"error"});
+                }
+            },
+            error : function(e) {
+                swal({title:"Error", text:"Error occurred in updating User data", type:"error"});
             }
-            // error : function(e) {
-            //     swal({title:"Error", text:"Error"+e, type:"error"});
-            // }
         });
-
-        // Reset FormData after Posting
-        // resetData();
 
     }
 
@@ -188,17 +180,20 @@ $( document ).ready(function() {
     function ajaxDeleteUserById(id){
         $.ajax({
             type : "DELETE",
+            contentType : "application/json; charset=utf-8",
             url : "users/"+id,
+            dataType : 'json',
             success: function(result){
-                if(result){
+                if (result.success){
+                    swal({title:"Success", text:"User Deleted Successfully", type:"success"});
                     resetDeleteData();
-                    console.log("Success: ", result);
-                }else{
-                    console.log("Fail: ", result);
+                }
+                else{
+                    swal({title:"Error", text:"Error occurred in Deleting User", type:"error"});
                 }
             },
             error : function(e) {
-                console.log("ERROR: ", e);
+                swal({title:"Error", text:"Error occurred in Deleting User", type:"error"});
             }
         });
     }

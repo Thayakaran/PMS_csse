@@ -47,21 +47,34 @@ public class UserDao {
         return users;
     }
 
-    //get a specific user
+    //get a specific user by id
     public User getUserById(int id){
         final String sql = "SELECT * FROM user WHERE id = ?";
         User user = jdbcTemplate.queryForObject(sql, new UserRowMapper(), id);
         return user;
     }
 
+    //get a specific user by role
+    public Collection<User> getUserByRole(String role){
+        final String sql = "SELECT * FROM user WHERE role = ?";
+        List<User> users = jdbcTemplate.query(sql, new UserRowMapper(), role);
+        return users;
+    }
+
     //delete a specific user
-    public void deleteUserById(int id) {
+    public String deleteUserById(int id) {
         final String sql = "DELETE FROM user WHERE id = ?";
-        jdbcTemplate.update(sql, id);
+        try{
+            jdbcTemplate.update(sql, id);
+            return "{\"success\" : true}";
+        }
+        catch (Exception ex){
+            return "{\"success\" : false}";
+        }
     }
 
     //updating existing user
-    public void updateUser(User user){
+    public String updateUser(User user){
         final String sql = "UPDATE user SET fname = ?, lName = ?, mPhone = ?, oPhone = ?, hAddress = ?, wAddress = ?, role = ?, email = ?, password = ? WHERE id = ?";
         int id = user.getId();
         String fName = user.getfName();
@@ -73,11 +86,17 @@ public class UserDao {
         String role = user.getRole();
         String email = user.getEmail();
         String password = user.getPassword();
-        jdbcTemplate.update(sql, new Object[] {fName, lName, mPhone, oPhone, hAddress, wAddress, role, email, password, id});
+        try{
+            jdbcTemplate.update(sql, new Object[] {fName, lName, mPhone, oPhone, hAddress, wAddress, role, email, password, id});
+            return "{\"success\" : true}";
+        }
+        catch (Exception ex){
+            return "{\"success\" : false}";
+        }
     }
 
     //adding new user
-    public int addUser(User user) {
+    public String addUser(User user) {
         final String sql = "INSERT INTO user (fName, lName, mPhone, oPhone, hAddress, wAddress, role, email, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String fName = user.getfName();
         String lName = user.getlName();
@@ -88,9 +107,13 @@ public class UserDao {
         String role = user.getRole();
         String email = user.getEmail();
         String password = passwordEncrypt(user.getPassword());
-        int res = jdbcTemplate.update(sql, new Object[] {fName, lName, mPhone, oPhone, hAddress, wAddress, role, email, password});
-        return res;
-//        System.out.println("resposnessssssssssssssssssssssssss issssssssss : "+res);
+        try{
+            jdbcTemplate.update(sql, new Object[] {fName, lName, mPhone, oPhone, hAddress, wAddress, role, email, password});
+            return "{\"success\" : true}";
+        }
+        catch (Exception ex){
+            return "{\"success\" : false}";
+        }
     }
 
     public String passwordEncrypt(String pass){

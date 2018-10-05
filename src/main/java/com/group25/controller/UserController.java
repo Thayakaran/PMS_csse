@@ -30,21 +30,27 @@ public class UserController {
         return userService.getUserById(id);
     }
 
+    @RequestMapping(value = "role/{role}", method = RequestMethod.GET)
+    public Collection<User> getUserByRole(@PathVariable("role") String role){
+        return userService.getUserByRole(role);
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteUserById(@PathVariable("id") int id){
-        userService.deleteUserById(id);
+    public String deleteUserById(@PathVariable("id") int id){
+        return userService.deleteUserById(id);
     }
 
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateUser(@RequestBody User user){
-        userService.updateUser(user);
+    public String updateUser(@RequestBody User user){
+        return userService.updateUser(user);
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void addUser(@RequestBody User user){
-//        userService.addUser(user);
-        if(userService.addUser(user) == 1){
+    public String addUser(@RequestBody User user){
+        String res = userService.addUser(user);
+        if(res == "{\"success\" : true}"){
             mailservice.sendMailAboutUserRegistration(user);
         }
+        return  res;
     }
 }
