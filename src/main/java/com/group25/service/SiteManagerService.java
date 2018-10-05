@@ -18,16 +18,21 @@ public class SiteManagerService {
     public Collection<SiteManager> getSupplierId(){
         return this.managerDao.getSupplierId();
     }
-    public void addRequest(SiteManager manager) {
-        this.managerDao.addRequest(manager);
+    public String addRequest(SiteManager manager) {
+       return this.managerDao.addRequest(manager);
+
     }
     public SiteManager getUser(String id){
         return this.managerDao.getUser(id);
     }
+    public SiteManager getSendMail(int id){
+        return this.managerDao.getSendMail(id);
+    }
     public SiteManager getRequestId(int id){
         return this.managerDao.getRequestId(id);
     }
-    public void updateRequest(int id, SiteManager manager){
-        this.managerDao.updateRequest(id, manager);
+    public String updateRequest(int id, SiteManager manager){
+        return this.managerDao.updateRequest(id, manager);
     }
+
 }

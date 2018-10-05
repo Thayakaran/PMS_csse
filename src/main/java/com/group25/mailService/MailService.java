@@ -1,6 +1,7 @@
 package com.group25.mailService;
 
 import com.group25.entity.User;
+import com.group25.entity.SiteManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -28,5 +29,16 @@ public class MailService {
         jms.send(sm);
     }
 
-    // add your methods here
+    // Sent mail to when manager approve order
+    public void sendApprovemail(SiteManager sitemanager) {
+        SimpleMailMessage sm = new SimpleMailMessage();
+        sm.setTo(sitemanager.getPersonMail());
+        sm.setFrom("matrix.pms.sliit@gmail.com");
+        sm.setSubject("Place an order");
+        sm.setText(sitemanager.getInfor() + "\n" + "Order ID :" + sitemanager.getId()
+                + '\n' + "Before : " + sitemanager.getRequiredate());
+
+        jms.send(sm);
+    }
+
 }
