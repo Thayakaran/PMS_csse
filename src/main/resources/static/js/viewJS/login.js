@@ -98,6 +98,7 @@ $(document).ready(function () {
                         } else if (result["role"] == "Account Staff") {
 
                             localStorage.setItem('userName', result["fName"]);
+                            localStorage.setItem('email', credentials["email"]);
                             location.href = "accoundantHome.html";
 
                         } else if (result["role"] == "Manager") {
