@@ -41,4 +41,14 @@ public class MailService {
         jms.send(sm);
     }
 
+    public void sendPaymentConfirmationEmail(String email, String id) {
+        SimpleMailMessage sm = new SimpleMailMessage();
+        sm.setTo(email);
+        sm.setFrom("matrix.pms.sliit@gmail.com");
+        sm.setSubject("Payment Confirmation");
+        sm.setText("Your payment for the invoice id "+ id + " has been successfully sent.");
+
+        jms.send(sm);
+    }
+
 }
