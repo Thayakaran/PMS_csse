@@ -51,4 +51,15 @@ public class MailService {
         jms.send(sm);
     }
 
+    public void sendEmailWithNewPassword(String email, String newPassword) {
+        SimpleMailMessage sm = new SimpleMailMessage();
+        sm.setTo(email);
+        sm.setFrom("matrix.pms.sliit@gmail.com");
+        sm.setSubject("Account Recovery Service");
+        sm.setText("Thank you for using our service. You can use the password provided to access your account.\n" + "Your new password : " + newPassword);
+
+        jms.send(sm);
+    }
+    
+
 }
