@@ -1,7 +1,7 @@
 package com.group25.mailService;
 
-import com.group25.entity.Login;
 import com.group25.entity.User;
+import com.group25.entity.SiteManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -29,13 +29,26 @@ public class MailService {
         jms.send(sm);
     }
 
-    public void sendEmailWithNewPassword(String email, String newPassword) {
+    // Sent mail to when manager approve order
+    public void sendApprovemail(SiteManager sitemanager) {
         SimpleMailMessage sm = new SimpleMailMessage();
-        sm.setTo(email);
+        sm.setTo(sitemanager.getPersonMail());
         sm.setFrom("matrix.pms.sliit@gmail.com");
-        sm.setSubject("Account Recovery Service");
-        sm.setText("Thank you for using our service. You can use the password provided to access your account.\n" + "Your new password : " + newPassword);
+        sm.setSubject("Place an order");
+        sm.setText(sitemanager.getInfor() + "\n" + "Order ID :" + sitemanager.getId()
+                + '\n' + "Before : " + sitemanager.getRequiredate());
 
         jms.send(sm);
     }
+
+    public void sendPaymentConfirmationEmail(String email, String id) {
+        SimpleMailMessage sm = new SimpleMailMessage();
+        sm.setTo(email);
+        sm.setFrom("matrix.pms.sliit@gmail.com");
+        sm.setSubject("Payment Confirmation");
+        sm.setText("Your payment for the invoice id "+ id + " has been successfully sent.");
+
+        jms.send(sm);
+    }
+
 }
