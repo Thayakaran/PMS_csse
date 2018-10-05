@@ -10,6 +10,8 @@ $(document).ready(function () {
 
     }
 
+    $("#userwelcome").html(localStorage.getItem("userName"));
+
     $('#payments-tab').click(function () {
 
         loadPaymentsPage();

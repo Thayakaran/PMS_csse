@@ -38,6 +38,8 @@ public class OrderDao {
         }
     }
 
+
+
     public Collection<Order> getPendingOrder(int constructorID){
         String sql = "SELECT * FROM orders WHERE status='pending' AND orderedBy=?";
         List<Order> orders = jdbcTemplate.query(sql, new Object[]{constructorID},new OrderRowMapper());

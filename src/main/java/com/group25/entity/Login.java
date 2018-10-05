@@ -2,6 +2,7 @@ package com.group25.entity;
 
 public class Login {
 
+    private String fName;
     private String email;
     private String password;
     private String role;
@@ -30,6 +31,14 @@ public class Login {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getfName() {
+        return fName;
+    }
+
+    public void setfName(String fName) {
+        this.fName = fName;
     }
 
 }

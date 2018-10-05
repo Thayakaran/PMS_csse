@@ -28,7 +28,7 @@ public class SiteManagerDao {
             manager.setQty(resultSet.getInt("quantity"));
             manager.setDate(resultSet.getString("date"));
             manager.setDescription(resultSet.getString("description"));
-            manager.setSite(resultSet.getInt("site"));
+            manager.setSite(resultSet.getString("site"));
             manager.setContactnum(resultSet.getInt("contactNo"));
             manager.setRequiredate(resultSet.getString("requiredDate"));
             manager.setNote(resultSet.getString("note"));
@@ -43,34 +43,71 @@ public class SiteManagerDao {
         public SiteManager mapRow(ResultSet resultSet, int i) throws SQLException {
             SiteManager supplier = new SiteManager();
             supplier.setSupplier(resultSet.getInt("supplierID"));
+            supplier.setMaterial(resultSet.getString("supplierMaterialType"));
+            supplier.setPrice(resultSet.getString("unitPrice"));
             return supplier;
         }
     }
 
-    //get all users
+    private static class userRowMapper implements RowMapper<SiteManager>{
+        @Override
+        public SiteManager mapRow(ResultSet resultSet, int i) throws SQLException {
+            SiteManager user = new SiteManager();
+            user.setUserId(resultSet.getInt("id"));
+            user.setUserName(resultSet.getString("fName"));
+            user.setContactnum(resultSet.getInt("oPhone"));
+            user.setSite(resultSet.getString("wAddress"));
+            return user;
+        }
+    }
+
+    private static class MailRowMapper implements RowMapper<SiteManager>{
+        @Override
+        public SiteManager mapRow(ResultSet resultSet, int i) throws SQLException {
+            SiteManager mail = new SiteManager();
+            mail.setPersonMail(resultSet.getString("email"));
+            return mail;
+        }
+    }
+
+    //get all Request
     public List<SiteManager> getAllRequest(){
         final String sql = "SELECT * FROM orders";
         List<SiteManager> manager = jdbcTemplate.query(sql, new SiteManagerDao.SitemanagerRowMapper());
         return manager;
     }
 
-    //get a specific user
+    //get a specific Request
     public SiteManager getRequestId(int id){
         final String sql = "SELECT * FROM orders WHERE id = ?";
-        SiteManager supplier = jdbcTemplate.queryForObject(sql, new SitemanagerRowMapper(), id);
-        return supplier;
+        SiteManager request = jdbcTemplate.queryForObject(sql, new SitemanagerRowMapper(), id);
+        return request;
     }
 
-    //get a specific user
-    public SiteManager getSupplierId(String mat){
-        final String sql = "SELECT * FROM supplierMaterials WHERE supplierMaterialType = ?";
-        SiteManager supplier = jdbcTemplate.queryForObject(sql, new MaterialRowMapper(), mat);
+    //get a specific User
+    public SiteManager getUser(String id){
+        final String sql = "SELECT * FROM user WHERE email = ?";
+        SiteManager user = jdbcTemplate.queryForObject(sql, new userRowMapper(), id);
+        return user;
+    }
+
+    //get mail id
+    public SiteManager getSendMail(int id){
+        final String sql = "SELECT * FROM user WHERE id = ?";
+        SiteManager mail = jdbcTemplate.queryForObject(sql, new MailRowMapper(), id);
+        return mail;
+    }
+
+    //get a specific Supplier id
+    public List<SiteManager> getSupplierId(){
+        final String sql = "SELECT * FROM supplierMaterials";
+        List<SiteManager> supplier = jdbcTemplate.query(sql, new SiteManagerDao.MaterialRowMapper());
         return supplier;
     }
 
 
     //adding new Request
-    public void addRequest(SiteManager manager) {
+    public String addRequest(SiteManager manager) {
         String sql = "INSERT INTO orders (orderedBy, manager, item, quantity, date, description, site, contactNo, requiredDate, status, note, supplier) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         int orderBy = manager.getOrderby();
         int managers = manager.getManager();
@@ -78,23 +115,38 @@ public class SiteManagerDao {
         int qty = manager.getQty();
         String date = manager.getDate();
         String description = manager.getDescription();
-        int site = manager.getSite();
+        String site = manager.getSite();
         int contactnum = manager.getContactnum();
         String requiredate = manager.getRequiredate();
         String status = manager.getStatus();
         int supplier = manager.getSupplier();
         String note = manager.getNote();
-        jdbcTemplate.update(sql, new Object[] {orderBy, managers, item, qty, date, description, site, contactnum, requiredate, status, note, supplier});
 
+
+        try{
+            jdbcTemplate.update(sql, new Object[] {orderBy, managers, item, qty, date, description, site, contactnum, requiredate, status, note, supplier});
+            return "{\"success\" : true}";
+        }
+        catch (Exception ex){
+            return "{\"success\" : false}";
+        }
 
     }
 
-    //updating existing user
-    public void updateRequest(int id, SiteManager manager){
+    //updating existing Request
+    public String updateRequest(int id, SiteManager manager){
         final String sql = "UPDATE orders SET status = ?, note = ?, supplier = ? WHERE id = ?";
         String status = manager.getStatus();
         int supplier = manager.getSupplier();
         String note = manager.getNote();
-        jdbcTemplate.update(sql, new Object[] {status, note, supplier, id});
+
+
+        try{
+            jdbcTemplate.update(sql, new Object[] {status, note, supplier, id});
+            return "{\"success\" : true}";
+        }
+        catch (Exception ex){
+            return "{\"success\" : false}";
+        }
     }
 }

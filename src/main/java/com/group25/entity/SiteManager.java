@@ -10,19 +10,24 @@ public class SiteManager {
     private int quantity;
     private String date;
     private String description;
-    private int site;
+    private String site;
     private int contactNo;
     private String requiredDate;
     private String note;
     private int supplier;
     private String status;
-    private Array supid;
+    private String material;
+    private String price;
+    private int userId;
+    private String userName;
+    private String mail;
+    private String infor;
 
 
     public SiteManager() {
     }
 
-    public SiteManager(int id, int orderBy, int site, int manager, String date, String requiredDate, String item, int quantity, String description, int contactNo, int supplier, String status, String note) {
+    public SiteManager(int id, int orderBy, String site, int manager, String date, String requiredDate, String item, int quantity, String description, int contactNo, int supplier, String status, String note) {
         this.id = id;
         this.orderBy = orderBy;
         this.manager = manager;
@@ -75,11 +80,11 @@ public class SiteManager {
     }
 
     //5 get/set site value
-    public int getSite() {
+    public String getSite() {
         return site;
     }
 
-    public void setSite(int site) {
+    public void setSite(String site) {
         this.site = site;
     }
 
@@ -146,19 +151,66 @@ public class SiteManager {
         this.supplier = supplier;
     }
 
-    public Array getSupID() {
-        return supid;
+    //material
+    public String getMaterial() {
+        return material;
     }
 
-    public void setSupID(Array supid) {
-        this.supid = supid;
+    public void setMaterial(String material) {
+        this.material = material;
     }
 
+    //price
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    //id
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    //userId
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    //userName
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    //userMail
+    public String getPersonMail() {
+        return mail;
+    }
+
+    public void setPersonMail(String mail) {
+        this.mail = mail;
+    }
+
+    //mail Content
+    public String getInfor() {
+        return infor;
+    }
+
+    public void setInfor(String infor) {
+        this.infor = infor;
     }
 }

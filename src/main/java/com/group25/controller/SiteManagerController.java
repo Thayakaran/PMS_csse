@@ -1,6 +1,7 @@
 package com.group25.controller;
 
 import com.group25.entity.SiteManager;
+import com.group25.mailService.MailService;
 import com.group25.service.SiteManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -15,9 +16,16 @@ public class SiteManagerController {
     @Autowired
     private SiteManagerService sitemanagerservice;
 
+    @Autowired
+    MailService mailservice;
+
     @RequestMapping(method = RequestMethod.GET)
     public Collection<SiteManager> getAllRequest(){
         return sitemanagerservice.getAllRequest();
+    }
+    @RequestMapping(value = "/supplier", method = RequestMethod.GET)
+    public Collection<SiteManager> getSupplierId(){
+        return sitemanagerservice.getSupplierId();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -25,19 +33,29 @@ public class SiteManagerController {
         return sitemanagerservice.getRequestId(id);
     }
 
-    @RequestMapping(value = "/supplier/{mat}", method = RequestMethod.GET)
-    public SiteManager getSupplierId(@PathVariable("mat") String mat){
-        return sitemanagerservice.getSupplierId(mat);
+    @RequestMapping(value = "user/{id}", method = RequestMethod.GET)
+    public SiteManager getUser(@PathVariable("id") String id){
+        return sitemanagerservice.getUser(id);
+    }
+
+    @RequestMapping(value = "mail/{id}", method = RequestMethod.GET)
+    public SiteManager getSendMail(@PathVariable("id") int id){
+        return sitemanagerservice.getSendMail(id);
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void addRequest(@RequestBody SiteManager manager){
-        sitemanagerservice.addRequest(manager);
+    public String addRequest(@RequestBody SiteManager manager){
+        String res = sitemanagerservice.addRequest(manager);
+        if(res == "{\"success\" : true}"){
+            mailservice.sendApprovemail(manager);
+        }
+        return res;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateRequest(@PathVariable("id") int id, @RequestBody SiteManager manager){
         sitemanagerservice.updateRequest(id ,manager);
+        mailservice.sendApprovemail(manager);
     }
 
 }
