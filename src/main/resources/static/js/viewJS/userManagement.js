@@ -215,3 +215,86 @@ $( document ).ready(function() {
     }
 
 });
+
+$.ajax({
+    type : "GET",
+    url : "users",
+    success: function(result){
+        if(result){
+            var data = result;
+
+            //maping the data with the table
+            var noOfdata = data.length;
+            if(noOfdata>0)
+            {
+                //Create a HTML Table element.
+                var table = document.createElement("TABLE");
+                table.border = "1px";
+                table.class="table table-striped jambo_table table-bordered dt-responsive nowrap";
+                table.cellspacing="0";
+                table.width="100%";
+
+
+                //Get the count of columns.
+                var col=[];
+                for(var i=0 ; i<noOfdata ; i++)
+                {
+                    for(var key in data[i])
+                    {
+                        if(col.indexOf(key)==-1)
+                        {
+                            col.push(key);
+                        }
+                    }
+                }
+                //create table head
+                var tHead = document.createElement("thead");
+
+                // CREATE ROW FOR TABLE HEAD .
+                var hRow = document.createElement("tr");
+
+                // ADD COLUMN HEADER TO ROW OF TABLE HEAD.
+                for (var i = 0; i < col.length-1; i++) {
+                    var th = document.createElement("th");
+                    th.innerHTML = col[i];
+                    hRow.appendChild(th);
+                }
+                tHead.appendChild(hRow);
+                table.appendChild(tHead);
+
+                // CREATE TABLE BODY .
+                var tBody = document.createElement("tbody");
+
+                // ADD COLUMN HEADER TO ROW OF TABLE HEAD.
+                for (var i = 0; i < noOfdata; i++) {
+
+                    var bRow = document.createElement("tr"); // CREATE ROW FOR EACH RECORD .
+
+
+                    for (var j = 0; j < col.length; j++) {
+                        var td = document.createElement("td");
+                        td.innerHTML = data[i][col[j]];
+                        bRow.appendChild(td);
+                    }
+                    tBody.appendChild(bRow)
+
+                }
+                table.appendChild(tBody);
+
+                // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+                var divContainer = document.getElementById("data");
+                var dvTable = document.getElementById("dvTable");
+                dvTable.innerHTML = "";
+                dvTable.appendChild(table);
+            }
+
+            console.log("Success: ", result);
+        }else{
+            console.log("Fail: ", result);
+        }
+    },
+    error : function(e) {
+        console.log("ERROR: ", e);
+    }
+});
+
