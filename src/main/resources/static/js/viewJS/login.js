@@ -20,6 +20,10 @@ $(document).ready(function () {
 
             location.href = "accoundantHome.html";
 
+        } else if (userRole == "Manager") {
+
+            location.href = "managementHome";
+
         } else {
 
             location.href = "home.html";
@@ -72,6 +76,11 @@ $(document).ready(function () {
 
                             localStorage.setItem('userName', result["fName"]);
                             location.href = "accoundantHome.html";
+
+                        } else if (result["role"] == "Manager") {
+
+                            localStorage.setItem('userName', result["fName"]);
+                            location.href = "managementHome";
 
                         } else {
 

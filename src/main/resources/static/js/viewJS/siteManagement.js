@@ -1,3 +1,8 @@
+var userRole = localStorage.getItem('role');
+if (userRole == null || userRole != "Manager") {
+    location.href = "/";
+}
+
 $( document ).ready(function() {
 
     //navigate to userManagement

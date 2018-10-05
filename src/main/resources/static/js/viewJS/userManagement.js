@@ -1,3 +1,7 @@
+var userRole = localStorage.getItem('role');
+if (userRole == null || userRole != "Manager") {
+    location.href = "/";
+}
 
 $('#email').keyup(function () {
     $('#password').val($(this).val()+"@pms");
