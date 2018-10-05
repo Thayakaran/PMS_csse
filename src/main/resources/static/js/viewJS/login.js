@@ -34,6 +34,14 @@ $(document).ready(function () {
 
     }
 
+    $("#forgotLink").click(function (e) {
+
+        e.preventDefault();
+
+        console.log("Button Clicked");
+
+    });
+
 
     $("#login").click(function (event) {
         event.preventDefault();

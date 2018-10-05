@@ -1,5 +1,6 @@
 package com.group25.mailService;
 
+import com.group25.entity.Login;
 import com.group25.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -28,5 +29,13 @@ public class MailService {
         jms.send(sm);
     }
 
-    // add your methods here
+    public void sendEmailWithNewPassword(String email, String newPassword) {
+        SimpleMailMessage sm = new SimpleMailMessage();
+        sm.setTo(email);
+        sm.setFrom("matrix.pms.sliit@gmail.com");
+        sm.setSubject("Account Recovery Service");
+        sm.setText("Thank you for using our service. You can use the password provided to access your account.\n" + "Your new password : " + newPassword);
+
+        jms.send(sm);
+    }
 }
