@@ -25,10 +25,17 @@ public class InvoiceController {
     @Autowired
     MailService mailservice;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public Collection<Invoice> getAllInvoices(){
+    @RequestMapping(value = "/unpaid", method = RequestMethod.GET)
+    public Collection<Invoice> getAllUnPaidInvoices(){
 
-        return invoiceService.getAllInvoices();
+        return invoiceService.getAllUnPaidInvoices();
+
+    }
+
+    @RequestMapping(value = "/paid", method = RequestMethod.GET)
+    public Collection<Invoice> getAllPaidInvoices(){
+
+        return invoiceService.getAllPaidInvoices();
 
     }
 
