@@ -1,7 +1,18 @@
 $(document).ready(function() {
+    var pageURL = $(location).attr("href");
+
+    if(pageURL == "http://localhost:3000/manageRequest.html") {
+
+        location.href = "sitemanagerHome.html";
+
+        return;
+
+    }
+
 
     $('#note').hide();
     $('#noteLabel').hide();
+    $('#price').hide();
 
     $('#order_status').change(function() {
         if (this.value == 'Cancelled') {
@@ -16,6 +27,10 @@ $(document).ready(function() {
         }
 
     });
+    $('#back').click(function () {
+        location.href = "sitemanagerHome.html";
+    });
+
     var id;
 
     $("#managependingRequest").submit(function(event){
@@ -27,13 +42,14 @@ $(document).ready(function() {
     });
 
 
+
     // DO GET
     function ajaxGetRequestId(id){
         $.ajax({
             type : "GET",
             url : "/sitemanager/" + id,
             success: function(result){
-                if(result){
+                if(result) {
                     $("#Requester_id").val(result.orderby),
                         $("#site_name").val(result.site),
                         $("#manager_name").val(result.manager),
@@ -43,7 +59,62 @@ $(document).ready(function() {
                         $("#qty").val(result.qty),
                         $("#description").val(result.description),
                         $("#contact").val(result.contactnum),
-                        $("#order_status").val(result.status)
+                        $("#order_status").val(result.status),
+                        $("#note").val(result.note)
+                    if (result.supplier == 0) {
+                        $("#Supplier_Name").val("None")
+                    } else{
+                        $("#Supplier_Name").val(result.supplier)
+                }
+                    var material = result.item;
+                    ajaxgetSupplierId(material);
+
+                    // DO GET
+                    function ajaxgetSupplierId(id){
+                        $.ajax({
+                            type : "GET",
+                            url : "/sitemanager/supplier",
+                            success: function(result){
+                                if(result) {
+                                    var supplierId = [];
+                                    result.forEach(function (supplier) {
+                                        if (supplier["material"] == id) {
+                                            supplierId.push(supplier["supplier"])
+                                        }
+                                    });
+                                    console.log("Success: ", supplierId);
+
+                                    console.log(result.supplier);
+                                    var select = document.getElementById("Supplier_Name");
+                                    for (var i = 0; i <supplierId.length ; i++) {
+                                        var option = document.createElement('option');
+                                        option.text = option.value = supplierId[i];
+                                        select.add(option, 1);
+
+                                    }
+                                }
+                            },
+                            error : function(e) {
+                                $("#Supplier_Name").val("User not found");
+                                console.log("ERROR: ", e);
+                            }
+                        });
+                    }
+
+                    var status = result.status;
+
+                        if (status == 'Cancelled') {
+                            $('#note').show();
+                            $('#noteLabel').show();
+                        } else if(status == 'Rejected') {
+                            $('#note').show();
+                            $('#noteLabel').show();
+                        } else {
+                            $('#note').hide();
+                            $('#noteLabel').hide();
+                        }
+
+
 
                     console.log("Success: ", result);
                 }else{

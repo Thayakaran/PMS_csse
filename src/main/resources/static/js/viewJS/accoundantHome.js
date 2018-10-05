@@ -1,5 +1,17 @@
 $(document).ready(function () {
 
+    var userRole = localStorage.getItem('role');
+
+    if (userRole == null || userRole != "Account Staff") {
+
+        location.href = "/";
+
+        return;
+
+    }
+
+    $("#userwelcome").html(localStorage.getItem("userName"));
+
     $('#payments-tab').click(function () {
 
         loadPaymentsPage();
