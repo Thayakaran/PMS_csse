@@ -17,4 +17,10 @@ public class LoginService {
 
     }
 
+    public void updatePassword(String email, String newPassword) {
+
+        this.loginDao.updateLoginCredentials(email, newPassword);
+
+    }
+
 }

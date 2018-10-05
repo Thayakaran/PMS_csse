@@ -21,15 +21,19 @@ public class UserService {
         return this.userDao.getUserById(id);
     }
 
-    public void deleteUserById(int id) {
-        this.userDao.deleteUserById(id);
+    public Collection<User> getUserByRole(String role){
+        return this.userDao.getUserByRole(role);
     }
 
-    public void updateUser(User user){
-        this.userDao.updateUser(user);
+    public String deleteUserById(int id) {
+        return this.userDao.deleteUserById(id);
     }
 
-    public int addUser(User user) {
+    public String updateUser(User user){
+        return this.userDao.updateUser(user);
+    }
+
+    public String addUser(User user) {
         return this.userDao.addUser(user);
     }
 }

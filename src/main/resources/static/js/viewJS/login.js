@@ -20,6 +20,10 @@ $(document).ready(function () {
 
             location.href = "accoundantHome.html";
 
+        } else if (userRole == "Manager") {
+
+            location.href = "managementHome";
+
         } else {
 
             location.href = "home.html";
@@ -29,6 +33,29 @@ $(document).ready(function () {
         return;
 
     }
+
+    $("#forgotLink").click(function (e) {
+
+        e.preventDefault();
+
+        $.ajax({
+            type : "PUT",
+            contentType : "application/json",
+            url : "/login/forgot/" + $("#email").val(),
+            success: function (data, textStatus, xhr) {
+
+                swal({title: "Success", text: data, type: "success"});
+
+            },
+            error: function (data, textStatus, xhr) {
+
+                swal({title: "Error", text: data.responseText, type: "error"});
+
+            }
+
+        });
+
+    });
 
 
     $("#login").click(function (event) {
@@ -71,7 +98,13 @@ $(document).ready(function () {
                         } else if (result["role"] == "Account Staff") {
 
                             localStorage.setItem('userName', result["fName"]);
+                            localStorage.setItem('email', credentials["email"]);
                             location.href = "accoundantHome.html";
+
+                        } else if (result["role"] == "Manager") {
+
+                            localStorage.setItem('userName', result["fName"]);
+                            location.href = "managementHome";
 
                         } else {
 

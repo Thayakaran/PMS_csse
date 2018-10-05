@@ -13,9 +13,15 @@ public class InvoiceService {
     @Autowired
     private InvoiceDao invoiceDao;
 
-    public Collection<Invoice> getAllInvoices() {
+    public Collection<Invoice> getAllUnPaidInvoices() {
 
-        return this.invoiceDao.getAllInvoices();
+        return this.invoiceDao.getAllUnPaidInvoices();
+
+    }
+
+    public Collection<Invoice> getAllPaidInvoices() {
+
+        return this.invoiceDao.getAllPaidInvoices();
 
     }
 

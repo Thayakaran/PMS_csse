@@ -3,6 +3,7 @@ package com.group25.controller;
 
 import com.group25.entity.Invoice;
 
+import com.group25.mailService.MailService;
 import com.group25.service.InvoiceService;
 
 import org.json.JSONObject;
@@ -21,10 +22,20 @@ public class InvoiceController {
     @Autowired
     private InvoiceService invoiceService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public Collection<Invoice> getAllInvoices(){
+    @Autowired
+    MailService mailservice;
 
-        return invoiceService.getAllInvoices();
+    @RequestMapping(value = "/unpaid", method = RequestMethod.GET)
+    public Collection<Invoice> getAllUnPaidInvoices(){
+
+        return invoiceService.getAllUnPaidInvoices();
+
+    }
+
+    @RequestMapping(value = "/paid", method = RequestMethod.GET)
+    public Collection<Invoice> getAllPaidInvoices(){
+
+        return invoiceService.getAllPaidInvoices();
 
     }
 
@@ -35,7 +46,11 @@ public class InvoiceController {
 
         String date = jsonObj.getString("date");
 
+        String email = jsonObj.getString("email");
+
         invoiceService.updatePaymentStatus(id, date);
+
+        mailservice.sendPaymentConfirmationEmail(email, id);
 
     }
 
