@@ -155,15 +155,19 @@ $(document).ready(function() {
             ajaxgetMailId($("#Requester_id").val())
             Infor = "we cancelled below your request ";
         }
+        console.log(Infor);
         var formData = {
             supplier: $("#Supplier_Name").val(),
             status: $("#order_status").val(),
             note: $("#note").val(),
-            personMail:mailId,
-            infor:Infor
+            personMail:"jvithu2004+@gmail.com",
+            infor:"please find below",
+            id:$("#Requester_id").val(),
+            requiredate:$("#require_date").val()
 
 
         }
+        console.log(formData.personMail);
 
         // DO PUT
         $.ajax({
@@ -176,9 +180,7 @@ $(document).ready(function() {
                 if (result.success){
                     swal({title:"Success", text:"Material Requested Successfully", type:"success"});
                 }
-                else{
-                    swal({title:"Error", text:"Error occurred in adding User, Enter valid Data", type:"error"});
-                }
+
             },
             error : function(e) {
                 swal({title:"Error", text:"Error occurred in adding User, Enter valid Data", type:"error"});
