@@ -72,7 +72,7 @@ public class LoginController {
             passwordEncryptor.setPassword(SecureKey.getKey());
             String newEncryptedPassword = passwordEncryptor.encrypt(newPassword);
 
-//            loginService.updatePassword(email, newEncryptedPassword);
+            loginService.updatePassword(email, newEncryptedPassword);
 
             mailservice.sendEmailWithNewPassword(email, newPassword);
 

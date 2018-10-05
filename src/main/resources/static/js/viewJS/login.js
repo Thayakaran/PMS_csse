@@ -38,7 +38,22 @@ $(document).ready(function () {
 
         e.preventDefault();
 
-        console.log("Button Clicked");
+        $.ajax({
+            type : "PUT",
+            contentType : "application/json",
+            url : "/login/forgot/" + $("#email").val(),
+            success: function (data, textStatus, xhr) {
+
+                swal({title: "Success", text: data, type: "success"});
+
+            },
+            error: function (data, textStatus, xhr) {
+
+                swal({title: "Error", text: data.responseText, type: "error"});
+
+            }
+
+        });
 
     });
 
