@@ -1,7 +1,19 @@
 $(document).ready(function() {
+    var pageURL = $(location).attr("href");
+
+    if(pageURL == "http://localhost:3000/manageRequest.html") {
+
+        location.href = "sitemanagerHome.html";
+
+        return;
+
+    }
+
+    var mailId;
 
     $('#note').hide();
     $('#noteLabel').hide();
+    $('#price').hide();
 
     $('#order_status').change(function() {
         if (this.value == 'Cancelled') {
@@ -16,6 +28,10 @@ $(document).ready(function() {
         }
 
     });
+    $('#back').click(function () {
+        location.href = "sitemanagerHome.html";
+    });
+
     var id;
 
     $("#managependingRequest").submit(function(event){
@@ -27,13 +43,14 @@ $(document).ready(function() {
     });
 
 
+
     // DO GET
     function ajaxGetRequestId(id){
         $.ajax({
             type : "GET",
             url : "/sitemanager/" + id,
             success: function(result){
-                if(result){
+                if(result) {
                     $("#Requester_id").val(result.orderby),
                         $("#site_name").val(result.site),
                         $("#manager_name").val(result.manager),
@@ -45,12 +62,52 @@ $(document).ready(function() {
                         $("#contact").val(result.contactnum),
                         $("#order_status").val(result.status),
                         $("#note").val(result.note)
+                    if (result.supplier == 0) {
+                        $("#Supplier_Name").val("None")
+                    } else{
+                        $("#Supplier_Name").val(result.supplier)
+                }
+                    var material = result.item;
+                    ajaxgetSupplierId(material);
 
-                    $('#order_status').change(function() {
-                        if (this.value == 'Cancelled') {
+                    // DO GET
+                    function ajaxgetSupplierId(id){
+                        $.ajax({
+                            type : "GET",
+                            url : "/sitemanager/supplier",
+                            success: function(result){
+                                if(result) {
+                                    var supplierId = [];
+                                    result.forEach(function (supplier) {
+                                        if (supplier["material"] == id) {
+                                            supplierId.push(supplier["supplier"])
+                                        }
+                                    });
+                                    console.log("Success: ", supplierId);
+
+                                    console.log(result.supplier);
+                                    var select = document.getElementById("Supplier_Name");
+                                    for (var i = 0; i <supplierId.length ; i++) {
+                                        var option = document.createElement('option');
+                                        option.text = option.value = supplierId[i];
+                                        select.add(option, 1);
+
+                                    }
+                                }
+                            },
+                            error : function(e) {
+                                $("#Supplier_Name").val("User not found");
+                                console.log("ERROR: ", e);
+                            }
+                        });
+                    }
+
+                    var status = result.status;
+
+                        if (status == 'Cancelled') {
                             $('#note').show();
                             $('#noteLabel').show();
-                        } else if(this.value == 'Rejected') {
+                        } else if(status == 'Rejected') {
                             $('#note').show();
                             $('#noteLabel').show();
                         } else {
@@ -58,7 +115,7 @@ $(document).ready(function() {
                             $('#noteLabel').hide();
                         }
 
-                    });
+
 
                     console.log("Success: ", result);
                 }else{
@@ -74,6 +131,8 @@ $(document).ready(function() {
     }
 
 
+
+
     // UPDATE EXISTING Request
     $("#managerRequest").submit(function(event) {
         // Prevent the form from submitting via the browser.
@@ -84,10 +143,25 @@ $(document).ready(function() {
     function ajaxPostUpdateRequest(id) {
 
         // PREPARE FORM DATA
+        var status =  $("#order_status").val();
+        var Infor;
+        if(status == 'Approved')
+        {
+            ajaxgetMailId($("#Supplier_Name").val())
+            Infor = "Please Provide Below request";
+        }
+        if(status == 'Cancelled')
+        {
+            ajaxgetMailId($("#Requester_id").val())
+            Infor = "we cancelled below your request ";
+        }
         var formData = {
             supplier: $("#Supplier_Name").val(),
             status: $("#order_status").val(),
-            note: $("#note").val()
+            note: $("#note").val(),
+            personMail:mailId,
+            infor:Infor
+
 
         }
 
@@ -98,20 +172,38 @@ $(document).ready(function() {
             url: "/sitemanager/" + id, //window.location +"users",
             data: JSON.stringify(formData),
             dataType: 'json',
-            success: function (res) {
-                if (res.error) {
-                    swal({title: "Error", text: res.error, type: "error"});
+            success: function (result) {
+                if (result.success){
+                    swal({title:"Success", text:"Material Requested Successfully", type:"success"});
                 }
-                else {
-                    swal({title: "Success", text: "Your Account Has Been Created. Please Login", type: "success"});
-                    resetUpdateData();
+                else{
+                    swal({title:"Error", text:"Error occurred in adding User, Enter valid Data", type:"error"});
                 }
-                // swal({title:"Success", text:"Your Account Has Been Created. Please Login", type:"success"});
-                // resetData();
+            },
+            error : function(e) {
+                swal({title:"Error", text:"Error occurred in adding User, Enter valid Data", type:"error"});
             }
-            // error : function(e) {
-            //     swal({title:"Error", text:"Error"+e, type:"error"});
-            // }
+        });
+    }
+
+
+    // DO GET mailId
+    function ajaxgetMailId(id){
+        $.ajax({
+            type : "GET",
+            url : "/sitemanager/mail/" + id,
+            success: function(result){
+                if(result) {
+                    mailId = result.personMail ;
+
+                    console.log("Success: ", mailId);
+
+                }
+            },
+            error : function(e) {
+                $("#Supplier_Name").val("User not found");
+                console.log("ERROR: ", e);
+            }
         });
     }
 

@@ -63,4 +63,51 @@ public class InvoiceDao {
 
     }
 
+
+    //get a specific invoice
+    public Invoice getInvoiceById(int invoiceID){
+        final String sql = "SELECT * FROM invoice WHERE id = ?";
+        Invoice invoice = jdbcTemplate.queryForObject(sql, new InvoiceRowMapper(), invoiceID);
+        return invoice;
+    }
+
+
+
+
+    //delete a specific invoice
+    public void deleteInvoiceById(int invoiceID) {
+        final String sql = "DELETE FROM invoice WHERE id = ?";
+        jdbcTemplate.update(sql, invoiceID);
+    }
+
+    //updating existing invoice
+    public void updateInvoice(Invoice invoice){
+        final String sql = "UPDATE invoice SET orderID = ?, totalAmount = ?, discount = ?, netAmount = ? WHERE id = ?";
+        int invoiceID = invoice.getInvoiceID();
+        String oredrId = invoice.getOrderID();
+        float totalAmount = invoice.getTotalAmount();
+        float discount = invoice.getDiscount();
+        float netAmount = invoice.getNetAmount();
+
+        jdbcTemplate.update(sql, new Object[] {oredrId, totalAmount, discount, netAmount});
+
+
+
+    }
+
+    //updating existing invoice
+    public void addInvoice(Invoice invoice){
+        final String sql = "INSERT INTO invoice(orderID, totalAmount, discount, netAmount) VALUES (?,?,?,?)";
+
+       String orderID = invoice.getOrderID();
+        float totalAmount = invoice.getTotalAmount();
+        float discount = invoice.getDiscount();
+        float netAmount = invoice.getNetAmount();
+
+        jdbcTemplate.update(sql, new Object[] {orderID, totalAmount, discount, netAmount});
+
+
+
+    }
+
 }

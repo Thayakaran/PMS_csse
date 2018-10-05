@@ -1,5 +1,4 @@
 package com.group25.service;
-
 import com.group25.dao.SiteManagerDao;
 import com.group25.entity.SiteManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,16 +15,24 @@ public class SiteManagerService {
     public Collection<SiteManager> getAllRequest(){
         return this.managerDao.getAllRequest();
     }
-    public void addRequest(SiteManager manager) {
-        this.managerDao.addRequest(manager);
+    public Collection<SiteManager> getSupplierId(){
+        return this.managerDao.getSupplierId();
     }
-    public SiteManager getSupplierId(String mat){
-        return this.managerDao.getSupplierId(mat);
+    public String addRequest(SiteManager manager) {
+       return this.managerDao.addRequest(manager);
+
+    }
+    public SiteManager getUser(String id){
+        return this.managerDao.getUser(id);
+    }
+    public SiteManager getSendMail(int id){
+        return this.managerDao.getSendMail(id);
     }
     public SiteManager getRequestId(int id){
         return this.managerDao.getRequestId(id);
     }
-    public void updateRequest(int id, SiteManager manager){
-        this.managerDao.updateRequest(id, manager);
+    public String updateRequest(int id, SiteManager manager){
+        return this.managerDao.updateRequest(id, manager);
     }
+
 }

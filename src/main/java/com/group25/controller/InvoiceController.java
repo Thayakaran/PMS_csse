@@ -2,13 +2,17 @@ package com.group25.controller;
 
 
 import com.group25.entity.Invoice;
+
+import com.group25.mailService.MailService;
 import com.group25.service.InvoiceService;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.MediaType;
 
+import java.awt.*;
 import java.util.Collection;
 
 @RestController
@@ -18,17 +22,13 @@ public class InvoiceController {
     @Autowired
     private InvoiceService invoiceService;
 
-    @RequestMapping(value = "/unpaid", method = RequestMethod.GET)
-    public Collection<Invoice> getAllUnPaidInvoices(){
+    @Autowired
+    MailService mailservice;
 
-        return invoiceService.getAllUnPaidInvoices();
+    @RequestMapping(method = RequestMethod.GET)
+    public Collection<Invoice> getAllInvoices(){
 
-    }
-
-    @RequestMapping(value = "/paid", method = RequestMethod.GET)
-    public Collection<Invoice> getAllPaidInvoices(){
-
-        return invoiceService.getAllPaidInvoices();
+        return invoiceService.getAllInvoices();
 
     }
 
@@ -39,8 +39,23 @@ public class InvoiceController {
 
         String date = jsonObj.getString("date");
 
+        String email = jsonObj.getString("email");
+
         invoiceService.updatePaymentStatus(id, date);
 
+        mailservice.sendPaymentConfirmationEmail(email, id);
+
+    }
+
+
+    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void updateInvoice(@RequestBody Invoice invoice){
+        invoiceService.updateInvoice(invoice);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void addInvoice(@RequestBody Invoice invoice){
+        invoiceService.addInvoice(invoice);
     }
 
 }

@@ -28,13 +28,14 @@ public class LoginDao {
             login.setPassword(resultSet.getString("password"));
             login.setEmail(resultSet.getString("email"));
             login.setRole(resultSet.getString("role"));
+            login.setfName(resultSet.getString("fName"));
 
             return login;
 
         }
     }
 
-    //get user credentials
+
     public Login getUserLoginCredentials(String email){
 
         try {
@@ -49,7 +50,13 @@ public class LoginDao {
 
         }
 
+    }
 
+    public void updateLoginCredentials(String email, String newPassword) {
+
+        final String sql = "UPDATE user SET password = ? WHERE email = ?";
+
+        jdbcTemplate.update(sql, newPassword, email);
 
     }
 

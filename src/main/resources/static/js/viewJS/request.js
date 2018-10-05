@@ -4,9 +4,50 @@ $('#email').keyup(function () {
 
 $( document ).ready(function() {
 
+    var pageURL = $(location).attr("href");
+
+    if(pageURL == "http://localhost:3000/request.html") {
+
+        location.href = "sitemanagerHome.html";
+
+        return;
+
+    }
+    var useremail = localStorage.getItem('email');
+    ajaxGetRequester(useremail);
+
+    function ajaxGetRequester(useremail) {
+    $.ajax({
+            type : "GET",
+            url : "/sitemanager/user/" + useremail,
+            success: function(result){
+                if(result) {
+                    $("#Requester_id").val(result.userId),
+                        $("#site_name").val(result.site),
+                        $("#manager_name").val(result.userId),
+                        $("#contact").val(result.contactnum),
+                    console.log("Success: ", result);
+
+                }
+            },
+            error : function(e) {
+                $("#Supplier_Name").val("User not found");
+                console.log("ERROR: ", e);
+            }
+        });
+
+    }
+
+
+
+    $('#back').click(function () {
+        location.href = "sitemanagerHome.html";
+    });
+
 
     $('#note').hide();
     $('#noteLabel').hide();
+    $('#price').hide();
 
     $('#order_status').change(function() {
         if (this.value == 'Cancelled') {
@@ -46,7 +87,9 @@ $( document ).ready(function() {
             contactnum: $("#contact").val(),
             supplier: $("#Supplier_Name").val(),
             status: $("#order_status").val(),
-            note: $("#note").val()
+            note: $("#note").val(),
+            personMail:"jvithu2004@gmail.com",
+            id:8
 
         }
 
@@ -58,20 +101,17 @@ $( document ).ready(function() {
             url: "/sitemanager", //window.location +"sitemanager",
             data: JSON.stringify(formData),
             dataType: 'json',
-            success: function (res) {
-                if (res.error) {
-                    swal({title: "Error", text: res.error, type: "error"});
+            success: function (result) {
+                if (result.success){
+                    swal({title:"Success", text:"Material Requested Successfully", type:"success"});
                 }
-                else {
-                    swal({title: "Success", text: "Your Account Has Been Created. Please Login", type: "success"});
-
+                else{
+                    swal({title:"Error", text:"Error occurred in adding User, Enter valid Data", type:"error"});
                 }
-                // swal({title:"Success", text:"Your Account Has Been Created. Please Login", type:"success"});
-                // resetData();
+            },
+            error : function(e) {
+                swal({title:"Error", text:"Error occurred in adding User, Enter valid Data", type:"error"});
             }
-            // error : function(e) {
-            //     swal({title:"Error", text:"Error"+e, type:"error"});
-            // }
         });
 
     }
