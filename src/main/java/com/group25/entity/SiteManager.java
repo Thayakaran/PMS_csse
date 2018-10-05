@@ -1,25 +1,32 @@
 package com.group25.entity;
 
-public class SiteManager {
+import java.sql.Array;
 
+public class SiteManager {
+    private int id;
     private int orderBy;
     private int manager;
     private String item;
     private int quantity;
     private String date;
     private String description;
-    private int site;
+    private String site;
     private int contactNo;
     private String requiredDate;
     private String note;
     private int supplier;
     private String status;
+    private String material;
+    private String price;
+    private int userId;
+    private String userName;
 
 
     public SiteManager() {
     }
 
-    public SiteManager(int orderBy, int site, int manager, String date, String requiredDate, String item, int quantity, String description, int contactNo, int supplier, String status, String note) {
+    public SiteManager(int id, int orderBy, String site, int manager, String date, String requiredDate, String item, int quantity, String description, int contactNo, int supplier, String status, String note) {
+        this.id = id;
         this.orderBy = orderBy;
         this.manager = manager;
         this.item = item;
@@ -71,11 +78,11 @@ public class SiteManager {
     }
 
     //5 get/set site value
-    public int getSite() {
+    public String getSite() {
         return site;
     }
 
-    public void setSite(int site) {
+    public void setSite(String site) {
         this.site = site;
     }
 
@@ -140,5 +147,50 @@ public class SiteManager {
 
     public void setSupplier(int supplier) {
         this.supplier = supplier;
+    }
+
+    //material
+    public String getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(String material) {
+        this.material = material;
+    }
+
+    //price
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    //id
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    //userId
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    //userName
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

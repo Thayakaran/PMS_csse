@@ -1,7 +1,35 @@
 $(document).ready(function(){
-    var username = localStorage.getItem('name');
-    document.getElementById("userwelcome").innerHTML = username;
-    document.getElementById("username").innerHTML = username;
+
+    var userRole = localStorage.getItem('role');
+
+    if (userRole == null || userRole != "Site Manager") {
+
+        location.href = "/";
+
+        return;
+
+    }
+    var useremail = localStorage.getItem('email');
+    ajaxGetRequester(useremail);
+
+    function ajaxGetRequester(useremail) {
+        $.ajax({
+            type : "GET",
+            url : "/sitemanager/user/" + useremail,
+            success: function(result){
+                if(result) {
+                        $("#userwelcome, #username").html(result["userName"]),
+                        console.log("Success: ", result);
+
+                }
+            },
+            error : function(e) {
+                $("#Supplier_Name").val("User not found");
+                console.log("ERROR: ", e);
+            }
+        });
+
+    }
 
     $("#logout1, #logout2").click(function () {
         localStorage.clear();
@@ -9,10 +37,9 @@ $(document).ready(function(){
     });
     //view request
     $('#viewRequest').click(function () {
-        $("#body").load('/viewRequests.html');
-    // , function() {
-    //         // $.getScript('/js/viewJS/viewRequest.js');
-    //     }
+        $("#body").load('/sitemanagerHome.html'), function() {
+            $.getScript('/js/viewJS/viewRequest.js');
+        }
     });
 
     //request
@@ -20,5 +47,12 @@ $(document).ready(function(){
         $("#body").load('/request.html'), function() {
                  $.getScript('/js/viewJS/request.js');
            }
+    });
+
+    //request
+    $('#manageRequest').click(function () {
+        $("#body").load('/manageRequest.html'), function () {
+            $.getScript('/js/viewJS/manageRequest.js');
+        }
     });
 });

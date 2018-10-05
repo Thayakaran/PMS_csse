@@ -28,6 +28,7 @@ public class LoginDao {
             login.setPassword(resultSet.getString("password"));
             login.setEmail(resultSet.getString("email"));
             login.setRole(resultSet.getString("role"));
+            login.setfName(resultSet.getString("fName"));
 
             return login;
 

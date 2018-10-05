@@ -1,5 +1,36 @@
 $(document).ready(function () {
 
+    var userRole = localStorage.getItem('role');
+
+    if (userRole != null) {
+
+        if (userRole == "Contractor") {
+
+            location.href = "contractorHome.html";
+
+        } else if (userRole == "Site Manager") {
+
+            location.href = "sitemanagerHome.html";
+
+        } else if (userRole == "Supplier") {
+
+            location.href = "supplierHome.html";
+
+        } else if (userRole == "Account Staff") {
+
+            location.href = "accoundantHome.html";
+
+        } else {
+
+            location.href = "home.html";
+
+        }
+
+        return;
+
+    }
+
+
     $("#login").click(function (event) {
         event.preventDefault();
 
@@ -22,23 +53,24 @@ $(document).ready(function () {
                 if(result){
                     if (result["password"] == credentials["password"]) {
 
-                        localStorage.setItem('email', result["email"]);
                         localStorage.setItem('role', result["role"]);
 
                         if (result["role"] == "Contractor") {
 
-                            location.href = "home.html";
+                            location.href = "contractorHome.html";
 
                         } else if (result["role"] == "Site Manager") {
 
+                            localStorage.setItem('email', credentials.email);
                             location.href = "sitemanagerHome.html";
 
                         } else if (result["role"] == "Supplier") {
 
-                            location.href = "home.html";
+                            location.href = "supplierHome.html";
 
                         } else if (result["role"] == "Account Staff") {
 
+                            localStorage.setItem('userName', result["fName"]);
                             location.href = "accoundantHome.html";
 
                         } else {
