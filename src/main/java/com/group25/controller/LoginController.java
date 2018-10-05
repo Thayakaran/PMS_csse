@@ -76,8 +76,6 @@ public class LoginController {
 
             mailservice.sendEmailWithNewPassword(email, newPassword);
 
-            System.out.println(newEncryptedPassword);
-
             return new ResponseEntity<>("We sent a new password to your email", new HttpHeaders(), HttpStatus.OK);
 
         }
