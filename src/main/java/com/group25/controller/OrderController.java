@@ -17,8 +17,8 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @RequestMapping(value = "/pending/{constructorID}", method = RequestMethod.GET)
-    public Collection<Order> getPendingOrders(@PathVariable int constructorID){
+    @RequestMapping(value = "/{orderedBy}/status/{orderStatus}", method = RequestMethod.GET)
+    public Collection<Order> getorders(@PathVariable("orderedBy") String constructorID, @PathVariable("orderStatus") String status){
         return orderService.getPendingOrder(constructorID);
     }
 
