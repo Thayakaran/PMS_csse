@@ -13,7 +13,7 @@ $( document ).ready(function() {
 
         // PREPARE FORM DATA
         var formData = {
-            orderId : $("#orderId").val(),
+            orderID : $("#orderId").val(),
             totalAmount :  $("#totalAmount").val(),
             discount : $("#discount").val(),
             netAmount :  $("#netAmount").val(),
@@ -23,7 +23,7 @@ $( document ).ready(function() {
         $.ajax({
             type : "POST",
             contentType : "application/json; charset=utf-8",
-            url : "invoice", //window.location +"invoice",
+            url : "invoices", //window.location +"invoice",
             data : JSON.stringify(formData),
             dataType : 'json',
             success : function(res) {
@@ -57,19 +57,45 @@ $( document ).ready(function() {
 
     /////////////////////////////////////////////////////////////////////////////////
 
+     // GET USER BY ID(search)
+        $("#searchBtn").click(function(event){
+            event.preventDefault();
+            var id = $("#searchTxt").val();
 
+            ajaxGetUserById(id);
+        });
 
+        // DO GET
+        function ajaxGetUserById(id){
+            $.ajax({
+                type : "GET",
+                url : "invoices/"+id,
+                success: function(result){
+                    if(result){
+                        $("#UfName").val(result.fName),
+                        $("#UlName").val(result.lName),
+                        $("#UmPhone").val(result.mPhone),
+                        $("#UoPhone").val(result.oPhone),
+                        $("#UhAddress").val(result.hAddress),
+                        $("#UwAddress").val(result.wAddress),
+                        $("#Urole").val(result.role),
+                        $("#Uemail").val(result.email),
+                        $("#Upassword").val(result.password)
 
-
-
-
-
-
-
-
-
-
-    })
+                    console.log("Success: ", result);
+                    }else{
+                        document.getElementById("searchTxt").style.color = "red";
+                        $("#searchTxt").val("Invoice not found");
+                        console.log("Fail: ", result);
+                    }
+                },
+                error : function(e) {
+                    document.getElementById("searchTxt").style.color = "red";
+                    $("#searchTxt").val("Invoice not found");
+                    console.log("ERROR: ", e);
+                }
+            });
+        }
 
 
 
@@ -102,4 +128,4 @@ $( document ).ready(function() {
         });
     }
 
-
+})
