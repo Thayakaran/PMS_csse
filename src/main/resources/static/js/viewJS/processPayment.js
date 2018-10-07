@@ -14,6 +14,8 @@ $(document).ready(function () {
 
     var userRole = localStorage.getItem('role');
 
+    var email = localStorage.getItem('email');
+
     if (userRole == null || userRole != "Account Staff") {
 
         location.href = "/";
@@ -100,7 +102,7 @@ $(document).ready(function () {
     function updatePaymentStatus() {
 
         var date = new Date($.now());
-        var strDate = {date: date.getFullYear()+"-"+date.getMonth()+"-"+date.getDay()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()};
+        var strDate = {date: date.getFullYear()+"-"+date.getMonth()+"-"+date.getDay()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds(), email: email};
 
         $.ajax({
             type : "PUT",

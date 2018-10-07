@@ -30,6 +30,9 @@
 
     <!-- Custom Theme Style -->
     <link href="/css/custom.min.css" rel="stylesheet">
+
+    <!-- sweetalert -->
+    <script src="/js/projectJS/sweetalert2.all.min.js"></script>
 </head>
 
 <body class="nav-md">
@@ -41,55 +44,65 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h3>Payments <small>Paid and unpaid bills are listed below</small></h3>
+                    <h3>Payments <small>Unpaid bills are listed below</small></h3>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
                     <p class="text-muted font-13 m-b-30">
-                        Check the payment status of the invoice from the table and make the payment.
+                        Check the invoice details from the table and make the payment.
                     </p>
 
-                    <table id="datatable-responsive" class="table table-striped jambo_table table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <table id="datatable-responsive_unpaid" class="table table-striped jambo_table table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                         <thead>
                         <tr>
-                            <th>First name</th>
-                            <th>Last name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
-                            <th>Extn.</th>
-                            <th>E-mail</th>
+                            <th>Invoice ID</th>
+                            <th>Payment Status</th>
+                            <th>Order ID</th>
+                            <th>Date</th>
+                            <th>Item</th>
+                            <th>Supplier</th>
+                            <th>Quantity</th>
+                            <th>Ordered By</th>
+                            <th>Total Amount</th>
+                            <th>Discount</th>
+                            <th>Net Amount</th>
+                            <th>Contact No</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
-                        <tbody id="invoiceDetails">
-                        <tr>
-                            <td>Vivian</td>
-                            <td>Harrell</td>
-                            <td>Financial Controller</td>
-                            <td>San Francisco</td>
-                            <td>62</td>
-                            <td>2009/02/14</td>
-                            <td>$452,500</td>
-                            <td>9422</td>
-                            <td>v.harrell@datatables.net</td>
-                        </tr>
-                        <tr>
-                            <td>Finn</td>
-                            <td>Camacho</td>
-                            <td>Support Engineer</td>
-                            <td>San Francisco</td>
-                            <td>47</td>
-                            <td>2009/07/07</td>
-                            <td>$87,500</td>
-                            <td>2927</td>
-                            <td>f.camacho@datatables.net</td>
-                        </tr>
-                        </tbody>
                     </table>
+                </div>
+            </div>
 
+            <div class="x_panel">
+                <div class="x_title">
+                    <h3>Payments <small>Paid bills are listed below</small></h3>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <p class="text-muted font-13 m-b-30">
+                        Review your paid bills.
+                    </p>
 
+                    <table id="datatable-responsive_paid" class="table table-striped jambo_table table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th>Invoice ID</th>
+                            <th>Payment Status</th>
+                            <th>Paid Date</th>
+                            <th>Order ID</th>
+                            <th>Date</th>
+                            <th>Item</th>
+                            <th>Supplier</th>
+                            <th>Quantity</th>
+                            <th>Ordered By</th>
+                            <th>Total Amount</th>
+                            <th>Discount</th>
+                            <th>Net Amount</th>
+                            <th>Contact No</th>
+                        </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
         </div>
@@ -105,8 +118,6 @@
 <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- FastClick -->
 <script src="vendors/fastclick/lib/fastclick.js"></script>
-<!-- NProgress -->
-<script src="vendors/nprogress/nprogress.js"></script>
 <!-- iCheck -->
 <script src="vendors/iCheck/icheck.min.js"></script>
 <!-- Datatables -->

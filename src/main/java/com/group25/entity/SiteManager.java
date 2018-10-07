@@ -20,6 +20,8 @@ public class SiteManager {
     private String price;
     private int userId;
     private String userName;
+    private String mail;
+    private String infor;
 
 
     public SiteManager() {
@@ -192,5 +194,23 @@ public class SiteManager {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    //userMail
+    public String getPersonMail() {
+        return mail;
+    }
+
+    public void setPersonMail(String mail) {
+        this.mail = mail;
+    }
+
+    //mail Content
+    public String getInfor() {
+        return infor;
+    }
+
+    public void setInfor(String infor) {
+        this.infor = infor;
     }
 }
