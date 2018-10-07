@@ -12,6 +12,8 @@ $(document).ready(function(){
     var useremail = localStorage.getItem('email');
     ajaxGetRequester(useremail);
 
+    getOrders();
+
     function ajaxGetRequester(useremail) {
         $.ajax({
             type : "GET",
@@ -55,4 +57,43 @@ $(document).ready(function(){
             $.getScript('/js/viewJS/manageRequest.js');
         }
     });
+
+    function getOrders() {
+
+        $.ajax({
+            type: "GET",
+            url: "/sitemanager/user/" + useremail,
+            success: function(result) {
+
+                $('#orders').DataTable({
+                    "data" : result,
+                    "columns" : [
+                        {"defaultContent" : "<button id='viewRequest' class='btn btn-success' > View </button>"},
+                        { "data" : "id" },
+                        { "data" : "orderby" },
+                        { "data" : "item" },
+                        { "data" : "requiredate" },
+                        { "data" : "status" }
+                    ],
+                    "bDestroy": true
+                });
+
+            }
+        });
+
+        $('#orders').on('click', '#viewRequest', function () {
+            var table = $('#orders').DataTable();2
+
+            var data = table.row($(this).closest('td, li')).data();
+
+            localStorage.setItem('id', data["id"]);
+
+            $("#body").load('/manageRequest.html'), function () {
+                $.getScript('/js/viewJS/manageRequest.js');
+            }
+
+        });
+
+    }
+
 });
