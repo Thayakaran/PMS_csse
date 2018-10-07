@@ -9,6 +9,7 @@ $(document).ready(function() {
 
     }
 
+    var mailId;
 
     $('#note').hide();
     $('#noteLabel').hide();
@@ -130,6 +131,8 @@ $(document).ready(function() {
     }
 
 
+
+
     // UPDATE EXISTING Request
     $("#managerRequest").submit(function(event) {
         // Prevent the form from submitting via the browser.
@@ -140,12 +143,31 @@ $(document).ready(function() {
     function ajaxPostUpdateRequest(id) {
 
         // PREPARE FORM DATA
+        var status =  $("#order_status").val();
+        var Infor;
+        if(status == 'Approved')
+        {
+            ajaxgetMailId($("#Supplier_Name").val())
+            Infor = "Please Provide Below request";
+        }
+        if(status == 'Cancelled')
+        {
+            ajaxgetMailId($("#Requester_id").val())
+            Infor = "we cancelled below your request ";
+        }
+        console.log(Infor);
         var formData = {
             supplier: $("#Supplier_Name").val(),
             status: $("#order_status").val(),
-            note: $("#note").val()
+            note: $("#note").val(),
+            personMail:"jvithu2004+@gmail.com",
+            infor:"please find below",
+            id:$("#Requester_id").val(),
+            requiredate:$("#require_date").val()
+
 
         }
+        console.log(formData.personMail);
 
         // DO PUT
         $.ajax({
@@ -154,20 +176,36 @@ $(document).ready(function() {
             url: "/sitemanager/" + id, //window.location +"users",
             data: JSON.stringify(formData),
             dataType: 'json',
-            success: function (res) {
-                if (res.error) {
-                    swal({title: "Error", text: res.error, type: "error"});
+            success: function (result) {
+                if (result.success){
+                    swal({title:"Success", text:"Material Requested Successfully", type:"success"});
                 }
-                else {
-                    swal({title: "Success", text: "Your Account Has Been Created. Please Login", type: "success"});
-                    resetUpdateData();
-                }
-                // swal({title:"Success", text:"Your Account Has Been Created. Please Login", type:"success"});
-                // resetData();
+
+            },
+            error : function(e) {
+                swal({title:"Error", text:"Error occurred in adding User, Enter valid Data", type:"error"});
             }
-            // error : function(e) {
-            //     swal({title:"Error", text:"Error"+e, type:"error"});
-            // }
+        });
+    }
+
+
+    // DO GET mailId
+    function ajaxgetMailId(id){
+        $.ajax({
+            type : "GET",
+            url : "/sitemanager/mail/" + id,
+            success: function(result){
+                if(result) {
+                    mailId = result.personMail ;
+
+                    console.log("Success: ", mailId);
+
+                }
+            },
+            error : function(e) {
+                $("#Supplier_Name").val("User not found");
+                console.log("ERROR: ", e);
+            }
         });
     }
 
