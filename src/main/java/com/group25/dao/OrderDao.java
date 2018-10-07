@@ -127,4 +127,16 @@ public class OrderDao {
         return orders;
     }
 
+    public String updateOrderStatus(String orderID, String status){
+        if (status.equals("pending") || status.equals("approvedByManager") || status.equals("rejectedByManager") || status.equals("approvedBySupplier") || status.equals("rejectedBySupplier") || status.equals("cancelled") || status.equals("rejectedByConstructor") || status.equals("approvedByConstructor")){
+            String sql = "UPDATE orders SET status = ? WHERE id = ?";
+            jdbcTemplate.update(sql, new Object[]{status, orderID});
+            return "{\"success\": \"Successfully Updated\"}";
+        }
+        else {
+            return "{\"error\": \"Invalid Status. Valid Statuses Are : pending, approvedByManager, rejectedByManager, approvedBySupplier, rejectedBySupplier, cancelled, rejectedByConstructor, approvedByConstructor\"}";
+        }
+
+    }
+
 }
