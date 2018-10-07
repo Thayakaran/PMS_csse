@@ -116,7 +116,7 @@ $(document).ready(function () {
                         location.href = "accoundantHome.html";
 
                     } else if (data["role"] == "Manager") {
-                        
+
                         location.href = "managementHome";
 
                     } else {
