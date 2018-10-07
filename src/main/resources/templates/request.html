@@ -55,7 +55,7 @@
                         var supplierId = [];
                         result.forEach(function (supplier) {
                             if (supplier["material"] == id) {
-                                supplierId.push(supplier["supplier"])
+                                supplierId.push(supplier["supplierName"])
                             }
                         });
                         console.log("Success: ", supplierId);
@@ -80,6 +80,7 @@
     }
 	function price() {
 	    var item = $("#item").val();
+
 	    var suppliers = $("#Supplier_Name").val();
 
         $.ajax({
@@ -88,7 +89,9 @@
             success: function(result){
                 if(result) {
                     result.forEach(function (supplier) {
-                        if ((supplier["material"] == item )&& (supplier["supplier"] == suppliers) ) {
+                        if ((supplier["material"] == item )&& (supplier["supplierName"] == suppliers) ) {
+                            $('#SupplierMail').val(supplier["personMail"]);
+                            $('#SupplierId').val(supplier["supplier"]);
                             $('#price').html("Rs. " + supplier["price"] + " Per Unit");
                             $('#price').show();
                             console.log("Success: ", supplier["price"]);
@@ -100,6 +103,29 @@
             },
             error : function(e) {
                 $("#Supplier_Name").val("User not found");
+                console.log("ERROR: ", e);
+            }
+        });
+
+    }
+
+    function site() {
+        $.ajax({
+            type : "GET",
+            url : "/sitemanager/site",
+            success: function(result){
+                if(result) {
+                    result.forEach(function (supplier) {
+                        if (supplier["id"] == $("#SiteManagerId").val() && supplier["siteName"] == $("#site_name").val() ) {
+                            $('#SiteId').val(supplier["site"]);
+                        }
+                    });
+
+
+                }
+            },
+            error : function(e) {
+                $("#siteName").val("User not found");
                 console.log("ERROR: ", e);
             }
         });
@@ -137,10 +163,14 @@
 			<div class="form-group">
 				<label class="control-label col-md-3 col-sm-3 col-xs-12" for="site_name">Site Address
 				</label>
-				<div class="col-md-6 col-sm-6 col-xs-12">
-					<input type="text" id="site_name" required="required" class="form-control col-md-7 col-xs-12" readonly="readonly">
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<select path = "country" onchange="site()"  id="site_name" required="required" class="form-control col-md-6 col-sm-6 col-xs-12">
+							<option value = "NONE" label = "Select"/>
+							<options items = "${countryList}" />
+						</select>
+					</div>
 				</div>
-			</div>
+
 
 			<div class="form-group">
 				<label class="control-label col-md-3 col-sm-3 col-xs-12" for="manager_name">Site Manager ID
@@ -218,6 +248,24 @@
 			</div>
 
 			<div class="form-group">
+				<label class="control-label col-md-3 col-sm-6 col-xs-12" for="order_status">Order Status
+				</label>
+				<div class="col-md-2 col-sm-5 col-xs-12">
+					<select type="text" id="order_status" required="required" class="form-control col-md-7 col-xs-12">
+						<option value="None">--Select--</option>
+						<option value="Pending">Pending</option>
+						<option value="approvedByManager">approvedByManager</option>
+						<option value="rejectedByManager">rejectedByManager</option>
+						<option value="approvedBySupplier">approvedBySupplier</option>
+						<option value="rejectedBySupplier">rejectedBySupplier</option>
+						<option value="cancelled">cancelled</option>
+						<option value="approvedByConstructor">approvedByConstructor</option>
+						<option value="rejectedByConstructor">rejectedByConstructor</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group">
 				<label class="control-label col-md-3 col-sm-6 col-xs-12" for="Supplier_Name">Supplier`s ID
 				</label>
 				<div class="col-md-2 col-sm-5 col-xs-12">
@@ -228,22 +276,6 @@
 				</div>
 				<label class="control-label col-md-2 col-sm-3 col-xs-12" id="price">Rs.XXXXXX per one item
 				</label>
-			</div>
-
-			<div class="form-group">
-				<label class="control-label col-md-3 col-sm-6 col-xs-12" for="order_status">Order Status
-				</label>
-				<div class="col-md-2 col-sm-5 col-xs-12">
-					<select type="text" id="order_status" required="required" class="form-control col-md-7 col-xs-12">
-						<option value="None">--Select--</option>
-						<option value="Pending">Pending</option>
-						<option value="Approved">Approved</option>
-						<option value="Cancelled">Cancelled</option>
-						<option value="Placed">Placed</option>
-						<option value="Rejected">Rejected</option>
-						<option value="Delivered">Delivered</option>
-					</select>
-				</div>
 			</div>
 
 			<div class="form-group">
@@ -269,6 +301,12 @@
 			<div class="form-group">
 				<div class="col-md-6 col-sm-6 col-xs-12">
 					<input type="text" id="SupplierMail" class="form-control col-md-7 col-xs-12">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-md-6 col-sm-6 col-xs-12">
+					<input type="text" id="SupplierId" class="form-control col-md-7 col-xs-12">
 				</div>
 			</div>
 
