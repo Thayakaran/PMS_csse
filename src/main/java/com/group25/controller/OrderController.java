@@ -24,5 +24,12 @@ public class OrderController {
     public String updateStatus(@RequestBody Order order){
         return orderService.updateStatus(Integer.toString(order.getId()), order.getStatus());
     }
-
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public String addOrder(@RequestBody Order order){
+        return orderService.addOrder(order.getOrderedBy(), order.getItem(), order.getManager(), order.getSite(), order.getQuantity(), order.getDescription(), order.getContactNo(), order.getRequiredDate(), order.getNote());
+    }
+    @RequestMapping(value = "/", method = RequestMethod.PUT)
+    public String updateOrder(@RequestBody Order order){
+        return orderService.updateOrder(order.getId(), order.getOrderedBy(), order.getItem(), order.getManager(), order.getSite(), order.getQuantity(), order.getDescription(), order.getContactNo(), order.getRequiredDate(), order.getNote());
+    }
 }
