@@ -38,10 +38,18 @@ $(document).ready(function () {
 
         e.preventDefault();
 
+        var email;
+
+        if ($("#email").val().trim() == "") {
+
+            email = "null";
+
+        }
+
         $.ajax({
             type : "PUT",
             contentType : "application/json",
-            url : "/login/forgot/" + $("#email").val(),
+            url : "/login/forgot/" + email,
             success: function (data, textStatus, xhr) {
 
                 swal({title: "Success", text: data, type: "success"});
