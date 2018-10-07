@@ -65,7 +65,6 @@ $( document ).ready(function() {
             role : $("#role").val(),
             email :  $("#email").val(),
             password :  $("#password").val()
-
         }
 
         // DO POST
@@ -89,7 +88,6 @@ $( document ).ready(function() {
                 swal({title:"Error", text:"Error occurred in adding User, Enter valid Data", type:"error"});
             }
         });
-
     }
 
     function resetAddData(){

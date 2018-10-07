@@ -28,6 +28,24 @@
 
     <!-- Custom Theme Style -->
     <link href="/css/custom.min.css" rel="stylesheet">
+
+    <link href="vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+
+
+
+    <!-- jQuery -->
+    <script src="vendors/jquery/dist/jquery.min.js"></script>
+    <script src="/js/projectJS/sweetalert2.all.min.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="/js/projectJS/custom.min.js"></script>
+
+   <!--// <script src="/js/viewJS/supplierProfile.js"></script>-->
+
+    <script src="/js/viewJS/supplierHome.js"></script>
 </head>
 
 <body class="nav-md">
@@ -170,25 +188,133 @@
         <!-- /top navigation -->
 
         <!-- page content -->
-        <div class="right_col" role="main">
+        <!--<div class="right_col" role="main">-->
 
-            <div class="row tile_count" id="body">
-                <!--<img style="float:right" src="/images/SLIIT.png" alt="SLIIT" width="100%">-->
-                <li><a href="supplierProfile.html"></a></li>
+            <!--<div class="row tile_count" >-->
+                <!--<div class="row"   id="supplierProfile">-->
+                    <!--&lt;!&ndash; Content will load here &ndash;&gt;-->
+                <!--</div>-->
 
+            <!--</div>-->
+
+            <!--<br />-->
+        <!--</div>-->
+
+        <!--<div class="right_col" role="main">-->
+
+            <!--<div class="row tile_count" id="body">-->
+
+
+            <!--</div>-->
+
+            <!--<br />-->
+        <!--</div>-->
+
+        <div class="main_container">
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="">
+                    <div class="page-title">
+                        <div class="title_left">
+                            <h3>KS Suppliers</h3>
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel">
+
+                                    <div class="x_content">
+                                        <br />
+
+                                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> First Name
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> KS Suppliers</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Last Name
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Colombo</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name"> Office Address
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">+94 115685469</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name"> Email
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">kssuppliers@gmail.com </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name"> Mobile Phone
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">KS Suppliers</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name"> Office Phone
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">KS Suppliers</label>
+                                                </div>
+                                            </div>
+
+                                            </br>
+
+                                            <div class="title_center">
+                                                <h4>Available Materials</h4>
+                                            </div>
+                                            </br>
+
+                                            <table id="supplierHome" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                                <thead>
+                                                <tr>
+                                                    <th>Material</th>
+                                                    <th>Measurement</th>
+                                                    <th>Basic Price</th>
+                                                    <th>SupplierID</th>
+
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+
+
+
+                                        </form>
+
+                                        <div id="dvTable">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /page content -->
+
+
+                <!-- page content -->
             </div>
-
-            <br />
-        </div>
-
-        <div class="right_col" role="main">
-
-            <div class="row tile_count" id="body">
-                <img style="float:right" src="/images/SLIIT.png" alt="SLIIT" width="100%">
-
-            </div>
-
-            <br />
         </div>
         <!-- /page content -->
 
@@ -241,11 +367,25 @@
 <script src="vendors/moment/min/moment.min.js"></script>
 <script src="vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
-<!-- Custom Theme Scripts -->
-<script src="/js/projectJS/custom.min.js"></script>
+<!-- Datatables -->
+<script src="vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+<script src="vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+<script src="vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+<script src="vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+<script src="vendors/jszip/dist/jszip.min.js"></script>
+<script src="vendors/pdfmake/build/pdfmake.min.js"></script>
+<script src="vendors/pdfmake/build/vfs_fonts.js"></script>
 
 <!-- form inside Scripts -->
-<script src="/js/viewJS/managementHome.js"></script>
+
 
 </body>
 </html>
