@@ -56,7 +56,7 @@ public class LoginController {
 
         }
 
-        if (email == null) {
+        if (email == "null") {
 
             return new ResponseEntity<>("Enter an email address", new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
 
