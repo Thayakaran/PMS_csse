@@ -10,36 +10,40 @@ $('#email').keyup(function () {
 $( document ).ready(function() {
 
     //Get all user data
-    $.ajax({
-        type: "GET",
-        url: "/users",
-        success: function(result) {
+    getAllSiteData();
 
-            $('#datatable-responsive_users').DataTable({
-                "data" : result,
-                "columns" : [
-                    { "data" : "id" },
-                    { "data" : "fName" },
-                    { "data" : "lName" },
-                    { "data" : "mPhone" },
-                    { "data" : "oPhone" },
-                    { "data" : "hAddress" },
-                    { "data" : "wAddress" },
-                    { "data" : "role" },
-                    { "data" : "email" }
-                ],
-                "bDestroy": true
-            });
+    function getAllSiteData() {
+        $.ajax({
+            type: "GET",
+            url: "/users",
+            success: function (result) {
 
-        },
-        error: function(e) {
-            swal({
-                title: "Error",
-                text: "Unable to load user data, May be a Network issue!",
-                type: "error"
-            });
-        }
-    });
+                $('#datatable-responsive_users').DataTable({
+                    "data": result,
+                    "columns": [
+                        {"data": "id"},
+                        {"data": "fName"},
+                        {"data": "lName"},
+                        {"data": "mPhone"},
+                        {"data": "oPhone"},
+                        {"data": "hAddress"},
+                        {"data": "wAddress"},
+                        {"data": "role"},
+                        {"data": "email"}
+                    ],
+                    "bDestroy": true
+                });
+
+            },
+            error: function (e) {
+                swal({
+                    title: "Error",
+                    text: "Unable to load user data, May be a Network issue!",
+                    type: "error"
+                });
+            }
+        });
+    }
 
     // ADD NEW USER
     $("#userRegisterForm").submit(function(event) {
@@ -75,6 +79,7 @@ $( document ).ready(function() {
                 if (result.success){
                     swal({title:"Success", text:"New User added Successfully", type:"success"});
                     resetAddData();
+                    getAllSiteData();
                 }
                 else{
                     swal({title:"Error", text:"Error occurred in adding User, Enter valid Data", type:"error"});
@@ -178,6 +183,8 @@ $( document ).ready(function() {
                 if (result.success){
                     swal({title:"Success", text:"User has been updated", type:"success"});
                     resetUpdateData();
+                    getAllSiteData();
+
                 }
                 else{
                     swal({title:"Error", text:"Error occurred in updating User data", type:"error"});
@@ -223,6 +230,7 @@ $( document ).ready(function() {
                 if (result.success){
                     swal({title:"Success", text:"User Deleted Successfully", type:"success"});
                     resetDeleteData();
+                    getAllSiteData();
                 }
                 else{
                     swal({title:"Error", text:"Error occurred in Deleting User", type:"error"});

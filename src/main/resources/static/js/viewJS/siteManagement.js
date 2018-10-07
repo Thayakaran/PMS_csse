@@ -15,6 +15,40 @@ $( document ).ready(function() {
     });
 
     /////////////////////////////////////////////////////////////////////////////////
+    //ajax call to get all site information in a table
+    getAllSiteData();
+
+    function getAllSiteData() {
+        $.ajax({
+            type: "GET",
+            url: "/sites",
+            success: function (result) {
+
+                $('#datatable-responsive_sites').DataTable({
+                    "data": result,
+                    "columns": [
+                        {"data": "siteID"},
+                        {"data": "location"},
+                        {"data": "client"},
+                        {"data": "manager"},
+                        {"data": "contractors"},
+                        {"data": "suppliers"}
+                    ],
+                    "bDestroy": true
+                });
+
+            },
+            error: function (e) {
+                swal({
+                    title: "Error",
+                    text: "Unable to load user data, May be a Network issue!",
+                    type: "error"
+                });
+            }
+        });
+    }
+
+    //////////////////////////////////////////////////////////////////////
     //ajax calls to fill the options from database
 
     $.ajax({
@@ -23,7 +57,7 @@ $( document ).ready(function() {
         success: function(result){
             if(result){
                 for(var i = 0; i<result.length; i++){
-                    var option = $('<option></option>').attr("value", result[i].fName+" "+result[i].lName).text(result[i].fName+" "+result[i].lName);
+                    var option = $('<option></option>').attr("value", result[i].id).text(result[i].fName+" "+result[i].lName);
                     $("#siteManager,#UsiteManager").append(option);
                 }
             }else{
@@ -101,6 +135,7 @@ $( document ).ready(function() {
                 if (result.success){
                     swal({title:"Success", text:"New Site has been added", type:"success"});
                     resetAddData();
+                    getAllSiteData();
                 }
                 else{
                     swal({title:"Error", text:"Error occurred in adding data, Enter unique Site ID", type:"error"});
@@ -196,6 +231,7 @@ $( document ).ready(function() {
                 if (result.success){
                     swal({title:"Success", text:"Site has been updated", type:"success"});
                     resetUpdateData();
+                    getAllSiteData();
                 }
                 else{
                     swal({title:"Error", text:"Error occurred in updating data", type:"error"});
@@ -238,6 +274,7 @@ $( document ).ready(function() {
                 if (result.success){
                     swal({title:"Success", text:"Site Deleted Successfully", type:"success"});
                     resetDeleteData();
+                    getAllSiteData();
                 }
                 else{
                     swal({title:"Error", text:"Error occurred in Deleting Site", type:"error"});

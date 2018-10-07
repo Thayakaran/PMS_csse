@@ -5,13 +5,13 @@ public class Site {
     private String siteID;
     private String location;
     private String client;
-    private String manager;
+    private int manager;
     private String contractors;
     private String suppliers;
 
     public Site() {}
 
-    public Site(String siteID, String location, String client, String manager, String contractors, String suppliers) {
+    public Site(String siteID, String location, String client, int manager, String contractors, String suppliers) {
         this.siteID = siteID;
         this.location = location;
         this.client = client;
@@ -44,11 +44,11 @@ public class Site {
         this.client = client;
     }
 
-    public String getManager() {
+    public int getManager() {
         return manager;
     }
 
-    public void setManager(String manager) {
+    public void setManager(int manager) {
         this.manager = manager;
     }
 
