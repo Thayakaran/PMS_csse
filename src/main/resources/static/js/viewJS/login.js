@@ -95,6 +95,7 @@ $(document).ready(function () {
 
                     localStorage.setItem('role', data["role"]);
                     localStorage.setItem('id', data["id"]);
+                    localStorage.setItem('userName', data["fName"]);
 
                     if (data["role"] == "Contractor") {
 
@@ -111,13 +112,11 @@ $(document).ready(function () {
 
                     } else if (data["role"] == "Account Staff") {
 
-                        localStorage.setItem('userName', data["fName"]);
                         localStorage.setItem('email', credentials["email"]);
                         location.href = "accoundantHome.html";
 
                     } else if (data["role"] == "Manager") {
 
-                        localStorage.setItem('userName', data["fName"]);
                         location.href = "managementHome";
 
                     } else {
