@@ -1,13 +1,10 @@
 package com.group25.controller;
 
-import com.group25.encryptionKey.SecureKey;
+
 import com.group25.entity.Login;
 import com.group25.mailService.MailService;
 import com.group25.service.LoginService;
-import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.jasypt.util.password.StrongPasswordEncryptor;
-import org.jasypt.util.text.BasicTextEncryptor;
-import org.jasypt.util.text.StrongTextEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -15,7 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.InvalidParameterException;
 import java.security.SecureRandom;
 
 @RestController
