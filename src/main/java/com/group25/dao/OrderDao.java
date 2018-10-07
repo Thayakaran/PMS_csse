@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
@@ -24,11 +25,11 @@ public class OrderDao {
             order.setId(resultSet.getInt("id"));
             order.setOrderedBy(resultSet.getInt("orderedBy"));
             order.setManager(resultSet.getInt("manager"));
-            order.setItem(resultSet.getInt("item"));
+            order.setItem(resultSet.getString("item"));
             order.setQuantity(resultSet.getDouble("quantity"));
             order.setRequestedDate(resultSet.getDate("date"));
             order.setDescription(resultSet.getString("description"));
-            order.setSite(resultSet.getInt("site"));
+            order.setSite(resultSet.getString("site"));
             order.setContactNo(resultSet.getInt("contactNo"));
             order.setRequiredDate(resultSet.getDate("requiredDate"));
             order.setStatus(resultSet.getString("status"));
@@ -40,8 +41,8 @@ public class OrderDao {
 
 
 
-    public Collection<Order> getPendingOrder(int constructorID){
-        String sql = "SELECT * FROM orders WHERE status='pending' AND orderedBy=?";
+    public Collection<Order> getOrderDetails(int constructorID, String status, Date from, Date to){
+        String sql = "SELECT ";
         List<Order> orders = jdbcTemplate.query(sql, new Object[]{constructorID},new OrderRowMapper());
         return orders;
     }
