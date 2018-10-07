@@ -18,6 +18,10 @@ public class SiteManagerService {
     public Collection<SiteManager> getSupplierId(){
         return this.managerDao.getSupplierId();
     }
+    public Collection<SiteManager> getsiteName(){
+        return this.managerDao.getsiteName();
+    }
+
     public String addRequest(SiteManager manager) {
        return this.managerDao.addRequest(manager);
 
@@ -25,8 +29,11 @@ public class SiteManagerService {
     public Collection<SiteManager> getUser(String id){
         return this.managerDao.getUser(id);
     }
-    public SiteManager getSendMail(int id){
-        return this.managerDao.getSendMail(id);
+//    public SiteManager getSendMail(String id){
+//        return this.managerDao.getSendMail(id);
+//    }
+    public SiteManager getManagerDetails(String id){
+        return this.managerDao.getManagerDetails(id);
     }
     public SiteManager getRequestId(int id){
         return this.managerDao.getRequestId(id);
