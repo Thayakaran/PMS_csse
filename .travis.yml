@@ -9,9 +9,4 @@ notifications:
   - n.sankeeth@gmail.com
   on_success: always
   on_failure: always
-deploy:
-  provider: heroku
-  api_key:
-    secure: gvH/SPCRU/CJhW+uo/gMUqfxIb3//A9WKV41CeC+PCfPLWCzvbCCQ7UoCUQIIt7Dm0WHO9tpa5xLRESuxqqfHrtzlnhxtRaOIoTt2MQyChoOg2+YucLB/mqBnJnTQPyvAdVBb7+TB4wzo8wfnIbq+5RoSqE0nfCzS89FM6DiHIUvmNqON39HetfMRncy45cyZeHrM6e0vZi+75uK7p2VxQF7YhboYgcAV5dBtSyQ41j7iEVIjmG70PMA3NwZ7qcb/HOE9L3kvBo4wqqj1iThYJT439LJNcWHCOGrj0ceqGmbE/YuiEzq7ZxKpJWC8YpRi/F6uCd8BpcgYiYl8iXnYz/LHkfrahDoPDDTq2GVvaeuDGN8NDcQqecQawazp1krif2oyoGQ+1Tit5a08ca6Znh8MtON4LYNNK+XTIHwJAYLxV1i5AyNNOubSoftpM+hnU+mQUBeXWVnoKhwPo2SHNdBOUd5ZftrFX3L0A6+uQ8Cvt9OXH4FtbnLhs/QVMXvPrMFLRt+6ERgXpTASUJbAUlcnWKOp6NwliMAEFEu/Pdo86FklU0grUYkixR6YyohDwBL2cTeFeeOFbt0aR97/iFS1xAxgEu9TABWpdxD3bJm8/agYMX9wfMrHpC43BW14F7zOSHki3c/Y+q6iednZzstW+kNUtHATi5q97IAV+o=
-  app:
-    master: sliit-pms-csse
+
