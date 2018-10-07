@@ -50,7 +50,7 @@ public class InvoiceController {
 
         invoiceService.updatePaymentStatus(id, date);
 
-        mailservice.sendPaymentConfirmationEmail(email, id);
+        mailservice.sendPaymentConfirmationEmail(email, id, date);
 
     }
 
