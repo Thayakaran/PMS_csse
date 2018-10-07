@@ -1,6 +1,7 @@
 package com.group25.controller;
 
 import com.group25.entity.Order;
+import com.group25.entity.OrderDetail;
 import com.group25.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,9 +18,9 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @RequestMapping(value = "/{orderedBy}/status/{orderStatus}", method = RequestMethod.GET)
-    public Collection<Order> getorders(@PathVariable("orderedBy") String constructorID, @PathVariable("orderStatus") String status){
-        return orderService.getPendingOrder(constructorID);
+    @RequestMapping(value = "/{orderedBy}/{manager}/{orderStatus}/{from}/{to}", method = RequestMethod.GET)
+    public Collection<OrderDetail> getOrders(@PathVariable("orderedBy") String constructorID, @PathVariable("manager") String managerID, @PathVariable("orderStatus") String status, @PathVariable("from") String from, @PathVariable("to") String to){
+        return orderService.getOrderDetails(constructorID, managerID, status, from, to);
     }
 
 }

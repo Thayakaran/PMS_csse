@@ -4,19 +4,19 @@ import java.util.Date;
 
 public class Order {
 
-    private int id;
-    private int orderedBy;
-    private int manager;
-    private String item;
-    private double quantity;
-    private Date requestedDate;
-    private String description;
-    private String site;
-    private int contactNo;
-    private Date requiredDate;
-    private String status;
-    private String note;
-    private int supplier;
+    protected int id;
+    protected int orderedBy;
+    protected int manager;
+    protected String item;
+    protected double quantity;
+    protected Date requestedDate;
+    protected String description;
+    protected String site;
+    protected int contactNo;
+    protected Date requiredDate;
+    protected String status;
+    protected String note;
+    protected int supplier;
 
     public Order(){}
 
