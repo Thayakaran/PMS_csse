@@ -25,7 +25,7 @@ public class SiteDao {
             site.setSiteID(resultSet.getString("SiteID"));
             site.setLocation(resultSet.getString("Location"));
             site.setClient(resultSet.getString("Client"));
-            site.setManager(resultSet.getString("Manager"));
+            site.setManager(resultSet.getInt("Manager"));
             site.setContractors(resultSet.getString("Contractors"));
             site.setSuppliers(resultSet.getString("Suppliers"));
             return site;
@@ -64,7 +64,7 @@ public class SiteDao {
         String siteID = site.getSiteID();
         String location = site.getLocation();
         String client = site.getClient();
-        String manager = site.getManager();
+        int manager = site.getManager();
         String contractors = site.getContractors();
         String suppliers = site.getSuppliers();
         try{
@@ -82,7 +82,7 @@ public class SiteDao {
         String siteID = site.getSiteID();
         String location = site.getLocation();
         String client = site.getClient();
-        String manager = site.getManager();
+        int manager = site.getManager();
         String contractors = site.getContractors();
         String suppliers = site.getSuppliers();
         try{
