@@ -9,6 +9,38 @@ $('#email').keyup(function () {
 
 $( document ).ready(function() {
 
+    //Get all user data
+    $.ajax({
+        type: "GET",
+        url: "/users",
+        success: function(result) {
+
+            $('#datatable-responsive_users').DataTable({
+                "data" : result,
+                "columns" : [
+                    { "data" : "id" },
+                    { "data" : "fName" },
+                    { "data" : "lName" },
+                    { "data" : "mPhone" },
+                    { "data" : "oPhone" },
+                    { "data" : "hAddress" },
+                    { "data" : "wAddress" },
+                    { "data" : "role" },
+                    { "data" : "email" }
+                ],
+                "bDestroy": true
+            });
+
+        },
+        error: function(e) {
+            swal({
+                title: "Error",
+                text: "Unable to load user data, May be a Network issue!",
+                type: "error"
+            });
+        }
+    });
+
     // ADD NEW USER
     $("#userRegisterForm").submit(function(event) {
         // Prevent the form from submitting via the browser.
@@ -139,7 +171,7 @@ $( document ).ready(function() {
         $.ajax({
             type : "PUT",
             contentType : "application/json; charset=utf-8",
-            url : "users", //window.location +"users",
+            url : "users",
             data : JSON.stringify(formData),
             dataType : 'json',
             success : function(result) {
@@ -215,3 +247,5 @@ $( document ).ready(function() {
     }
 
 });
+
+
