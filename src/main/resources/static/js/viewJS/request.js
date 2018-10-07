@@ -48,6 +48,10 @@ $( document ).ready(function() {
     $('#note').hide();
     $('#noteLabel').hide();
     $('#price').hide();
+    $('#SiteManagerId').hide();
+    $('#SiteId').hide();
+    $('#SupplierMail').hide();
+
 
     $('#order_status').change(function() {
         if (this.value == 'Cancelled') {
