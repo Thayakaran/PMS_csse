@@ -22,6 +22,7 @@ public class SiteManager {
     private String userName;
     private String mail;
     private String infor;
+    private String managerName;
 
 
     public SiteManager() {
@@ -212,5 +213,14 @@ public class SiteManager {
 
     public void setInfor(String infor) {
         this.infor = infor;
+    }
+
+    //Get ManagerName
+    public String getManagerName() {
+        return managerName;
+    }
+
+    public void setManagerName(String managerName) {
+        this.managerName = managerName;
     }
 }

@@ -34,7 +34,7 @@ public class SiteManagerController {
     }
 
     @RequestMapping(value = "user/{id}", method = RequestMethod.GET)
-    public SiteManager getUser(@PathVariable("id") String id){
+    public Collection<SiteManager> getUser(@PathVariable("id") String id){
         return sitemanagerservice.getUser(id);
     }
 
