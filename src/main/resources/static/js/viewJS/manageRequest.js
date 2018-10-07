@@ -11,6 +11,11 @@ $(document).ready(function() {
 
     var mailId;
 
+    var id = localStorage.getItem('id');
+
+    $("#Request_id").val(id);
+    ajaxGetRequestId(id);
+
     $('#note').hide();
     $('#noteLabel').hide();
     $('#price').hide();
@@ -30,16 +35,6 @@ $(document).ready(function() {
     });
     $('#back').click(function () {
         location.href = "sitemanagerHome.html";
-    });
-
-    var id;
-
-    $("#managependingRequest").submit(function(event){
-        event.preventDefault();
-         id = $("#Request_id").val();
-        console.log(id);
-
-        ajaxGetRequestId(id);
     });
 
 

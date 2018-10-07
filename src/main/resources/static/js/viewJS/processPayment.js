@@ -54,12 +54,19 @@ $(document).ready(function () {
 
             event.preventDefault();
 
+            var date = new Date($.now());
+
+            var strDate = date.getFullYear()+"-"+date.getMonth()+"-"+date.getDay()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+
             var paymentDetails = {
+                invoiceID: invoiceID,
                 cardholerName: $("#cardholerName").val(),
                 cardNo: $("#cardNo").val(),
                 expDate: $("#expDate").val(),
                 cvv: $("#cvv").val(),
-                amount: $("#amount").val()
+                amount: $("#amount").val(),
+                date: strDate,
+                email: email
             }
 
             $.ajax({
