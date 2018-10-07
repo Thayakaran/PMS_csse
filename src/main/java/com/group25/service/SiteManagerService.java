@@ -22,7 +22,7 @@ public class SiteManagerService {
        return this.managerDao.addRequest(manager);
 
     }
-    public SiteManager getUser(String id){
+    public Collection<SiteManager> getUser(String id){
         return this.managerDao.getUser(id);
     }
     public SiteManager getSendMail(int id){

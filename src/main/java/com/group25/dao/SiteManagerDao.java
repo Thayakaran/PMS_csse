@@ -53,10 +53,11 @@ public class SiteManagerDao {
         @Override
         public SiteManager mapRow(ResultSet resultSet, int i) throws SQLException {
             SiteManager user = new SiteManager();
-            user.setUserId(resultSet.getInt("id"));
-            user.setUserName(resultSet.getString("fName"));
-            user.setContactnum(resultSet.getInt("oPhone"));
-            user.setSite(resultSet.getString("wAddress"));
+            user.setId(resultSet.getInt("d.id"));
+            user.setOrderby(resultSet.getInt("orderedBy"));
+            user.setStatus(resultSet.getString("status"));
+            user.setRequiredate(resultSet.getString("requiredDate"));
+            user.setItem(resultSet.getString("item"));
             return user;
         }
     }
@@ -79,15 +80,15 @@ public class SiteManagerDao {
 
     //get a specific Request
     public SiteManager getRequestId(int id){
-        final String sql = "SELECT * FROM orders WHERE id = ?";
+        final String sql = "SELECT * FROM orders WHERE manager = ?";
         SiteManager request = jdbcTemplate.queryForObject(sql, new SitemanagerRowMapper(), id);
         return request;
     }
 
     //get a specific User
-    public SiteManager getUser(String id){
-        final String sql = "SELECT * FROM user WHERE email = ?";
-        SiteManager user = jdbcTemplate.queryForObject(sql, new userRowMapper(), id);
+    public  List<SiteManager> getUser(String id){
+        final String sql = "SELECT * FROM user u, orders d WHERE d.manager = u.id AND u.email = ?";
+        List<SiteManager> user = jdbcTemplate.query(sql, new userRowMapper(), id);
         return user;
     }
 
