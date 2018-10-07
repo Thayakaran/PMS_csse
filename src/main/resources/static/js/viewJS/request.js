@@ -139,7 +139,11 @@ $( document ).ready(function() {
             contactnum: $("#contact").val(),
             supplier: $("#SupplierId").val(),
             status: $("#order_status").val(),
-            note: $("#note").val()
+            note: $("#note").val(),
+            personMail:$('#SupplierMail').val(),
+            userName:$('#Supplier_Name').val(),
+            infor:"I am " + $('#manager_name').val() +" i am manager of this " + $('#site_name').val() + " site. I am approved below material request id. Could you pleae send before " + $("#require_date").val() + " requested materials " ,
+            id:56,
 
 
 

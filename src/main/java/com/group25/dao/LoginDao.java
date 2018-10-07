@@ -29,6 +29,7 @@ public class LoginDao {
             login.setEmail(resultSet.getString("email"));
             login.setRole(resultSet.getString("role"));
             login.setfName(resultSet.getString("fName"));
+            login.setId(resultSet.getInt("id"));
 
             return login;
 
@@ -38,10 +39,12 @@ public class LoginDao {
 
     public Login getUserLoginCredentials(String email){
 
+        Login login = null;
+
         try {
 
             final String sql = "SELECT * FROM user WHERE email = ?";
-            Login login = jdbcTemplate.queryForObject(sql, new LoginDao.LoginRowMapper(), email);
+            login = jdbcTemplate.queryForObject(sql, new LoginDao.LoginRowMapper(), email);
             return login;
 
         } catch (Exception ex) {

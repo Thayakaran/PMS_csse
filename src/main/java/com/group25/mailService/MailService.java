@@ -35,8 +35,9 @@ public class MailService {
         sm.setTo(sitemanager.getPersonMail());
         sm.setFrom("matrix.pms.sliit@gmail.com");
         sm.setSubject("Place an order");
+        sm.setText("Hello " + sitemanager.getUserName());
         sm.setText(sitemanager.getInfor() + "\n" + "Order ID :" + sitemanager.getId()
-                + '\n' + "Before : " + sitemanager.getRequiredate());
+                + '\n' + "Thanks.");
 
         jms.send(sm);
     }
