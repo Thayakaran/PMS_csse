@@ -50,14 +50,15 @@ public class SiteManagerController {
         return sitemanagerservice.getUser(id);
     }
 
-//    //@RequestMapping(value = "mail/{id}", method = RequestMethod.GET)
-//    //public SiteManager getSendMail(@PathVariable("id") String id){
-//        return sitemanagerservice.getSendMail(id);
-//    }
+    @RequestMapping(value = "mail/{id}", method = RequestMethod.GET)
+    public SiteManager getSendMail(@PathVariable("id") int id){
+        return sitemanagerservice.getSendMail(id);
+    }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addRequest(@RequestBody SiteManager manager){
          sitemanagerservice.addRequest(manager);
+        mailservice.sendApprovemail(manager);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)

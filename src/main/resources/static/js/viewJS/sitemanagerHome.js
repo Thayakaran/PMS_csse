@@ -9,6 +9,7 @@ $(document).ready(function(){
         return;
 
     }
+    $("#userwelcome").html(localStorage.getItem("userName"));
     var useremail = localStorage.getItem('email');
     ajaxGetRequester(useremail);
 
