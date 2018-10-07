@@ -44,6 +44,10 @@ $(document).ready(function () {
 
             email = "null";
 
+        } else {
+
+            email = $("#email").val().trim();
+
         }
 
         $.ajax({
