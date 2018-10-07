@@ -1,6 +1,7 @@
 package com.group25.dao;
 
 import com.group25.entity.Order;
+import com.group25.entity.OrderDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -24,11 +26,11 @@ public class OrderDao {
             order.setId(resultSet.getInt("id"));
             order.setOrderedBy(resultSet.getInt("orderedBy"));
             order.setManager(resultSet.getInt("manager"));
-            order.setItem(resultSet.getInt("item"));
+            order.setItem(resultSet.getString("item"));
             order.setQuantity(resultSet.getDouble("quantity"));
             order.setRequestedDate(resultSet.getDate("date"));
             order.setDescription(resultSet.getString("description"));
-            order.setSite(resultSet.getInt("site"));
+            order.setSite(resultSet.getString("site"));
             order.setContactNo(resultSet.getInt("contactNo"));
             order.setRequiredDate(resultSet.getDate("requiredDate"));
             order.setStatus(resultSet.getString("status"));
@@ -37,19 +39,92 @@ public class OrderDao {
             return order;
         }
     }
+    private static class OrderDetailsRowMapper implements RowMapper<OrderDetail>{
+        @Override
+        public OrderDetail mapRow(ResultSet resultSet, int i) throws SQLException {
+            OrderDetail order = new OrderDetail();
+            order.setId(resultSet.getInt("id"));
+            order.setOrderedBy(resultSet.getInt("orderedBy"));
+            order.setManager(resultSet.getInt("manager"));
+            order.setItem(resultSet.getString("item"));
+            order.setQuantity(resultSet.getDouble("quantity"));
+            order.setRequestedDate(resultSet.getDate("date"));
+            order.setDescription(resultSet.getString("description"));
+            order.setSite(resultSet.getString("site"));
+            order.setContactNo(resultSet.getInt("contactNo"));
+            order.setRequiredDate(resultSet.getDate("requiredDate"));
+            order.setStatus(resultSet.getString("status"));
+            order.setNote(resultSet.getString("note"));
+            order.setSupplier(resultSet.getInt("supplier"));
 
-
-
-    public Collection<Order> getPendingOrder(int constructorID){
-        String sql = "SELECT * FROM orders WHERE status='pending' AND orderedBy=?";
-        List<Order> orders = jdbcTemplate.query(sql, new Object[]{constructorID},new OrderRowMapper());
-        return orders;
+            order.setOrderedByName(resultSet.getString("orderedByName"));
+            order.setManagerName(resultSet.getString("managerName"));
+            order.setLocation(resultSet.getString("siteLocation"));
+            order.setLocation(resultSet.getString("siteLocation"));
+            return order;
+        }
     }
 
-    public Order getOrderDetails(int orderID){
-        String sql = "SELECT * FROM orders WHERE  id=?";
-        Order order = jdbcTemplate.queryForObject(sql, new Object[]{orderID},new OrderRowMapper());
-        return order;
+    //This will return the order dtails object as collection
+    public Collection<OrderDetail> getOrderDetails(String constructorID, String managerID, String status, String from, String to){
+        boolean and = false;
+        List<String> param = new ArrayList();
+        String sql = "SELECT o.id, o.orderedBy orderedBy, u2.fName orderedByName, o.manager manager, u1.fName managerName, o.item item, " +
+                "o.quantity quantity, o.date date, o.description description, o.site site, s.location siteLocation, o.contactNo contactNo,\n" +
+                "o.requiredDate, o.status, o.note, o.supplier, u3.fName supplierName\n" +
+                "FROM orders o\n" +
+                "LEFT JOIN user u1\n" +
+                "ON o.manager = u1.id\n" +
+                "LEFT JOIN user u2\n" +
+                "ON o.orderedBy = u2.id\n" +
+                "LEFT JOIN user u3\n" +
+                "ON o.supplier = u3.id\n" +
+                "LEFT JOIN sites s\n" +
+                "ON o.site = s.siteID";
+        if(constructorID.equals("0") && managerID.equals("0") && status.equals("0") && from.equals("0") && to.equals("0")){
+            sql = sql;
+        }
+        else{
+            sql = sql + " WHERE ";
+        }
+
+        if (!constructorID.equals("0")){
+            param.add(constructorID);
+            sql = sql + "o.orderedBY = ? ";
+            and = true;
+        }
+        if (!managerID.equals("0")){
+            param.add(managerID);
+            if (and){
+                sql = sql + " AND o.manager = ?";
+            }
+            else{
+                sql = sql + " o.manager = ?";
+                and = true;
+            }
+        }
+        if (!status.equals("0")){
+            param.add(status);
+            if (and){
+                sql = sql + " AND o.status = ?";
+            }
+            else{
+                sql = sql + " o.status = ?";
+                and = true;
+            }
+        }
+        if (!from.equals("0") && !from.equals("0")){
+            param.add(from);
+            param.add(to);
+            if (and){
+                sql = sql + " AND o.date BETWEEN  ? AND ?";
+            }
+            else{
+                sql = sql + " o.date BETWEEN  ? AND ?";
+            }
+        }
+        List<OrderDetail> orders = jdbcTemplate.query(sql, param.toArray(),new OrderDetailsRowMapper());
+        return orders;
     }
 
 }

@@ -4,23 +4,23 @@ import java.util.Date;
 
 public class Order {
 
-    private int id;
-    private int orderedBy;
-    private int manager;
-    private int item;
-    private double quantity;
-    private Date requestedDate;
-    private String description;
-    private int site;
-    private int contactNo;
-    private Date requiredDate;
-    private String status;
-    private String note;
-    private int supplier;
+    protected int id;
+    protected int orderedBy;
+    protected int manager;
+    protected String item;
+    protected double quantity;
+    protected Date requestedDate;
+    protected String description;
+    protected String site;
+    protected int contactNo;
+    protected Date requiredDate;
+    protected String status;
+    protected String note;
+    protected int supplier;
 
     public Order(){}
 
-    public Order(int id, int orderedBy, int item, Date requestedDate, int manager, int site, double quantity, String description, int contactNo, Date requiredDate, String status, String note, int supplier) {
+    public Order(int id, int orderedBy, String item, Date requestedDate, int manager, String site, double quantity, String description, int contactNo, Date requiredDate, String status, String note, int supplier) {
         this.id = id;
         this.orderedBy = orderedBy;
         this.manager = manager;
@@ -35,6 +35,7 @@ public class Order {
         this.note = note;
         this.supplier = supplier;
     }
+
     public int getId() {
         return id;
     }
@@ -59,11 +60,11 @@ public class Order {
         this.manager = manager;
     }
 
-    public int getItem() {
+    public String getItem() {
         return item;
     }
 
-    public void setItem(int item) {
+    public void setItem(String item) {
         this.item = item;
     }
 
@@ -91,11 +92,11 @@ public class Order {
         this.description = description;
     }
 
-    public int getSite() {
+    public String getSite() {
         return site;
     }
 
-    public void setSite(int site) {
+    public void setSite(String site) {
         this.site = site;
     }
 
@@ -138,5 +139,4 @@ public class Order {
     public void setSupplier(int supplier) {
         this.supplier = supplier;
     }
-
 }
