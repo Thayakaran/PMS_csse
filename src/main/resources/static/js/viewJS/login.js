@@ -87,57 +87,55 @@ $(document).ready(function () {
 
         $.ajax({
             type : "GET",
-            url : "/login/"+credentials.email,
-            success: function(result){
-                if(result){
-                    if (result["password"] == credentials["password"]) {
+            url : "/login/"+credentials.email + "/" + credentials.password,
+            success: function(data, textStatus, xhr){
+                console.log(data.responseText);
 
-                        localStorage.setItem('role', result["role"]);
+                if (xhr.status == 200) {
 
-                        if (result["role"] == "Contractor") {
+                    localStorage.setItem('role', data["role"]);
+                    localStorage.setItem('id', data["id"]);
 
-                            location.href = "contractorHome.html";
+                    if (data["role"] == "Contractor") {
 
-                        } else if (result["role"] == "Site Manager") {
+                        location.href = "contractorHome.html";
 
-                            localStorage.setItem('email', credentials.email);
-                            location.href = "sitemanagerHome.html";
+                    } else if (data["role"] == "Site Manager") {
 
-                        } else if (result["role"] == "Supplier") {
+                        localStorage.setItem('email', credentials.email);
+                        location.href = "sitemanagerHome.html";
 
-                            location.href = "supplierHome.html";
+                    } else if (data["role"] == "Supplier") {
 
-                        } else if (result["role"] == "Account Staff") {
+                        location.href = "supplierHome.html";
 
-                            localStorage.setItem('userName', result["fName"]);
-                            localStorage.setItem('email', credentials["email"]);
-                            location.href = "accoundantHome.html";
+                    } else if (data["role"] == "Account Staff") {
 
-                        } else if (result["role"] == "Manager") {
+                        localStorage.setItem('userName', data["fName"]);
+                        localStorage.setItem('email', credentials["email"]);
+                        location.href = "accoundantHome.html";
 
-                            localStorage.setItem('userName', result["fName"]);
-                            location.href = "managementHome";
+                    } else if (data["role"] == "Manager") {
 
-                        } else {
-
-                            location.href = "home.html";
-
-                        }
+                        localStorage.setItem('userName', data["fName"]);
+                        location.href = "managementHome";
 
                     } else {
 
-                        swal({title: "Invalid Credentials", text: "Check your email and password!", type: "error"});
+                        location.href = "home.html";
 
                     }
 
-                } else{
 
-                    swal({title: "Invalid Credentials", text: "Check your email and password!", type: "error"});
+                } else {
+
+                    swal({title: "Invalid Credentials", text: data.responseText, type: "error"});
+
                 }
             },
-            error : function(e) {
+            error : function(data, textStatus, xhr) {
 
-                swal({title: "Error", text: "Unable to login to the system, Try again later!!", type: "error"});
+                swal({title: "Error", text: data.responseText, type: "error"});
 
             }
         });

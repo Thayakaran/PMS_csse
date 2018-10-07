@@ -1,12 +1,10 @@
 package com.group25.controller;
 
-import com.group25.encryptionKey.SecureKey;
+
 import com.group25.entity.Login;
 import com.group25.mailService.MailService;
 import com.group25.service.LoginService;
-import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
-import org.jasypt.util.text.BasicTextEncryptor;
-import org.jasypt.util.text.StrongTextEncryptor;
+import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -26,18 +24,26 @@ public class LoginController {
     @Autowired
     MailService mailservice;
 
-    @RequestMapping(value = "/{email}", method = RequestMethod.GET)
-    public Login getUserById(@PathVariable("email") String email){
+    @RequestMapping(value = "/{email}/{password}", method = RequestMethod.GET)
+    public ResponseEntity<?> getUserById(@PathVariable("email") String email, @PathVariable("password") String password) throws Exception{
+
+        StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
 
         Login login = loginService.getUserCredentials(email);
 
-        BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
+        if (login == null) {
 
-        textEncryptor.setPassword(SecureKey.getKey());
+            return new ResponseEntity<>("Invalid Credentials", new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
 
-        login.setPassword(textEncryptor.decrypt(login.getPassword()));
+        } else if (passwordEncryptor.checkPassword(password, login.getPassword())){
 
-        return login;
+            return new ResponseEntity<>(login, new HttpHeaders(), HttpStatus.OK);
+
+        } else {
+
+            return new ResponseEntity<>("Invalid Credentials", new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
 
     }
 
@@ -68,9 +74,9 @@ public class LoginController {
 
             String newPassword = randomString(4);
 
-            BasicTextEncryptor passwordEncryptor = new BasicTextEncryptor();
-            passwordEncryptor.setPassword(SecureKey.getKey());
-            String newEncryptedPassword = passwordEncryptor.encrypt(newPassword);
+            StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+
+            String newEncryptedPassword = passwordEncryptor.encryptPassword(newPassword);
 
             loginService.updatePassword(email, newEncryptedPassword);
 
