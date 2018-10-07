@@ -66,7 +66,7 @@ public class OrderDao {
     }
 
     //This will return the order dtails object as collection
-    public Collection<OrderDetail> getOrderDetails(String constructorID, String managerID, String status, String from, String to){
+    public Collection<OrderDetail> getOrderDetails(String constructorID, String managerID, String supplierID, String status, String from, String to){
         boolean and = false;
         List<String> param = new ArrayList();
         String sql = "SELECT o.id, o.orderedBy orderedBy, u2.fName orderedByName, o.manager manager, u1.fName managerName, o.item item, " +
@@ -81,7 +81,7 @@ public class OrderDao {
                 "ON o.supplier = u3.id\n" +
                 "LEFT JOIN sites s\n" +
                 "ON o.site = s.siteID";
-        if(constructorID.equals("0") && managerID.equals("0") && status.equals("0") && from.equals("0") && to.equals("0")){
+        if(constructorID.equals("0") && managerID.equals("0") && supplierID.equals("0") && status.equals("0") && from.equals("0") && to.equals("0")){
             sql = sql;
         }
         else{
@@ -100,6 +100,16 @@ public class OrderDao {
             }
             else{
                 sql = sql + " o.manager = ?";
+                and = true;
+            }
+        }
+        if (!supplierID.equals("0")){
+            param.add(supplierID);
+            if (and){
+                sql = sql + " AND o.supplier = ?";
+            }
+            else{
+                sql = sql + " o.supplier = ?";
                 and = true;
             }
         }

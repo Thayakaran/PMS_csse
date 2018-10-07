@@ -15,8 +15,8 @@ public class OrderService {
     @Autowired
     private OrderDao orderDao;
 
-    public Collection<OrderDetail> getOrderDetails(String constructorID, String managerID, String status, String from, String to){
-        return this.orderDao.getOrderDetails(constructorID, managerID, status, from, to);
+    public Collection<OrderDetail> getOrderDetails(String constructorID, String managerID, String supplierID ,String status, String from, String to){
+        return this.orderDao.getOrderDetails(constructorID, managerID, supplierID, status, from, to);
     }
 
     public String updateStatus(String orderID, String status){
