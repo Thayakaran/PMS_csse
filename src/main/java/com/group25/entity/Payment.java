@@ -2,11 +2,14 @@ package com.group25.entity;
 
 public class Payment {
 
+    private String invoiceID;
     private String cardholerName;
     private String cardNo;
     private String expDate;
     private String cvv;
     private String amount;
+    private String date;
+    private String email;
 
     public Payment(){}
 
@@ -49,4 +52,29 @@ public class Payment {
     public void setAmount(String amount) {
         this.amount = amount;
     }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getInvoiceID() {
+        return invoiceID;
+    }
+
+    public void setInvoiceID(String invoiceID) {
+        this.invoiceID = invoiceID;
+    }
+
 }

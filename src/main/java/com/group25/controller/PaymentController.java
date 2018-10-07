@@ -4,6 +4,8 @@ package com.group25.controller;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.group25.entity.Payment;
+import com.group25.mailService.MailService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/pay")
 public class PaymentController {
+
+    @Autowired
+    MailService mailservice;
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> sendPaymentDetails(@RequestBody Payment paymentDetails){
@@ -26,6 +31,8 @@ public class PaymentController {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String paymentString = gson.toJson(paymentDetails);
             System.out.println(paymentString);
+
+            mailservice.sendPaymentConfirmationEmail(paymentDetails.getEmail(), paymentDetails.getInvoiceID(), paymentDetails.getDate());
 
             return new ResponseEntity<>("Payment Successful", new HttpHeaders(), HttpStatus.OK);
 

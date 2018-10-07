@@ -42,9 +42,11 @@ public class SiteManagerDao {
         @Override
         public SiteManager mapRow(ResultSet resultSet, int i) throws SQLException {
             SiteManager supplier = new SiteManager();
-            supplier.setSupplier(resultSet.getInt("supplierID"));
+            supplier.setSupplier(resultSet.getInt("s.supplierID"));
             supplier.setMaterial(resultSet.getString("supplierMaterialType"));
             supplier.setPrice(resultSet.getString("unitPrice"));
+            supplier.setSupplierName(resultSet.getString("u.fName"));
+            supplier.setPersonMail(resultSet.getString("u.email"));
             return supplier;
         }
     }
@@ -53,19 +55,33 @@ public class SiteManagerDao {
         @Override
         public SiteManager mapRow(ResultSet resultSet, int i) throws SQLException {
             SiteManager user = new SiteManager();
-            user.setUserId(resultSet.getInt("id"));
-            user.setUserName(resultSet.getString("fName"));
-            user.setContactnum(resultSet.getInt("oPhone"));
-            user.setSite(resultSet.getString("wAddress"));
+            user.setId(resultSet.getInt("d.id"));
+            user.setOrderby(resultSet.getInt("orderedBy"));
+            user.setStatus(resultSet.getString("status"));
+            user.setRequiredate(resultSet.getString("requiredDate"));
+            user.setItem(resultSet.getString("item"));
             return user;
         }
     }
 
-    private static class MailRowMapper implements RowMapper<SiteManager>{
+    private static class ManagerRowMapper implements RowMapper<SiteManager>{
+        @Override
+        public SiteManager mapRow(ResultSet resultSet, int i) throws SQLException {
+            SiteManager user = new SiteManager();
+            user.setManagerName(resultSet.getString("fname"));
+            user.setContactnum(resultSet.getInt("mPhone"));
+            user.setUserId(resultSet.getInt("id"));
+            return user;
+        }
+    }
+
+    private static class SiteRowMapper implements RowMapper<SiteManager>{
         @Override
         public SiteManager mapRow(ResultSet resultSet, int i) throws SQLException {
             SiteManager mail = new SiteManager();
-            mail.setPersonMail(resultSet.getString("email"));
+            mail.setSiteName(resultSet.getString("location"));
+            mail.setSite(resultSet.getString("siteID"));
+            mail.setId(resultSet.getInt("id"));
             return mail;
         }
     }
@@ -84,23 +100,37 @@ public class SiteManagerDao {
         return request;
     }
 
-    //get a specific User
-    public SiteManager getUser(String id){
+    //get a specific manager request
+    public  List<SiteManager> getUser(String id){
+        final String sql = "SELECT * FROM user u, orders d WHERE d.manager = u.id AND u.email = ?";
+        List<SiteManager> user = jdbcTemplate.query(sql, new userRowMapper(), id);
+        return user;
+    }
+
+    //get a specific manager details
+    public  SiteManager getManagerDetails(String id){
         final String sql = "SELECT * FROM user WHERE email = ?";
-        SiteManager user = jdbcTemplate.queryForObject(sql, new userRowMapper(), id);
+        SiteManager user = jdbcTemplate.queryForObject(sql, new ManagerRowMapper(), id);
         return user;
     }
 
     //get mail id
-    public SiteManager getSendMail(int id){
-        final String sql = "SELECT * FROM user WHERE id = ?";
-        SiteManager mail = jdbcTemplate.queryForObject(sql, new MailRowMapper(), id);
+//    public SiteManager getSendMail(String id){
+//        final String sql = "SELECT * FROM user WHERE fname = ?";
+//        SiteManager mail = jdbcTemplate.queryForObject(sql, new MailRowMapper(), id);
+//        return mail;
+//    }
+//
+//    //get mail id
+    public List<SiteManager> getsiteName(){
+        final String sql = "SELECT * FROM user u, sites s WHERE u.id = s.manager";
+        List<SiteManager> mail = jdbcTemplate.query(sql, new SiteManagerDao.SiteRowMapper());
         return mail;
     }
 
     //get a specific Supplier id
     public List<SiteManager> getSupplierId(){
-        final String sql = "SELECT * FROM supplierMaterials";
+        final String sql = "SELECT * FROM supplierMaterials s , user u WHERE s.supplierID = u.id";
         List<SiteManager> supplier = jdbcTemplate.query(sql, new SiteManagerDao.MaterialRowMapper());
         return supplier;
     }

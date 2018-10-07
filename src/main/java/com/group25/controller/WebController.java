@@ -32,6 +32,9 @@ public class WebController {
         return "siteManagement";
     }
 
+
+
+
     //// Supplier Interface
     @GetMapping(value = "/orderDetails.html")
     public String orderDetailsPage(){return "orderDetails";}
@@ -41,10 +44,12 @@ public class WebController {
     public String goodReceiptPage(){return "goodReceipt";}
     @GetMapping(value = "/paymentSummery.html")
     public String paymentSummeryPage(){return "paymentSummery";}
-    @GetMapping(value = "/supplierProfile.html")
-    public String supplierProfilePage(){return "supplierProfile";}
+
     @GetMapping(value = "/supplierMeterial.html")
     public String supplierMeterialPage(){return "supplierMeterial";}
+    @GetMapping(value = "/supplierHome.html")
+    public String supplierHomePage(){return "supplierHome";}
+
 
     //// Site Manager Interface
     @GetMapping(value = "/viewRequests.html")

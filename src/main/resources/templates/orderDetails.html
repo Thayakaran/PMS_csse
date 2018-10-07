@@ -94,7 +94,7 @@
 
                                     </td>
                                     <td>
-                                        <a href="invoice.html" id="invoice" name="invoice" class="btn btn-primary btn-xs">Invoice </a>
+                                        <a id="invoice" name="invoice" class="btn btn-primary btn-xs">Invoice </a>
                                     </td>
                                     <td>
                                         <a href="goodReceipt.html" class="btn btn-primary btn-xs">Receipt</a>
@@ -109,7 +109,7 @@
                     </div>
                 <!--</div>-->
             <!--</div>-->
-        <!--</div>-->
+        </div>
 
         <!-- /page content -->
 
@@ -147,9 +147,32 @@
 <!-- Custom Theme Scripts -->
 <script src="/js/projectJS/custom.min.js"></script>
 
-                <script>
 
-                </script>>
+<!--<script type="text/javascript">-->
+<!--$(document).ready(function(){-->
+<!--$('#invoice').click(function(){-->
+<!--alert($(this).text());-->
+<!--});-->
+<!--});-->
 
+<!--</script>-->
+
+<script>
+    $('.table tbody').on('click' , '#invoice' , function(){
+        var currow = $(this).closest('tr');
+        var col1 = currow.find('td:eq(0)').text();
+        var col2 = currow.find('td:eq(1)').text();
+        var col3 = currow.find('td:eq(2)').text();
+        var col4 = currow.find('td:eq(3)').text();
+        var col5 = currow.find('td:eq(4)').text();
+
+        location.href = "invoice.html";
+
+        $("#orderId").val(col1);
+
+
+
+    })
+</script>>
 </body>
 </html>
