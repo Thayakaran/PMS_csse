@@ -2,6 +2,7 @@ package com.group25.entity;
 
 public class Login {
 
+    private Integer id;
     private String fName;
     private String email;
     private String password;
@@ -39,6 +40,14 @@ public class Login {
 
     public void setfName(String fName) {
         this.fName = fName;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
 }

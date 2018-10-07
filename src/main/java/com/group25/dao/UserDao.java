@@ -2,6 +2,7 @@ package com.group25.dao;
 
 import com.group25.encryptionKey.SecureKey;
 import com.group25.entity.User;
+import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.jasypt.util.text.BasicTextEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -117,9 +118,8 @@ public class UserDao {
     }
 
     public String passwordEncrypt(String pass){
-        BasicTextEncryptor passwordEncryptor = new BasicTextEncryptor();
-        passwordEncryptor.setPassword(SecureKey.getKey());
-        String encryptedPassword = passwordEncryptor.encrypt(pass);
+        StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+        String encryptedPassword = passwordEncryptor.encryptPassword(pass);
 
         return encryptedPassword;
     }
