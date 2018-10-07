@@ -1,6 +1,5 @@
 language: java
 jdk: oraclejdk8
-
 notifications:
   email:
   - 18sugan@gmail.com
@@ -10,3 +9,8 @@ notifications:
   - n.sankeeth@gmail.com
   on_success: always
   on_failure: always
+deploy:
+  api_key:
+    secure: Y77eLqQX1/hzMRgz2zaagiso7L66dN4N9RsAAx1sCDX6GOEBOCIo1um9jUpDgV6ZhsCYCRMeDtGhM3Gk2TVVFZvhMW0L03jzCMP4+Qy3G49sXkiwLU2iZ3glaDsJnURKFMKbqTUc7DjSLp3n0CLCgWd+AtN2Uqwea21jCxd7AAQSYa78NX+KDDnI2DkzddxkK7jJe9aNITyXD5ZksgBMq+44E1EQJPRJ4iipLjg9DOXRZP9KH9FJKev8ZNTmrRlW+uNkFFgQqKew1wkqrmqJLcDvLuuiiiithJksgciXBb9lXw0rmI70MxOu8wLeKiQH6QmpByc3RWzAa74ioWtIAB0GxevMELma7Jt5+dL4NqKktGegZshW2EyEfwqARGmhokqC/g24ihkRbDCEb7rQN0LlNpJiEKik0x75rJ9xs/2L45Eg1ldFadRXY8mzkRdQi+hz56piFFSdx4QPSSlnBjhmPRC+AM+C1hCCqLk6LVS1/Srx8F8qGrLIMr97feQ1S3sORmHSRr9F5psp67tdBPmqPyZwq7Hxenkzk0d98Z3gTfiO2gqmpzRrxFJDU5SE0Vh1uljKiDUtwnx+MwP6l2TSfpfzXgoEYv2qjbEOHSSByPgQijG2vBXAMXgeHDsUSTGnAbycNQwguXd7sQbFC9jCv/5Cx7BOC0b8urrdHq8=
+  app:
+    master: sliit-pms-csse
