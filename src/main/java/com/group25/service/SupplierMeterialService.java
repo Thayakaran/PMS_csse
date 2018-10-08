@@ -17,15 +17,17 @@ public class SupplierMeterialService {
         return this.supplierMeterialDao.getAllSupplierMeterial();
     }
 
-
+    ///add supplier meterial
     public void addSupplierMeterial(SupplierMeterial supplierMeterial) {
         this.supplierMeterialDao.addSupplierMeterial(supplierMeterial);
     }
 
+    //get supplier Material by ID
     public SupplierMeterial getSupplierMaterialById(int id) {
         return this.supplierMeterialDao.getSupplierMaterialById(id);
     }
 
+    //delete supplier meterial by ID
     public void deleteSupplierMaterialById(int id) {
         this.supplierMeterialDao.deleteSupplierMaterialById(  id);
     }

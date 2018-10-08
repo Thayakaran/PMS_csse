@@ -25,6 +25,8 @@ public class InvoiceController {
     @Autowired
     MailService mailservice;
 
+    // get all payment details which are not paid
+
     @RequestMapping(value = "/unpaid", method = RequestMethod.GET)
     public Collection<Invoice> getAllUnPaidInvoices(){
 
@@ -32,6 +34,7 @@ public class InvoiceController {
 
     }
 
+        // get all payment details which are paid
     @RequestMapping(value = "/paid", method = RequestMethod.GET)
     public Collection<Invoice> getAllPaidInvoices(){
 
@@ -39,6 +42,7 @@ public class InvoiceController {
 
     }
 
+        //update payment status by ID
     @RequestMapping(value = "/updatePaymentStatus/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updatePaymentStatus(@PathVariable("id") String id, @RequestBody String jsonStr) {
 
@@ -54,12 +58,13 @@ public class InvoiceController {
 
     }
 
-
+    //update invoice
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateInvoice(@RequestBody Invoice invoice){
         invoiceService.updateInvoice(invoice);
     }
 
+    //adding invoice
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addInvoice(@RequestBody Invoice invoice){
         invoiceService.addInvoice(invoice);

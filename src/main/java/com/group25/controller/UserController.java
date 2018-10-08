@@ -53,4 +53,9 @@ public class UserController {
         }
         return  res;
     }
+
+    @RequestMapping(value = "/{email}", method = RequestMethod.GET)
+    public User getUserByEmail(@PathVariable("email") String email){
+        return userService.getUserByEmail(email);
+    }
 }

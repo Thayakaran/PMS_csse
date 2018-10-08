@@ -20,7 +20,7 @@ $(document).ready(function(){
            document.getElementById("username").innerHTML = username;
 
 
-
+///getting  supplier materials
   getAllData();
 
   function getAllData() {
@@ -37,7 +37,6 @@ $(document).ready(function(){
                   { "data" : "supplierMaterialType" },
                   { "data" : "measurement" },
                   { "data" : "unitPrice" },
-                  { "data" : "supplierID" }
 
               ],
               "bDestroy": true
@@ -53,7 +52,14 @@ $(document).ready(function(){
       }
     });
 
-}
+}function loadInvoicePage() {
+     $('#invoice-page').load('/invoice.html');
+     //$("#payments-tab").removeClass("active");
+ }
+
+
+
+
            //register invoice
            $('#invoiceSubmitBtn').click(function () {
                $("#body").load('/invoice.html', function() {
