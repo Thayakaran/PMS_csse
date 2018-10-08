@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     var userRole = localStorage.getItem('role');
     if (userRole == null || userRole != "Contractor") {
-        location.href = "/";
+        //location.href = "/";
     }
 
        $("#userwelcome").html(localStorage.getItem("userName"));
@@ -19,18 +19,20 @@ $(document).ready(function(){
 
 
 	function getAllData() {
+		let id = localStorage.getItem('id');
 		$.ajax({
 		  type: "GET",
-		  url: "/supplierMeterial",
+		  url: "/orders/"+id+"/0/0/pending/0/0",
 		  success: function(result) {
 			  $('#pendingRequestsDT').DataTable({
 				  "data" : result,
 				  "columns" : [
-					  { "data" : "Manager" },
-					  { "data" : "Item" },
+					  { "data" : "managerName" },
+					  { "data" : "item" },
 					  { "data" : "quantity" },
-					  { "data" : "siteLocation" },
-					  { "data" : "status" }
+					  { "data" : "location" },
+					  { "data" : "status" },
+					  { "defaultContent" : "<input type='submit' />" }
 
 				  ],
 				  "bDestroy": true
@@ -45,6 +47,7 @@ $(document).ready(function(){
 		  }
 		});
 	}
+	getAllData();
 });
 
 

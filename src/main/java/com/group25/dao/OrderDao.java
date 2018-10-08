@@ -2,6 +2,8 @@ package com.group25.dao;
 
 import com.group25.entity.Order;
 import com.group25.entity.OrderDetail;
+import com.group25.entity.Site;
+import com.group25.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -65,6 +67,36 @@ public class OrderDao {
             order.setLocation(resultSet.getString("siteLocation"));
             order.setLocation(resultSet.getString("siteLocation"));
             return order;
+        }
+    }
+    private static class UserRowMapper implements RowMapper<User>{
+        @Override
+        public User mapRow(ResultSet resultSet, int i) throws SQLException {
+            User user = new User();
+            user.setId(resultSet.getInt("id"));
+            user.setfName(resultSet.getString("fName"));
+            user.setlName(resultSet.getString("lName"));
+            user.setmPhone(resultSet.getString("mPhone"));
+            user.setoPhone(resultSet.getString("oPhone"));
+            user.sethAddress(resultSet.getString("hAddress"));
+            user.setwAddress(resultSet.getString("wAddress"));
+            user.setRole(resultSet.getString("role"));
+            user.setEmail(resultSet.getString("email"));
+            user.setPassword(resultSet.getString("password"));
+            return user;
+        }
+    }
+    private static class SiteRowMapper implements RowMapper<Site> {
+        @Override
+        public Site mapRow(ResultSet resultSet, int i) throws SQLException {
+            Site site = new Site();
+            site.setSiteID(resultSet.getString("SiteID"));
+            site.setLocation(resultSet.getString("Location"));
+            site.setClient(resultSet.getString("Client"));
+            site.setManager(resultSet.getInt("Manager"));
+            site.setContractors(resultSet.getString("Contractors"));
+            site.setSuppliers(resultSet.getString("Suppliers"));
+            return site;
         }
     }
 
@@ -180,5 +212,17 @@ public class OrderDao {
         catch (Exception ex){
             return "{\"error\": \""+ex.toString()+"\"}";
         }
+    }
+    public Collection<String> getMaterials(){
+        List<String> data = jdbcTemplate.queryForList("SELECT DISTINCT supplierMaterialType  FROM supplierMaterials",String.class);
+        return data;
+    }
+    public Collection<User> getManagers(){
+        List<User> data = jdbcTemplate.query("SELECT * FROM user WHERE role = 'Site Manager'", new UserRowMapper());
+        return data;
+    }
+    public Collection<Site> getSites(){
+        List<Site> data = jdbcTemplate.query("SELECT * FROM sites", new SiteRowMapper());
+        return data;
     }
 }

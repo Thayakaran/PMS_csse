@@ -77,7 +77,7 @@ public class WebController {
     //// Constructor Interface
     @GetMapping(value = "/contractorHome.html")
     public String contractorHome(){return "contractorHome.html";}
-    @GetMapping(value = "/123.html")
-    public String contractorHdome(){return "123.html";}
+    @GetMapping(value = "/contractorNewOrder.html")
+    public String contractorNewOrder(){return "contractorNewOrder.html";}
 
 }
