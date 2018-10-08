@@ -49,6 +49,8 @@ public class WebController {
     public String supplierMeterialPage(){return "supplierMeterial";}
     @GetMapping(value = "/supplierHome.html")
     public String supplierHomePage(){return "supplierHome";}
+    @GetMapping(value = "/editStatus.html")
+    public String editPage(){return "editStatus";}
 
 
     //// Site Manager Interface

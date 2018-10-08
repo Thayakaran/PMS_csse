@@ -36,4 +36,8 @@ public class UserService {
     public String addUser(User user) {
         return this.userDao.addUser(user);
     }
+
+    public User getUserByEmail(String email){
+        return this.userDao.getUserByEmail(email);
+    }
 }

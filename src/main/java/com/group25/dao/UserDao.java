@@ -123,4 +123,11 @@ public class UserDao {
 
         return encryptedPassword;
     }
+
+    //get a specific user by id
+    public User getUserByEmail(String email){
+        final String sql = "SELECT * FROM user WHERE email = ?";
+        User user = jdbcTemplate.queryForObject(sql, new UserRowMapper(), email);
+        return user;
+    }
 }

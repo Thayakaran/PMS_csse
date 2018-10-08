@@ -61,6 +61,19 @@ public class MailService {
 
         jms.send(sm);
     }
-    
+
+    // Sent mail to when supplier approve order
+    public void sendApproveFromSuppliermail(SiteManager sitemanager) {
+        SimpleMailMessage sm = new SimpleMailMessage();
+        sm.setTo(sitemanager.getPersonMail());
+        sm.setFrom("matrix.pms.sliit@gmail.com");
+        sm.setSubject("Your Order Accepted");
+        sm.setText(sitemanager.getInfor() + "\n" + "Order ID :" + sitemanager.getId()
+                + '\n' + "Before : " + sitemanager.getRequiredate());
+
+        jms.send(sm);
+    }
+
+
 
 }

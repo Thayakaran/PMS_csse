@@ -19,6 +19,8 @@ public class SupplierMeterialDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+
+    //get all supplier material
     public Collection<SupplierMeterial> getAllSupplierMeterial() {
         final String sql = "SELECT * FROM supplierMaterials";
         List<SupplierMeterial> supplierMeterials = jdbcTemplate.query(sql, new SupplierMeterialDao.SupplierMeterialRowMapper());
@@ -43,7 +45,7 @@ public class SupplierMeterialDao {
 
 
 
-    //adding new user
+    //adding new supplier material
     public void addSupplierMeterial(SupplierMeterial supplierMeterial) {
         final String sql = "INSERT INTO supplierMaterials ( supplierMaterialType, measurement, unitPrice ,supplierID) VALUES (?, ?, ?,?)";
         int id = supplierMeterial.getId();

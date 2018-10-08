@@ -2,6 +2,25 @@
 
 $( document ).ready(function() {
 
+ var userRole = localStorage.getItem('role');
+    if (userRole == null || userRole != "Supplier") {
+        location.href = "/";
+    }
+
+       $("#userwelcome").html(localStorage.getItem("userName"));
+
+         $("#logout").click(function () {
+               localStorage.clear();
+               location.href = "/";
+           });
+
+
+         var username = localStorage.getItem('name');
+           document.getElementById("userwelcome").innerHTML = username;
+           document.getElementById("username").innerHTML = username;
+
+
+
     // ADD NEW USER
     $("#supplierMeterialForm").submit(function(event) {
         // Prevent the form from submitting via the browser.

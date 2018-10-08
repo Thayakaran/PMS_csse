@@ -2,6 +2,46 @@
 
 $( document ).ready(function() {
 
+   //  var pageURL = $(location).attr("href");
+
+//        if(pageURL == "http://localhost:3000/invoice.html") {
+//
+//            location.href = "invoice.html";
+//
+//            return;
+//
+//        }
+
+
+
+        //getting data value from localstorage
+        var orderID = localStorage.getItem("id");
+
+        var description = localStorage.getItem("description");
+
+        var quantity = localStorage.getItem("quantity");
+
+        var userRole = localStorage.getItem('role');
+
+        var email = localStorage.getItem('email');
+
+
+
+
+        $('#id').val(orderID);
+        $('#description').val(description);
+          $('#quantity').val(quantity);
+
+        localStorage.removeItem("invoiceID");
+        localStorage.removeItem("amount");
+
+        $("#paidButton").click(function () {
+
+            updatePaymentStatus();
+
+        });
+
+
     // ADD NEW INVOICE
     $("#invoiceForm").click(function(event) {
         // Prevent the form from submitting via the browser.
@@ -57,7 +97,7 @@ $( document ).ready(function() {
 
     /////////////////////////////////////////////////////////////////////////////////
 
-     // GET USER BY ID(search)
+     // GET invoice BY ID(search)
         $("#searchBtn").click(function(event){
             event.preventDefault();
             var id = $("#searchTxt").val();
@@ -101,7 +141,7 @@ $( document ).ready(function() {
 
     ///////////////////////////////////////////////////////////////////////////
 
-    // DELETE USER BY ID
+    // DELETE invoice BY ID
     $("#searchBtn").click(function(event){
         event.preventDefault();
         var id = $("#searchTxt").val();
